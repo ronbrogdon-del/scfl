@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Papers – SCFL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">SCFL</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Overview</a>
+        <a href="one-question.html">One Question Challenge</a>
+        <a href="videos.html">Videos</a>
+        <a href="papers.html" aria-current="page">Papers</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container narrow">
+        <p class="section-kicker">Research</p>
+        <h1>Papers</h1>
+        <p class="lede">Selected publications from the SCFL / UCMS research program. Additional work is archived on Zenodo.</p>
+
+        <h2>Papers</h2>
+        <ul>
+          <li><strong>Rupture Atlas (Paper II)</strong> — <a href="https://doi.org/10.5281/zenodo.19036468" target="_blank" rel="noopener">10.5281/zenodo.19036468</a></li>
+          <li><strong>Coherence Half-Life τ½</strong> — <a href="https://doi.org/10.5281/zenodo.19522394" target="_blank" rel="noopener">10.5281/zenodo.19522394</a></li>
+        </ul>
+
+        <h2>Biological / Human</h2>
+        <ul>
+          <li><strong>Contemplative Academy (N=100)</strong> — <a href="https://doi.org/10.5281/zenodo.20653355" target="_blank" rel="noopener">10.5281/zenodo.20653355</a></li>
+          <li><strong>Souljourner Interior Coherence</strong> — <a href="https://doi.org/10.5281/zenodo.20966428" target="_blank" rel="noopener">10.5281/zenodo.20966428</a></li>
+        </ul>
+
+        <h2>Foundational / Framework</h2>
+        <ul>
+          <li><strong>Seam Physics (Paper I)</strong> — <a href="https://doi.org/10.5281/zenodo.19005292" target="_blank" rel="noopener">10.5281/zenodo.19005292</a></li>
+          <li><strong>Coherence as a Relational Property</strong> — <a href="https://doi.org/10.5281/zenodo.23247214" target="_blank" rel="noopener">10.5281/zenodo.23247214</a></li>
+        </ul>
+
+        <p style="margin-top: 2.5rem; color: var(--muted); font-style: italic;">Ultimately I would house all my papers here.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>© <span id="year"></span> Ronald L. Brogdon. All rights reserved.</p>
+      <a href="#top">Back to top</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
