@@ -1,1 +1,230 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SCFL / UCMS Video Index — Souljourner Simulations</title>
+<style>
+  :root {
+    --bg: #0f1419;
+    --card: #1a2332;
+    --accent: #3b82f6;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --border: #30363d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  header {
+    padding: 2.5rem 1.5rem 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, #161b22 0%, var(--bg) 100%);
+  }
+  h1 { margin: 0 0 0.5rem; font-size: 1.8rem; font-weight: 600; }
+  .subtitle { color: var(--muted); font-size: 0.95rem; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .card:hover { transform: translateY(-2px); border-color: var(--accent); }
+  .video-wrap { background: #000; aspect-ratio: 16/9; }
+  video {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .card-body { padding: 1.25rem; }
+  .card h2 { margin: 0 0 0.4rem; font-size: 1.15rem; font-weight: 600; }
+  .card p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+  }
+  .note {
+    background: #1c2430;
+    border-left: 3px solid var(--accent);
+    padding: 0.75rem 1rem;
+    margin-bottom: 2rem;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  nav.top-nav { margin-bottom: 1rem; }
+  nav.top-nav a { color: var(--accent); text-decoration: none; margin-right: 1rem; }
+  nav.top-nav a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<header>
+  <h1>SCFL / UCMS Video Index</h1>
+  <div class="subtitle">Souljourner Simulations · Coherence Science Measurement Series</div>
+</header>
+
+<div class="container">
+  <nav class="top-nav">
+    <a href="index.html">← Overview</a>
+    <a href="one-question.html">One Question Challenge</a>
+  </nav>
+
+  <div class="note">
+    Place the corresponding .mp4 files in the same folder as this HTML file for the players to load. Videos are expected with the filenames shown below.
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="video-wrap">
+        <video controls preload="metadata">
+          <source src="SCFL_While_It_Still_Stands.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="card-body">
+        <h2>While It Still Stands — Video 1</h2>
+        <p>SCFL_While_It_Still_Stands.mp4<br>Explains the Upstream Coherence Measurement Stratum (UCMS) as analogous to an engineer measuring micro-fractures on the load-bearing structures of a dam. Not an Early Warning System (EWS) but an upstream geometric interval, adjacent to EWS; Early Warning Systems are statistical precursors.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="video-wrap">
+        <video controls preload="metadata">
+          <source src="SCFL_While_It_Still_Stands_V2.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="card-body">
+        <h2>While It Still Stands — Video 2</h2>
+        <p>SCFL_While_It_Still_Stands_V2.mp4<br>Describes the measurement capabilities of Upstream Coherence Measurement Stratum: SCFL for nonbiological structures measurement and its counterpart, Souljourner, for biological interior coherence measurement. Designed to provide insight into previously hidden structure inside data already collected.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="video-wrap">
+        <video controls preload="metadata">
+          <source src="SCFL_While_It_Still_Stands_V3.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="card-body">
+        <h2>While It Still Stands — Video 3</h2>
+        <p>SCFL_While_It_Still_Stands_V3.mp4<br>Winter storm URI reached a nonrecoverable threshold of under 5 minutes. Software engineers in timestamped reconstructions on grid network data have provided very encouraging empirical results in SCFL test validations.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="video-wrap">
+        <video controls preload="metadata">
+          <source src="SCFL_While_It_Still_Stands_V4.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="card-body">
+        <h2>While It Still Stands — Video 4</h2>
+        <p>SCFL_While_It_Still_Stands_V4.mp4<br>Research team tests SCFL on 6 hospital cases (drift to rupture), with particular scans conducted on the entire U.S. hospital system and at-risk rural hospitals already in the threshold of non-recoverability.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="video-wrap">
+        <video controls preload="metadata">
+          <source src="SCFL_While_It_Still_Stands_V5.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="card-body">
+        <h2>While It Still Stands — Video 5</h2>
+        <p>SCFL_While_It_Still_Stands_V5.mp4<br>Many global event data sets ranging from volcanoes to hurricanes. Some with geometric precursor windows, some with little to no notice. Fukushima stands out as multiple event ruptures some with windows; but of particular interest cascade into tail events lasting years.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="video-wrap">
+        <video controls preload="metadata">
+          <source src="SWF_SCFL_Recoverability.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="card-body">
+        <h2>SWF Recoverability</h2>
+        <p>SWF_SCFL_Recoverability.mp4<br>Sovereign wealth / patient capital. Core line: patient capital fails when the system under the price cannot replenish itself.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="video-wrap">
+        <video controls preload="metadata">
+          <source src="Reinsurance_SCFL_Recoverability.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="card-body">
+        <h2>Reinsurance Recoverability</h2>
+        <p>Reinsurance_SCFL_Recoverability.mp4<br>In situ, one peak-zone binding. The model can be right on the margin and blind on recoverability.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="video-wrap">
+        <video controls preload="metadata">
+          <source src="SCFL_Fukushima_Cascade.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="card-body">
+        <h2>Fukushima Cascade</h2>
+        <p>SCFL_Fukushima_Cascade.mp4<br>Nuclear-cascade plate. Upstream structural readings across the multi-unit sequence before stationarity broke.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="video-wrap">
+        <video controls preload="metadata">
+          <source src="SCFL_MaaS.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="card-body">
+        <h2>MaaS Recoverability</h2>
+        <p>SCFL_MaaS.mp4<br>Mobility-as-a-Service systems. Upstream measurement of whether the operational substrate can replenish itself under load.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="video-wrap">
+        <video controls preload="metadata">
+          <source src="SCFL_Surfside.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="card-body">
+        <h2>Surfside Collapse</h2>
+        <p>SCFL_Surfside.mp4<br>Champlain Towers South. Structural drift and recoverability loss readable in the years preceding the progressive collapse.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  SCFL / UCMS · Souljourner Simulations · Index generated October 2026
+</footer>
+</body>
+</html>
