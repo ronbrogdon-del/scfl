@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register – One Question Challenge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .form-wrap { max-width: 640px; margin: 0 auto; }
+    form { display: flex; flex-direction: column; gap: 1.1rem; }
+    label { font-weight: 600; font-size: 0.9rem; }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.75rem 0.9rem;
+      border: 1px solid var(--line, #e0e0e0);
+      border-radius: 6px;
+      font: inherit;
+      background: var(--surface, #fff);
+    }
+    textarea { min-height: 120px; resize: vertical; }
+    .help { font-size: 0.85rem; color: var(--muted, #5a5a5a); margin-top: 0.25rem; }
+    .submit { margin-top: 0.5rem; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">SCFL</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Overview</a>
+        <a href="one-question.html">One Question Challenge</a>
+        <a href="videos.html">Videos</a>
+        <a href="papers.html">Papers</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container form-wrap">
+        <p class="section-kicker">One Question Challenge</p>
+        <h1>Register</h1>
+        <p class="lede">Submit your registration. A qualifying officer or board member must register. The challenge opens after review.</p>
+
+        <form action="mailto:measurement@coherencemanagement.org" method="POST" enctype="text/plain">
+          <div>
+            <label for="name">Full name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+
+          <div>
+            <label for="title">Title / role</label>
+            <input type="text" id="title" name="title" required placeholder="e.g. Chief Risk Officer, Board Member">
+          </div>
+
+          <div>
+            <label for="org">Organization</label>
+            <input type="text" id="org" name="organization" required>
+          </div>
+
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div>
+            <label for="authority">Decision altitude</label>
+            <select id="authority" name="authority" required>
+              <option value="">Select…</option>
+              <option value="officer-risk">Officer with enterprise risk authority</option>
+              <option value="officer-capital">Officer with capital authority</option>
+              <option value="officer-ops">Officer with operational authority</option>
+              <option value="board">Board member</option>
+              <option value="other">Other (please describe below)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="question">Your one question (optional at registration)</label>
+            <textarea id="question" name="question" placeholder="You may submit the question now or later."></textarea>
+            <p class="help">Plain language is fine. The Structural Intake Engine handles the translation.</p>
+          </div>
+
+          <div>
+            <label for="notes">Additional notes</label>
+            <textarea id="notes" name="notes" placeholder="Anything relevant to the registration."></textarea>
+          </div>
+
+          <button type="submit" class="button primary submit">Submit Registration</button>
+        </form>
+
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--muted);">
+          Questions? <a href="mailto:measurement@coherencemanagement.org">measurement@coherencemanagement.org</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>© <span id="year"></span> Ronald L. Brogdon. All rights reserved.</p>
+      <a href="one-question.html">Back to One Question Challenge</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
