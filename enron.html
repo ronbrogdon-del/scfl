@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enron Reconstruction – SCFL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .recon-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border: 1px solid #e0e0e0;
+      margin: 1.5rem 0;
+    }
+    .narrow { max-width: 780px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">SCFL</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Overview</a>
+        <a href="one-question.html">One Question Challenge</a>
+        <a href="videos.html">Videos</a>
+        <a href="enron.html" aria-current="page">Enron Reconstruction</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container narrow">
+        <p class="section-kicker">Structural Integrity Scan</p>
+        <h1>Enron Reconstruction</h1>
+        <p class="lede">A retrospective reading of the Enron collapse through the SCFL lens: variance collapse, cohort-level propagation, and the rupture horizon that was visible in the email corpus months before external indicators moved.</p>
+
+        <img src="IMG_0375.jpeg" alt="Enron Reconstruction" class="recon-img">
+
+        <p>This reconstruction sits alongside SVB, ERCOT, and the other public structural integrity scans. The core observation is that organizational rupture was preceded by a measurable decay regime — persistent negative drift and variance collapse — while conventional performance and compliance signals remained stationary.</p>
+
+        <p>Related work:</p>
+        <ul>
+          <li><a href="https://doi.org/10.5281/zenodo.21664081" target="_blank" rel="noopener">Not a Failure of Will, but of Instrument — Precursor Geometry in the 2023 Regional Bank Failures</a></li>
+          <li><a href="videos.html">Video series</a></li>
+        </ul>
+
+        <p style="margin-top: 2rem;"><a href="index.html" class="button secondary">Back to Overview</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>© <span id="year"></span> Ronald L. Brogdon. All rights reserved.</p>
+      <a href="index.html">Home</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
