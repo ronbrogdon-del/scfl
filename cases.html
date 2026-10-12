@@ -10,8 +10,17 @@
   <link rel="stylesheet" href="style.css">
   <style>
     .case-list { list-style: none; padding: 0; margin: 1.5rem 0 0; }
-    .case-list li { margin-bottom: 1rem; }
+    .case-list li { margin-bottom: 2rem; }
     .case-list a { font-weight: 600; }
+    .case-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border: 1px solid #e0e0e0;
+      margin-top: 0.75rem;
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -39,8 +48,8 @@
           <li>
             <a href="enron.html">Enron Reconstruction</a><br>
             <span style="color: var(--muted); font-size: 0.9rem;">Variance collapse and cohort-level propagation in the email corpus, months before external indicators moved.</span>
+            <img src="IMG_0375.jpeg" alt="Enron Reconstruction" class="case-img">
           </li>
-          <!-- Additional cases can be added here -->
         </ul>
 
         <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--muted);">More reconstructions (SVB, ERCOT, and others) will be added as they are prepared for public release.</p>
