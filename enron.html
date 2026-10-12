@@ -1,24 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enron Reconstruction – SCFL</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .recon-img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      border: 1px solid #e0e0e0;
-      margin: 1.5rem 0;
-    }
-    .narrow { max-width: 780px; margin: 0 auto; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Enron — SCFL Reconstruction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Reconstruction-specific styles */
+  .label-chip {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 4px;
+    padding: 2px 10px;
+    margin-bottom: 1.1rem;
+  }
+  .case-header { margin-bottom: 2.5rem; }
+  .case-header h1 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    text-wrap: balance;
+    margin-bottom: 0.6rem;
+  }
+  .case-header .subtitle {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.5;
+    max-width: 62ch;
+  }
+  .case-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .case-meta span { display: flex; align-items: center; gap: 0.4rem; }
+
+  .verdict {
+    background: #ffebee;
+    border: 1.5px solid #b71c1c;
+    border-radius: 8px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .verdict-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .verdict-text { font-size: 0.95rem; line-height: 1.5; }
+  .verdict-text strong { color: #b71c1c; display: block; margin-bottom: 0.2rem; font-size: 1rem; }
+
+  section { margin-bottom: 2.5rem; }
+  h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary);
+    color: var(--text);
+  }
+
+  .timeline { display: flex; flex-direction: column; gap: 0; position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 84px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: var(--line);
+  }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    gap: 1.2rem;
+    position: relative;
+    padding-bottom: 1.6rem;
+  }
+  .tl-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-align: right;
+    padding-top: 0.15rem;
+    line-height: 1.3;
+  }
+  .tl-body { padding-left: 1.2rem; position: relative; }
+  .tl-body::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 6px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 2px solid var(--muted);
+    z-index: 1;
+  }
+  .tl-item.phase-green .tl-body::before { border-color: #1b5e20; }
+  .tl-item.phase-amber .tl-body::before { border-color: #e65100; background: #e65100; }
+  .tl-item.phase-red .tl-body::before { border-color: #b71c1c; background: #b71c1c; }
+  .tl-title { font-weight: 600; font-size: 0.92rem; margin-bottom: 0.25rem; line-height: 1.3; }
+  .tl-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.5; }
+  .tl-signal {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    padding: 1px 7px;
+    margin-top: 0.4rem;
+  }
+  .sig-green { background: #e8f5e9; color: #1b5e20; }
+  .sig-amber { background: #fff3e0; color: #e65100; }
+  .sig-red { background: #ffebee; color: #b71c1c; }
+
+  .op-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .op-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1.1rem;
+  }
+  .op-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--primary);
+    margin-bottom: 0.4rem;
+  }
+  .op-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.35rem; }
+  .op-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.45; }
+  .op-state {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    padding: 1px 7px;
+    margin-top: 0.5rem;
+  }
+  .state-intact { background: #e8f5e9; color: #1b5e20; }
+  .state-stressed { background: #fff3e0; color: #e65100; }
+  .state-failed { background: #ffebee; color: #b71c1c; }
+
+  .seam-table { width: 100%; border-collapse: collapse; font-size: 0.87rem; }
+  .seam-table th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0.5rem 0.8rem;
+    border-bottom: 2px solid var(--line);
+  }
+  .seam-table td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    line-height: 1.4;
+  }
+  .seam-table tr:last-child td { border-bottom: none; }
+  .seam-name { font-weight: 600; }
+  .seam-year {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .seam-desc { color: var(--muted); font-size: 0.84rem; }
+
+  .mech-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; padding: 0; }
+  .mech-item {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid #b71c1c;
+    border-radius: 0 6px 6px 0;
+    padding: 0.85rem 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .mech-item strong { display: block; font-size: 0.85rem; color: #b71c1c; margin-bottom: 0.2rem; }
+
+  .finding-box {
+    background: var(--accent);
+    border: 1.5px solid var(--primary);
+    border-radius: 8px;
+    padding: 1.3rem 1.4rem;
+  }
+  .finding-box p { font-size: 0.93rem; line-height: 1.6; margin-bottom: 0.6rem; }
+  .finding-box p:last-child { margin-bottom: 0; }
+  .finding-box .finding-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .citation {
+    margin-top: 2.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .citation a { color: var(--primary); text-decoration: none; }
+  .citation a:hover { text-decoration: underline; }
+
+  @media (max-width: 480px) {
+    .timeline::before { left: 68px; }
+    .tl-item { grid-template-columns: 68px 1fr; }
+    .op-grid { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
   <header class="site-header">
@@ -28,7 +244,7 @@
         <a href="index.html">Overview</a>
         <a href="one-question.html">One Question Challenge</a>
         <a href="videos.html">Videos</a>
-        <a href="enron.html" aria-current="page">Enron Reconstruction</a>
+        <a href="cases.html" aria-current="page">Cases</a>
         <a href="index.html#contact">Contact</a>
       </nav>
     </div>
@@ -36,22 +252,221 @@
 
   <main>
     <section class="section">
-      <div class="container narrow">
-        <p class="section-kicker">Structural Integrity Scan</p>
-        <h1>Enron Reconstruction</h1>
-        <p class="lede">A retrospective reading of the Enron collapse through the SCFL lens: variance collapse, cohort-level propagation, and the rupture horizon that was visible in the email corpus months before external indicators moved.</p>
+      <div class="container" style="max-width: 860px;">
+        <div class="case-header">
+          <div class="label-chip">SCFL Reconstruction · Classic Case</div>
+          <h1>Enron Corporation</h1>
+          <p class="subtitle">
+            Applying Standard Coherence Fidelity Layer (SCFL) precursor geometry retroactively
+            to the largest corporate bankruptcy in U.S. history at the time of filing.
+            The structural seams were measurable years before the October 2001 disclosure cascade.
+          </p>
+          <div class="case-meta">
+            <span>📍 Houston, Texas</span>
+            <span>📅 Collapse: December 2, 2001</span>
+            <span>💰 Peak market cap: ~$70 billion (Aug 2000)</span>
+            <span>🏭 Sector: Energy / Financial Trading</span>
+          </div>
+        </div>
 
-        <img src="IMG_0375.jpeg" alt="Enron Reconstruction" class="recon-img">
+        <div class="verdict">
+          <div class="verdict-icon">⚠️</div>
+          <div class="verdict-text">
+            <strong>SCFL Verdict: Full Structural Rupture — Precursor Window Opened ~1997</strong>
+            The SCFL framework identifies a measurable precursor window beginning no later than 1997 when earnings restatement origins have been placed, and accelerating sharply through 1999–2000 as seam fractures across financial reporting, executive governance, and auditor coherence compounded. By August 2001 — four months before bankruptcy — the structural geometry had already crossed irreversibility. The market saw revenue; the SCFL would have seen seam shear.
+          </div>
+        </div>
 
-        <p>This reconstruction sits alongside SVB, ERCOT, and the other public structural integrity scans. The core observation is that organizational rupture was preceded by a measurable decay regime — persistent negative drift and variance collapse — while conventional performance and compliance signals remained stationary.</p>
+        <section>
+          <h2>Precursor Geometry — Phase Map</h2>
+          <div class="timeline">
+            <div class="tl-item phase-green">
+              <div class="tl-date">1985–<br>1996</div>
+              <div class="tl-body">
+                <div class="tl-title">Nominal Coherence — Pipeline to Trading Transformation</div>
+                <div class="tl-desc">Enron transitions from natural gas pipeline operator to energy trading firm. Mark-to-market accounting adopted in 1992 for trading contracts — an early seam: reported income is now structurally decoupled from cash receipt. Institutional coherence appears intact; board governance and auditor relationships operating within normal range.</div>
+                <span class="tl-signal sig-green">Phase I · Nominal</span>
+              </div>
+            </div>
+            <div class="tl-item phase-amber">
+              <div class="tl-date">1997–<br>1999</div>
+              <div class="tl-body">
+                <div class="tl-title">Seam Initiation — Off-Balance-Sheet Architecture Begins</div>
+                <div class="tl-desc">CFO Andrew Fastow begins constructing Special Purpose Entities (SPEs) — Chewco (1997), LJM Cayman (1999) — to hide losses and debt from consolidated financial statements. Earnings later restated as overstated by ~$600M back to this period. The financial reporting seam and the governance seam (board oversight) begin to diverge. Andersen signs off.</div>
+                <span class="tl-signal sig-amber">Phase II · Seam Initiation</span>
+              </div>
+            </div>
+            <div class="tl-item phase-amber">
+              <div class="tl-date">2000<br>Q1–Q3</div>
+              <div class="tl-body">
+                <div class="tl-title">Peak Signal Contradiction — Revenue Surge Masking Structural Decay</div>
+                <div class="tl-desc">Revenue reaches ~$100 billion (up 100% YoY). Stock hits $90.56 in August 2000. Meanwhile: operating cash flow of $4.8B includes ~$3.5B in one-time items (customer deposits, inventory sale, prepayments). EES division running ~$500M in the red once trading losses are corrected. The Raptor SPEs require a $1.2B reduction to shareholder equity. The signal gap — reported performance vs. structural state — is at maximum.</div>
+                <span class="tl-signal sig-amber">Phase II-B · Signal Gap Maximum</span>
+              </div>
+            </div>
+            <div class="tl-item phase-red">
+              <div class="tl-date">2001<br>Jan–Jul</div>
+              <div class="tl-body">
+                <div class="tl-title">Structural Decoherence — Executive Seam Fracture</div>
+                <div class="tl-desc">Stock declines from $82 (January 2001) to $38 by August — a 54% drawdown while Lay publicly insists shares are "an incredible bargain." CEO Skilling resigns August 14 after six months, citing personal reasons — a governance seam fracture with no coherent succession signal. VP Sherron Watkins delivers internal memo warning of imminent implosion from accounting irregularities (August 22). The internal and external coherence states are now irreconcilable.</div>
+                <span class="tl-signal sig-red">Phase III · Decoherence</span>
+              </div>
+            </div>
+            <div class="tl-item phase-red">
+              <div class="tl-date">Oct–Nov<br>2001</div>
+              <div class="tl-body">
+                <div class="tl-title">Cascade Rupture — Irreversibility Confirmed</div>
+                <div class="tl-desc">October 16: first quarterly loss in four years; $1.01B nonrecurring charge. October 22: SEC inquiry disclosed. Andersen begins shredding documents October 23. Credit ratings fall to junk November 28 — triggering $3.9B in accelerated debt obligations and $690M in Rawhide SPE repayment. Dynegy acquisition collapses. Stock falls from $90 to $0.61 in 16 months.</div>
+                <span class="tl-signal sig-red">Phase IV · Cascade / Rupture</span>
+              </div>
+            </div>
+            <div class="tl-item phase-red">
+              <div class="tl-date">Dec 2<br>2001</div>
+              <div class="tl-body">
+                <div class="tl-title">Terminal Event — Chapter 11 Filing</div>
+                <div class="tl-desc">Enron files for Chapter 11 bankruptcy protection. At the time, the largest corporate bankruptcy in U.S. history. ~$63 billion in assets. ~20,000 employees. 401(k) plans concentrated in Enron stock now worthless.</div>
+                <span class="tl-signal sig-red">Terminal Event</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
-        <p>Related work:</p>
-        <ul>
-          <li><a href="https://doi.org/10.5281/zenodo.21664081" target="_blank" rel="noopener">Not a Failure of Will, but of Instrument — Precursor Geometry in the 2023 Regional Bank Failures</a></li>
-          <li><a href="videos.html">Video series</a></li>
-        </ul>
+        <section>
+          <h2>SCFL Operator Lens — Retroactive Reading</h2>
+          <div class="op-grid">
+            <div class="op-card">
+              <div class="op-label">Reporting Coherence</div>
+              <div class="op-name">Financial Signal Integrity</div>
+              <div class="op-desc">Mark-to-market accounting structurally decoupled reported income from cash reality. SPE architecture amplified the gap. The reporting layer was incoherent with operational reality from at least 1997.</div>
+              <span class="op-state state-failed">Failed — 1997</span>
+            </div>
+            <div class="op-card">
+              <div class="op-label">Governance Coherence</div>
+              <div class="op-name">Board & Executive Alignment</div>
+              <div class="op-desc">Board waived its own conflict-of-interest policy to allow Fastow to manage SPEs. CEO resignation with no coherent signal. Chairman publicly buying and immediately selling stock. Governance layer lost structural integrity by 2000.</div>
+              <span class="op-state state-failed">Failed — 2000</span>
+            </div>
+            <div class="op-card">
+              <div class="op-label">Auditor Coherence</div>
+              <div class="op-name">Third-Party Verification Layer</div>
+              <div class="op-desc">Andersen served as both auditor and consultant to Enron, creating a structural conflict. The verification layer that should have been a coherence check became a coherence participant. Document destruction confirmed the collapse of this seam.</div>
+              <span class="op-state state-failed">Failed — 2001</span>
+            </div>
+            <div class="op-card">
+              <div class="op-label">Liquidity Coherence</div>
+              <div class="op-name">Cash Flow vs. Obligation</div>
+              <div class="op-desc">$9B+ in debt maturing by end of 2002; $3.9B triggered by credit downgrade; $690M Rawhide SPE obligation triggered simultaneously. The liquidity seam collapsed in a single week once rating agencies moved.</div>
+              <span class="op-state state-failed">Failed — Nov 2001</span>
+            </div>
+            <div class="op-card">
+              <div class="op-label">Workforce Coherence</div>
+              <div class="op-name">Employee Signal Access</div>
+              <div class="op-desc">Employees locked out of 401(k) rebalancing during the collapse window while executives were selling. The information asymmetry between leadership and workforce represents a structural coherence failure with direct harm downstream.</div>
+              <span class="op-state state-stressed">Stressed — 2001</span>
+            </div>
+            <div class="op-card">
+              <div class="op-label">Regulatory Coherence</div>
+              <div class="op-name">External Oversight Layer</div>
+              <div class="op-desc">Enron lobbied successfully to keep energy trading largely unregulated. The absence of a functioning external coherence check allowed seam accumulation over years without correction signal from outside the system.</div>
+              <span class="op-state state-stressed">Absent Layer</span>
+            </div>
+          </div>
+        </section>
 
-        <p style="margin-top: 2rem;"><a href="index.html" class="button secondary">Back to Overview</a></p>
+        <section>
+          <h2>Structural Seams — Where Coherence Fractured</h2>
+          <div style="overflow-x: auto;">
+            <table class="seam-table">
+              <thead>
+                <tr>
+                  <th>Seam</th>
+                  <th>First Visible</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="seam-name">Accounting–Reality Seam</span></td>
+                  <td><span class="seam-year">1992–1997</span></td>
+                  <td><span class="seam-desc">Mark-to-market accounting divorced reported earnings from actual cash flows. The gap widened annually as trading complexity grew and SPE structures multiplied the surface area of the disconnect.</span></td>
+                </tr>
+                <tr>
+                  <td><span class="seam-name">Disclosure–Obligation Seam</span></td>
+                  <td><span class="seam-year">1997–1999</span></td>
+                  <td><span class="seam-desc">Off-balance-sheet SPEs concealed $30B+ in debt from public filings. The disclosed obligation profile bore no coherent relationship to the actual obligation structure. This seam is the primary structural precursor.</span></td>
+                </tr>
+                <tr>
+                  <td><span class="seam-name">Leadership–Signal Seam</span></td>
+                  <td><span class="seam-year">Aug 2001</span></td>
+                  <td><span class="seam-desc">Skilling's abrupt resignation while Lay publicly urged stock purchases created an irreconcilable contradiction between the internal state known to leadership and the signal being broadcast externally.</span></td>
+                </tr>
+                <tr>
+                  <td><span class="seam-name">Rating–Liquidity Trigger Seam</span></td>
+                  <td><span class="seam-year">Nov 2001</span></td>
+                  <td><span class="seam-desc">Debt covenants tied to credit ratings created a hidden nonlinearity: a junk downgrade simultaneously triggered $3.9B in accelerated obligations. The system was structured to rupture rapidly once a single threshold was crossed.</span></td>
+                </tr>
+                <tr>
+                  <td><span class="seam-name">Auditor–Client Seam</span></td>
+                  <td><span class="seam-year">1990s</span></td>
+                  <td><span class="seam-desc">Andersen's dual role as auditor and consultant eliminated structural independence. The verification function that should have constrained reporting incoherence was instead embedded in it — a seam that collapsed the entire audit framework when the primary rupture occurred.</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h2>Collapse Mechanics</h2>
+          <ul class="mech-list">
+            <li class="mech-item">
+              <strong>Multiplicative Seam Failure</strong>
+              No single seam produced the collapse. The accounting seam, governance seam, auditor seam, and liquidity seam had each been accumulating independently for years. When the SEC inquiry activated the disclosure cascade in October 2001, all four seams failed within six weeks.
+            </li>
+            <li class="mech-item">
+              <strong>Rating-Triggered Debt Acceleration</strong>
+              The junk downgrade on November 28, 2001 acted as a structural forcing function: it simultaneously matured $3.9B in obligations and cancelled the Dynegy acquisition — removing both the available capital and the exit pathway. This is a classic coherence-collapse nonlinearity: a continuous rating decline produces a discontinuous obligation event.
+            </li>
+            <li class="mech-item">
+              <strong>Signal Gap Maximization at Peak Value</strong>
+              The point of maximum structural vulnerability coincided with the point of maximum reported performance — $100B revenue, $90 stock price, August 2000. By SCFL geometry, this is not a paradox: it is the expected signature of a system sustaining coherence performance through structural debt accumulation, which compresses the available intervention window to near zero.
+            </li>
+            <li class="mech-item">
+              <strong>Irreversibility Before Public Disclosure</strong>
+              The internal memo from VP Watkins (August 22, 2001) demonstrates that by the time public signals appeared, internal actors already understood the system had crossed the irreversibility boundary. The precursor window had closed before any public intervention was possible.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <div class="finding-box">
+            <div class="finding-label">SCFL Key Finding</div>
+            <p>
+              Enron is a textbook case of <strong>seam-masked rupture</strong>: a system in which structural coherence degraded continuously and measurably across multiple operator layers — financial, governance, auditor, and liquidity — while reported surface metrics remained in nominal range or exceeded them.
+            </p>
+            <p>
+              The SCFL precursor geometry places the measurable intervention window between <strong>1997 and mid-2000</strong>. By the time Skilling resigned in August 2001, the system had already crossed the irreversibility boundary; the October–December 2001 events were the collapse sequence, not the onset.
+            </p>
+            <p>
+              The market saw revenue. The SCFL would have seen seam shear.
+            </p>
+          </div>
+        </section>
+
+        <div class="citation">
+          <p>
+            <strong>Reconstruction Author:</strong> Ronald Brogdon, Team Leader —
+            Upstream Coherence Measurement Stratum (UCMS)<br>
+            ORCID: <a href="https://orcid.org/0009-0009-0507-2971">https://orcid.org/0009-0009-0507-2971</a> ·
+            <a href="mailto:measurement@coherencemanagement.org">measurement@coherencemanagement.org</a>
+          </p>
+          <p style="margin-top:0.4rem;">
+            This reconstruction applies the Standard Coherence Fidelity Layer (SCFL) retroactively to publicly available historical record.
+            No proprietary operator computations are disclosed herein. All timeline facts sourced from public record.
+            See the <a href="https://zenodo.org/search?q=Ronald%20Brogdon&sort=newest" target="_blank" rel="noopener">UCMS Zenodo canon</a> for foundational framework documentation.
+          </p>
+        </div>
+
+        <p style="margin-top: 2rem;"><a href="cases.html" class="button secondary">← Back to Cases</a></p>
       </div>
     </section>
   </main>
