@@ -39,6 +39,11 @@
       #overview { padding-bottom: 2rem; }
       #overview h2 { margin-bottom: 0.75rem; }
       #overview p { margin-bottom: 0.9rem; }
+    
+      .oq-banner { }
+      @media (max-width: 700px) {
+        .oq-banner { grid-template-columns: 1fr !important; }
+      }
     </style>
   </head>
   <body>
@@ -76,6 +81,22 @@
             </div>
           </div>
 
+        </div>
+      </section>
+
+      <section class="section" style="padding-top:1.5rem; padding-bottom:1.5rem;">
+        <div class="container">
+          <div class="oq-banner" style="display:grid; grid-template-columns:1.4fr 1fr; gap:0; align-items:stretch; border:1.5px solid var(--primary,#0d47a1); border-radius:12px; overflow:hidden; background:var(--accent,#e3f2fd);">
+            <a href="one-question.html" style="display:block; text-decoration:none; color:inherit; padding:1.4rem 1.6rem;">
+              <p class="section-kicker" style="margin-bottom:0.4rem;">One Question Challenge</p>
+              <h2 style="margin:0 0 0.5rem; font-size:1.25rem;">A structural question. Not a performance question.</h2>
+              <p style="margin:0 0 0.75rem; color:var(--muted); font-size:0.95rem;">If your primary indicators remained stationary for the next eighteen months, which relationships would still be able to replenish themselves — and which only appear intact because nothing has yet asked them to move?</p>
+              <span class="button primary">Take the Challenge</span>
+            </a>
+            <video controls preload="metadata" playsinline style="width:100%; height:100%; display:block; background:#000; object-fit:cover;">
+              <source src="one-question-challenge.mp4" type="video/mp4">
+            </video>
+          </div>
         </div>
       </section>
 
