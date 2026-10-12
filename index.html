@@ -35,6 +35,12 @@
         margin: 1.5rem auto;
         display: block;
       }
+      .hero-video {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        display: block;
+      }
     </style>
   </head>
   <body>
@@ -72,18 +78,10 @@
             </div>
           </div>
           <div class="hero-panel">
-            <div class="panel-item">
-              <span class="label">Originator</span>
-              <strong>Ronald L. Brogdon</strong>
-            </div>
-            <div class="panel-item">
-              <span class="label">Focus</span>
-              <strong>Relational integrity under stress</strong>
-            </div>
-            <div class="panel-item">
-              <span class="label">Approach</span>
-              <strong>Upstream measurement complementing performance indicators</strong>
-            </div>
+            <video class="hero-video" autoplay muted loop playsinline>
+              <source src="Video.mov" type="video/quicktime">
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       </section>
