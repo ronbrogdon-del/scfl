@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cases – SCFL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .case-list { list-style: none; padding: 0; margin: 1.5rem 0 0; }
+    .case-list li { margin-bottom: 1rem; }
+    .case-list a { font-weight: 600; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">SCFL</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Overview</a>
+        <a href="one-question.html">One Question Challenge</a>
+        <a href="videos.html">Videos</a>
+        <a href="cases.html" aria-current="page">Cases</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container narrow">
+        <p class="section-kicker">Structural Integrity Scans</p>
+        <h1>Cases</h1>
+        <p class="lede">Public reconstructions of systems in which relational integrity was lost while conventional performance indicators remained stationary.</p>
+
+        <ul class="case-list">
+          <li>
+            <a href="enron.html">Enron Reconstruction</a><br>
+            <span style="color: var(--muted); font-size: 0.9rem;">Variance collapse and cohort-level propagation in the email corpus, months before external indicators moved.</span>
+          </li>
+          <!-- Additional cases can be added here -->
+        </ul>
+
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--muted);">More reconstructions (SVB, ERCOT, and others) will be added as they are prepared for public release.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>© <span id="year"></span> Ronald L. Brogdon. All rights reserved.</p>
+      <a href="index.html">Home</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
