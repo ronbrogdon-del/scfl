@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Measurement Process Flow – SCFL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .flow-step {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+      padding: 1.25rem;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    .flow-num {
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+    }
+    .output-grid, .input-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+    }
+    .card h3 { margin-top: 0; }
+    .principle {
+      background: var(--accent);
+      border-left: 4px solid var(--primary);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
+      font-weight: 600;
+    }
+    .draft-note {
+      font-size: 0.9rem;
+      color: var(--muted);
+      background: var(--surface-alt);
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      margin-bottom: 2rem;
+    }
+    .open-list { margin: 1rem 0; }
+    .open-list li { margin: 0.4rem 0; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">SCFL</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Overview</a>
+        <a href="index.html#problem">The Measurement Problem</a>
+        <a href="index.html#program">Research Program</a>
+        <a href="index.html#applications">Applications</a>
+        <a href="measurement-process.html" aria-current="page">Measurement Process</a>
+        <a href="one-question.html">One Question Challenge</a>
+        <a href="videos.html">Videos</a>
+        <a href="cases.html">Cases</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <p class="section-kicker">SCFL / UCMS</p>
+        <h1>Measurement Process Flow</h1>
+        <p class="lede">How observed telemetry becomes an as-of structural measurement. Measurement occurs before interpretation.</p>
+        <div class="draft-note">
+          Representative working draft. Reconciles the flow diagram with the doctrine outline. Not a canonical specification. Ronald Brogdon, Team Leader, Upstream Coherence Measurement Stratum (UCMS). ORCID: <a href="https://orcid.org/0009-0009-0507-2971">0009-0009-0507-2971</a>.
+        </div>
+
+        <div class="principle">
+          Principle: Measurement occurs before interpretation. Interpretation may use measurements, but it is not part of the measurement process.
+        </div>
+
+        <h2>How telemetry moves through SCFL measurement</h2>
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <div>
+            <h3>Accepts observed system telemetry</h3>
+            <p>Timestamped series from sensor streams, log streams, event records, operational metrics, transaction streams, or other measurable state observations.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <div>
+            <h3>Defines boundary, state spaces, and seams</h3>
+            <p>Identify the system boundary, its measurable state spaces, and the seams where those spaces join. Seams are properties of the system itself, not of the data pipeline.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <div>
+            <h3>Passes through ingestion and provenance controls</h3>
+            <p>Source validation, provenance verification, quality checks, consistency checks, and measurement-readiness checks. Only validated telemetry proceeds.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">4</div>
+          <div>
+            <h3>Enters the sealed operator layer</h3>
+            <p>Transforms validated telemetry into structural measurements. Operator mechanisms are sealed; measurement outputs are exposed. Internals are not required for interpretation.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">5</div>
+          <div>
+            <h3>Produces as-of state assessment</h3>
+            <p>Reports present structural condition: coherence, degradation, recoverability, persistence (definition pending), and structural seams.</p>
+          </div>
+        </div>
+        <p style="margin-top:1.5rem; color:var(--muted);"><em>Downstream of measurement: optional, and does not follow automatically from it.</em> Interpretation of trajectory type (glacial, brittle, flash) and any forecasting or decisions sit further downstream and outside the measurement layer.</p>
+
+        <h2>Inputs: observed telemetry from the system under study</h2>
+        <div class="input-grid">
+          <div class="card"><h3>Hardware sensor streams</h3></div>
+          <div class="card"><h3>Event records</h3></div>
+          <div class="card"><h3>Operational metrics</h3></div>
+          <div class="card"><h3>Log streams</h3></div>
+          <div class="card"><h3>Transaction streams</h3></div>
+          <div class="card"><h3>Other measurable state observations</h3></div>
+        </div>
+        <ul>
+          <li>Telemetry-agnostic: the requirement is observable state information, not a specific technology platform.</li>
+          <li>A full, timestamped series of actual observed values; operators cannot be applied without one.</li>
+          <li>Simulated or forecast data is not a measurement input.</li>
+        </ul>
+
+        <h2>Before measurement: define the state spaces and seams</h2>
+        <ol>
+          <li>Define the system boundary.</li>
+          <li>Identify measurable state spaces.</li>
+          <li>Identify the seams between them.</li>
+        </ol>
+        <p><strong>Seam:</strong> Where measurable state spaces are joined. Seam state is reported as one of the measurement outputs. Seams are structural characteristics of the system itself.</p>
+
+        <h2>Validated telemetry enters a sealed operator layer</h2>
+        <div class="content-grid" style="margin-top:1rem;">
+          <article>
+            <h3>Ingestion and provenance controls</h3>
+            <p>Source validation, provenance verification, quality checks, consistency checks, measurement-readiness checks. Only validated telemetry proceeds, preserving traceability and integrity.</p>
+          </article>
+          <article>
+            <h3>Sealed operator layer</h3>
+            <p>Transforms validated telemetry into structural measurements. Internal implementation protected. Operator mechanisms sealed. Measurement outputs exposed. Operator internals not needed for interpretation.</p>
+          </article>
+        </div>
+
+        <h2>Outputs: an as-of state assessment</h2>
+        <div class="output-grid">
+          <div class="card">
+            <h3>Coherence</h3>
+            <p>The degree to which the relationships within a system mutually hold one another in place.</p>
+          </div>
+          <div class="card">
+            <h3>Degradation</h3>
+            <p>Current structural weakening or loss.</p>
+          </div>
+          <div class="card">
+            <h3>Recoverability</h3>
+            <p>Capacity to regain coherence following disruption.</p>
+          </div>
+          <div class="card">
+            <h3>Persistence</h3>
+            <p>Reported dimension; definition pending.</p>
+          </div>
+          <div class="card">
+            <h3>Structural Seams</h3>
+            <p>Measured characteristics of the regions where state spaces join.</p>
+          </div>
+        </div>
+        <p class="principle">As-of rule: An SCFL measurement reports present structural condition at the as-of point. It is not, by itself, a forecast.</p>
+
+        <h2>Interpretation is optional and comes after measurement</h2>
+        <div class="output-grid">
+          <div class="card">
+            <h3>Flash trajectory</h3>
+            <p>No precursor window.</p>
+          </div>
+          <div class="card">
+            <h3>Brittle trajectory</h3>
+            <p>A window may exist to assess.</p>
+          </div>
+          <div class="card">
+            <h3>Glacial trajectory</h3>
+            <p>Long, slow drift; a window may exist to assess.</p>
+          </div>
+        </div>
+        <p>Classifying a trajectory requires analytic assumptions beyond the as-of readings themselves. Where a window exists, it is not by itself evidence of predictive validity.</p>
+
+        <h2>Three distinct operations</h2>
+        <div class="output-grid">
+          <div class="card">
+            <h3>Measurement</h3>
+            <p>Determines the present structural condition of a system. <em>The SCFL measurement layer.</em></p>
+          </div>
+          <div class="card">
+            <h3>Interpretation</h3>
+            <p>Determines possible meaning, implications, or trajectory. Downstream, optional.</p>
+          </div>
+          <div class="card">
+            <h3>Forecasting</h3>
+            <p>Estimates possible future conditions from measurements plus further assumptions. Downstream, outside SCFL measurement.</p>
+          </div>
+        </div>
+        <p>SCFL's primary responsibility is producing defensible as-of measurements. Interpretation, forecasting, warning generation, and operational decisions are built on top of that layer but are distinct from it.</p>
+
+        <h2>Not yet settled</h2>
+        <h3>Open questions</h3>
+        <ul class="open-list">
+          <li>What a seam is operationally: a stream pairing, a component relationship, a measured property, or all three.</li>
+          <li>Where seams enter relative to the sealed operator layer.</li>
+          <li>The minimum input contract for a meaningful measurement.</li>
+          <li>The precise meaning of an as-of reading.</li>
+          <li>What a buyer receives: outputs, scales, reference states, reporting format.</li>
+        </ul>
+        <h3>Quarantined: interesting, not yet evidenced</h3>
+        <ul class="open-list">
+          <li>A definition of persistence.</li>
+          <li>Stable and improving trajectory classes.</li>
+          <li>“Measurement horizon” as a term.</li>
+          <li>A decision-support layer.</li>
+          <li>Survey or assessment data as inputs.</li>
+          <li>Telemetry alignment as a data-preparation stage.</li>
+          <li>Three-way seam split: alignment, representation, measurement.</li>
+        </ul>
+
+        <p style="margin-top:2rem;"><a href="index.html" class="button secondary">← Back to Overview</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>© <span id="year"></span> Ronald L. Brogdon. All rights reserved.</p>
+      <a href="index.html">Home</a>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
