@@ -102,6 +102,35 @@ a:hover {
   text-decoration: none;
 }
 
+/* Scrolling ticker banner */
+.ticker-wrap {
+  background: #0d47a1;
+  color: #ffffff;
+  overflow: hidden;
+  white-space: nowrap;
+  border-bottom: 1px solid #0a3d91;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.ticker {
+  display: inline-block;
+  padding: 0.55rem 0;
+  animation: ticker-scroll 60s linear infinite;
+}
+
+.ticker span {
+  display: inline-block;
+  padding: 0 2rem;
+}
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 .hero {
   padding: 5rem 0 4rem;
 }
@@ -407,5 +436,9 @@ li {
 
   .section {
     padding: 3rem 0;
+  }
+
+  .ticker {
+    font-size: 0.78rem;
   }
 }
