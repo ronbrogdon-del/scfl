@@ -388,6 +388,84 @@ p:last-child { margin-bottom: 0; }
   .cta-section .btn-row { justify-content: flex-start; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
 }
+/* ── Form ── */
+.field-group { display:flex; flex-direction:column; gap:4px; }
+
+.field-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.req { color: var(--primary); }
+
+.field-input {
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  padding: 10px 14px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+}
+
+.field-input::placeholder { color: #aaa; }
+
+.field-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(13,71,161,0.1);
+}
+
+textarea.field-input { resize: vertical; min-height: 120px; }
+
+.field-check {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: var(--accent);
+  border: 1px solid #b3d4f5;
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+
+.field-check input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.field-check label {
+  font-size: 0.875rem;
+  color: var(--text);
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.status-success {
+  background: #e8f5e9;
+  border: 1px solid #a5d6a7;
+  border-radius: 6px;
+  padding: 14px 16px;
+  color: #2e7d32;
+  font-weight: 500;
+}
+
+.status-error {
+  background: #fce4ec;
+  border: 1px solid #f48fb1;
+  border-radius: 6px;
+  padding: 14px 16px;
+  color: #c62828;
+  font-weight: 500;
+}
+
+.status-success:empty, .status-error:empty { display:none; }
   </style>
 </head>
 <body>
@@ -540,6 +618,169 @@ p:last-child { margin-bottom: 0; }
   </div>
 </section>
 
-<!-- remaining original content continues here; truncated in this example for brevity but full file is restored in practice -->
+<!-- ── GATE CONDITIONS ── -->
+<section class="white" id="gate-conditions">
+  <div class="container">
+    <p class="section-label">Who Can Register</p>
+    <h2>Two Conditions. Both Structural.</h2>
+    <p style="color:var(--muted); max-width:60ch;">The registration gate is not a credential filter. It is a structural requirement. A reading is only valuable if it lands with someone positioned to act on it — and if the organization has a measurable state space for SCFL to reach.</p>
+
+    <div class="gate-grid">
+      <div class="gate-card">
+        <div class="gate-num">01</div>
+        <h3>Decision Altitude</h3>
+        <p style="color:var(--muted); margin:0;">The registrant must be an officer with enterprise risk, capital, or operational authority — or a board member. A structural finding delivered below that altitude has no structural value. It has nowhere to land. A subordinate may draft the question; the qualifying registrant submits it.</p>
+      </div>
+      <div class="gate-card">
+        <div class="gate-num">02</div>
+        <h3>Measurable State Space</h3>
+        <p style="color:var(--muted); margin:0;">The organization must have a structural condition that SCFL can reach — seams, load signatures, or coherence drift that exists in the telemetry or can be specified. Organizational size is not a condition. A going concern of any size can possess a measurable state space.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem; background:var(--accent); border-left:3px solid var(--primary); border-radius:0 6px 6px 0; padding:16px 20px; max-width:68ch;">
+      <p style="font-size:0.9rem; color:var(--muted); margin:0;"><strong style="color:var(--text);">On organizational size.</strong> Size is a correlate of yield density — larger organizations tend to produce higher seam counts and richer intersection signatures — but it is not a gate. The Structural Intake Engine's Data Availability Assessment performs the actual test: what SCFL can reach, what requires specification, and what is genuinely absent. That assessment determines what a given engagement can produce. Size does not.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY THIS WORKS ── -->
+<section class="alt">
+  <div class="container">
+    <p class="section-label">Why It Works as a Proof of Concept</p>
+    <h2>Low Risk. High Signal.</h2>
+    <p style="color:var(--muted); max-width:60ch;">The challenge is designed to be the lowest-commitment structural reading that could produce a meaningful result.</p>
+
+    <ul class="why-list">
+      <li>
+        <span class="why-check">✓</span>
+        <span class="why-text">
+          <strong>No data leaves your environment</strong>
+          The Structural Intake Engine operates on the structure implied by the question and your registration profile. It does not request files, system access, or internal data at any stage of the challenge.
+        </span>
+      </li>
+      <li>
+        <span class="why-check">✓</span>
+        <span class="why-text">
+          <strong>No implementation required</strong>
+          SCFL does not require you to install anything, integrate a system, or run a pilot program before a structural reading is produced.
+        </span>
+      </li>
+      <li>
+        <span class="why-check">✓</span>
+        <span class="why-text">
+          <strong>One question, one point in time</strong>
+          The challenge produces a single structural slice at a single moment. It is not a commitment to ongoing measurement. If the signal is present, a bounded next-steps map is offered — accepted or declined separately.
+        </span>
+      </li>
+      <li>
+        <span class="why-check">✓</span>
+        <span class="why-text">
+          <strong>Missing data is a signal, not a problem</strong>
+          If your organization has no telemetry in a given seam domain, that absence is itself a structural reading. You will know something about how that seam has been managed — or hasn't been.
+        </span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── REGISTRATION FORM ── -->
+<section class="white" id="register">
+  <div class="container">
+    <p class="section-label">Register</p>
+    <h2>Submit Your One Question</h2>
+    <p style="color:var(--muted); max-width:60ch;">Complete the form below. Registration is reviewed before the challenge opens. If you meet the gate conditions and your question reaches a readable structural domain, you will hear back within 48 hours.</p>
+
+    <form id="reg-form" action="https://formspree.io/f/xzedvovk" method="POST"
+          style="margin-top:2rem; max-width:640px; display:flex; flex-direction:column; gap:1.25rem;">
+
+      <input type="hidden" name="_subject" value="One Question Challenge Registration">
+
+      <div class="field-group">
+        <label class="field-label" for="f-name">Full Name <span class="req">*</span></label>
+        <input class="field-input" type="text" id="f-name" name="name" required placeholder="Your full name" data-fs-field>
+        <span data-fs-error="name" style="font-size:0.8rem; color:#c62828;"></span>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="f-title">Title / Role <span class="req">*</span></label>
+        <input class="field-input" type="text" id="f-title" name="title" required placeholder="e.g. Chief Risk Officer, Board Member" data-fs-field>
+        <span data-fs-error="title" style="font-size:0.8rem; color:#c62828;"></span>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="f-org">Organization <span class="req">*</span></label>
+        <input class="field-input" type="text" id="f-org" name="organization" required placeholder="Organization name" data-fs-field>
+        <span data-fs-error="organization" style="font-size:0.8rem; color:#c62828;"></span>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="f-email">Email Address <span class="req">*</span></label>
+        <input class="field-input" type="email" id="f-email" name="email" required placeholder="your@organization.com" data-fs-field>
+        <span data-fs-error="email" style="font-size:0.8rem; color:#c62828;"></span>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="f-question">Your One Question <span class="req">*</span></label>
+        <p style="font-size:0.85rem; color:var(--muted); margin:0 0 6px;">State it in plain language. No structural terminology required — the Structural Intake Engine translates it.</p>
+        <textarea class="field-input" id="f-question" name="question" required rows="5"
+                  placeholder="What is the one business question you want SCFL to reach?" data-fs-field></textarea>
+        <span data-fs-error="question" style="font-size:0.8rem; color:#c62828;"></span>
+      </div>
+
+      <div class="field-check">
+        <input type="checkbox" id="f-gate" name="gate_confirmed" value="yes" required>
+        <label for="f-gate">I confirm that I am an officer with enterprise risk, capital, or operational authority — or a board member — and I am submitting this registration in that capacity.</label>
+      </div>
+
+      <div style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center;">
+        <button type="submit" class="btn btn-primary" data-fs-submit-btn>Submit Registration</button>
+      </div>
+
+      <div data-fs-error class="status-error"></div>
+      <div data-fs-success class="status-success"></div>
+    </form>
+
+    <script>
+      window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+      formspree('initForm', { formElement: '#reg-form', formId: 'xzedvovk' });
+    </script>
+    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+  </div>
+</section>
+
+<!-- ── CTA FOOTER STRIP ── -->
+<section class="cta-section" style="padding:2.5rem 0;">
+  <div class="container" style="text-align:center;">
+    <p style="margin:0; color:rgba(255,255,255,0.8); font-size:0.95rem;">Questions before registering? <strong style="color:#fff;">measurement@coherencemanagement.org</strong></p>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>© <span id="yr"></span> Ronald Brogdon · Upstream Coherence Measurement Stratum (UCMS)</span>
+    <span>ORCID: <a href="https://orcid.org/0009-0009-0507-2971" target="_blank" rel="noopener">0009-0009-0507-2971</a></span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Formspree SDK handles form submission via data attributes
+</script>
+
 </body>
 </html>
