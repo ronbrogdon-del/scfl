@@ -254,7 +254,7 @@ Refresh: on every page load</pre>
       return fetch(url).then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); }).then(function(j){
         if(j.error) throw new Error(j.error.message || "Query error");
         (j.features||[]).forEach(function(f){ rows.push(f.attributes); });
-        if(j.exceededTransferLimit && offset < 5000) return page(offset+1000);
+        if((j.features||[]).length === 1000 && offset < 3000) return page(offset+1000);
         return rows;
       });
     }
