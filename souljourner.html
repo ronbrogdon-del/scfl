@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Souljourner – Interior Coherence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>
+  .intro-video {
+    max-width: 720px;
+    margin: 2rem auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background: #000;
+  }
+  .intro-video video {
+    width: 100%;
+    display: block;
+    aspect-ratio: 9/16;
+  }
+  .distinction {
+    max-width: 68ch;
+    margin: 2rem 0;
+    padding: 1.25rem 1.5rem;
+    background: var(--accent);
+    border-left: 4px solid var(--primary);
+    border-radius: 0 8px 8px 0;
+  }
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">SCFL</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Overview</a>
+        <a href="one-question.html">One Question Challenge</a>
+        <a href="videos.html">Videos</a>
+        <a href="souljourner.html" aria-current="page">Souljourner</a>
+        <a href="cases.html">Cases</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container" style="max-width: 800px;">
+        <p class="section-kicker">Interior Coherence Family</p>
+        <h1>Souljourner</h1>
+        <p class="lede">The interior-coherence family. Distinct from the SCFL systems measurement program. Souljourner addresses biological and interior plates — the relationships that hold a person together under stress.</p>
+
+        <div class="intro-video">
+          <video controls autoplay muted loop playsinline>
+            <source src="souljourner-intro.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <div class="distinction">
+          <p style="margin:0;"><strong>Distinction:</strong> Souljourner is not the identity of the SCFL systems measurement program. SCFL reads non-biological systems (grid, hospitals, firms, cascades). Souljourner is the declared territory for interior and biological plates. No interior operator is Locked. The product funnel (wearables, DTx, XR, games) remains separate from the systems work.</p>
+        </div>
+
+        <p>The video above is the introduction to that territory: mind, heart, and the structures that hold them in place — read as coherence, not as performance or pathology.</p>
+
+        <p style="margin-top: 2rem;">
+          <a href="index.html" class="button secondary">← Back to SCFL Overview</a>
+          <a href="videos.html" class="button secondary">SCFL Videos</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>© <span id="year"></span> Ronald L. Brogdon. All rights reserved.</p>
+      <a href="index.html">Home</a>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
