@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Shipping Flow Observatory · UCMS / SCFL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2229;
+      --surface-alt: #222b33;
+      --border: #2d3a45;
+      --text: #e6edf3;
+      --muted: #8b9bb0;
+      --accent: #58a6ff;
+      --green: #3fb950;
+      --yellow: #d29922;
+      --orange: #f0883e;
+      --red: #f85149;
+      --warning-bg: #3d2a00;
+      --warning-border: #d29922;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, sans-serif;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .live { color: var(--green); font-weight: 600; }
+    .warning {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      margin: 1rem 0 1.5rem;
+      font-size: 13px;
+    }
+    .warning strong { color: #ffd33d; }
+    h1 { font-size: 2rem; margin: 0.5rem 0 0.25rem; font-weight: 700; }
+    .meta { color: var(--muted); font-size: 13px; margin-bottom: 2rem; }
+    .meta a { color: var(--accent); }
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 2rem 0 0.5rem;
+      font-weight: 600;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+    .card h3 { margin: 0 0 0.75rem; font-size: 13px; color: var(--muted); font-weight: 600; letter-spacing: 0.05em; }
+    .big-number { font-size: 2.5rem; font-weight: 700; }
+    .progress {
+      height: 6px;
+      background: #2d3a45;
+      border-radius: 3px;
+      margin: 0.5rem 0;
+      overflow: hidden;
+    }
+    .progress-bar { height: 100%; background: var(--accent); width: 74%; }
+    .state-list { display: flex; flex-direction: column; gap: 0.4rem; }
+    .state {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+    .badge {
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+    .badge.normal { background: #1a3a2a; color: var(--green); }
+    .badge.reduced { background: #3a2e1a; color: var(--yellow); }
+    .badge.constrained { background: #3a221a; color: var(--orange); }
+    .badge.near-closed { background: #3a1a1a; color: var(--red); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: 13px;
+    }
+    th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+    th { color: var(--muted); font-weight: 600; font-size: 11px; letter-spacing: 0.05em; }
+    .spark { color: var(--accent); font-family: monospace; }
+    .linked {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.2fr;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .linked .card { text-align: center; }
+    .linked .big { font-size: 2.2rem; font-weight: 700; }
+    .method {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 1rem;
+    }
+    pre {
+      background: #0d1117;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+      font-size: 12px;
+      overflow-x: auto;
+      line-height: 1.6;
+      color: #c9d1d9;
+    }
+    .notes { background: var(--surface-alt); border-radius: 8px; padding: 1rem 1.25rem; font-size: 13px; color: var(--muted); }
+    .notes strong { color: var(--text); }
+    footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; }
+    @media (max-width: 800px) {
+      .cards, .linked, .method { grid-template-columns: 1fr; }
+      header { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>UCMS / SCFL</div>
+      <div><span class="live">● LIVE</span> · IMF PortWatch · Data through 2026-10-11</div>
+    </header>
+
+    <div class="warning">
+      <strong>⚠ PRESENTATION VALUES ONLY</strong><br>
+      The figures on this page are presentation values: a transparent proxy calculated from public IMF PortWatch traffic data, using the method shown below. They are not SCFL operator-derived measurements. UCMS readings appear only where marked, each with its own date.
+    </div>
+
+    <h1>Global Shipping Flow Observatory</h1>
+    <div class="meta">
+      Ronald Brogdon · Upstream Coherence Measurement Stratum (UCMS) · ORCID: <a href="https://orcid.org/0009-0009-0507-2971" target="_blank">https://orcid.org/0009-0009-0507-2971</a>
+    </div>
+
+    <div class="section-label">Network</div>
+    <h2 style="margin:0 0 0.5rem; font-size:1.25rem;">Chokepoint flow against the 2025 reference year</h2>
+    <p style="color:var(--muted); margin:0 0 1rem;">Six chokepoints that carry a large share of seaborne trade. Traffic is compared with each chokepoint's own typical level in 2025.</p>
+
+    <div class="cards">
+      <div class="card">
+        <h3>NETWORK FLOW INDEX</h3>
+        <div class="big-number">74 <span style="font-size:1rem; color:var(--muted);">/ 100 = reference</span></div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <p style="margin:0.5rem 0 0; font-size:12px; color:var(--muted);">Tonnage-weighted average of each chokepoint's current traffic as a share of its 2025 typical level.</p>
+      </div>
+      <div class="card">
+        <h3>CHOKEPOINTS BY FLOW STATE</h3>
+        <div class="state-list">
+          <div class="state"><span class="badge normal">NORMAL FLOW</span> <strong>3</strong></div>
+          <div class="state"><span class="badge reduced">REDUCED FLOW</span> <strong>2</strong></div>
+          <div class="state"><span class="badge constrained">CONSTRAINED FLOW</span> <strong>0</strong></div>
+          <div class="state"><span class="badge near-closed">NEAR-CLOSED</span> <strong>1</strong></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>UCMS READING</h3>
+        <p style="margin:0;"><strong>Example reading</strong><br>as of 2026-10-15</p>
+        <p style="margin:0.5rem 0 0; font-size:12px; color:var(--muted);">Readings are posted by UCMS on their own schedule and dated. They are separate from the presentation values on this page.</p>
+      </div>
+    </div>
+
+    <div class="section-label">Chokepoints</div>
+    <h2 style="margin:0 0 0.5rem; font-size:1.25rem;">Current flow by chokepoint</h2>
+    <p style="color:var(--muted); margin:0 0 1rem;">Flow is the latest 7-day average of daily transits as a share of the 2025 typical level. Mix shift shows how far the ship-type mix has moved from 2025 (0 = same mix, 1 = entirely different).</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>CHOKEPOINT</th>
+          <th>FLOW STATE</th>
+          <th>TRANSITS / DAY<br>(7-DAY AVG)</th>
+          <th>2025 TYPICAL</th>
+          <th>FLOW VS 2025</th>
+          <th>MIX SHIFT</th>
+          <th>LAST 180 DAYS</th>
+          <th>UCMS READING</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Strait of Hormuz</td>
+          <td><span class="badge near-closed">NEAR-CLOSED</span></td>
+          <td>3.7</td>
+          <td>130.7</td>
+          <td>3%</td>
+          <td>0.69</td>
+          <td class="spark">·············</td>
+          <td>Example reading as of 2026-10-15</td>
+        </tr>
+        <tr>
+          <td>Suez Canal</td>
+          <td><span class="badge reduced">REDUCED FLOW</span></td>
+          <td>28.0</td>
+          <td>37.3</td>
+          <td>75%</td>
+          <td>0.01</td>
+          <td class="spark">─────────</td>
+          <td>Not posted</td>
+        </tr>
+        <tr>
+          <td>Bab el-Mandeb Strait</td>
+          <td><span class="badge reduced">REDUCED FLOW</span></td>
+          <td>21.0</td>
+          <td>29.6</td>
+          <td>71%</td>
+          <td>0.02</td>
+          <td class="spark">─────────</td>
+          <td>Not posted</td>
+        </tr>
+        <tr>
+          <td>Cape of Good Hope</td>
+          <td><span class="badge normal">NORMAL FLOW</span></td>
+          <td>73.0</td>
+          <td>59.0</td>
+          <td>124%</td>
+          <td>0.01</td>
+          <td class="spark">─────────</td>
+          <td>Not posted</td>
+        </tr>
+        <tr>
+          <td>Panama Canal</td>
+          <td><span class="badge normal">NORMAL FLOW</span></td>
+          <td>32.4</td>
+          <td>33.4</td>
+          <td>97%</td>
+          <td>0.01</td>
+          <td class="spark">─────────</td>
+          <td>Not posted</td>
+        </tr>
+        <tr>
+          <td>Malacca Strait</td>
+          <td><span class="badge normal">NORMAL FLOW</span></td>
+          <td>228.1</td>
+          <td>230.1</td>
+          <td>99%</td>
+          <td>0.00</td>
+          <td class="spark">─────────</td>
+          <td>Not posted</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-label">Linked Routes</div>
+    <h2 style="margin:0 0 0.5rem; font-size:1.25rem;">Red Sea and Cape of Good Hope</h2>
+    <p style="color:var(--muted); margin:0 0 1rem;">Suez and the Cape of Good Hope are alternative routes between Asia and Europe. When one falls while the other rises, ships are rerouting and the network is reorganizing.</p>
+
+    <div class="linked">
+      <div class="card">
+        <h3>SUEZ CANAL</h3>
+        <div class="big">75%</div>
+        <p style="margin:0; color:var(--muted);">of 2025 typical flow</p>
+      </div>
+      <div class="card">
+        <h3>CAPE OF GOOD HOPE</h3>
+        <div class="big">124%</div>
+        <p style="margin:0; color:var(--muted);">of 2025 typical flow</p>
+      </div>
+      <div class="card">
+        <h3>REROUTING SIGNAL</h3>
+        <div style="font-size:1.1rem; font-weight:600; margin:0.5rem 0;">Rerouting toward the Cape</div>
+        <p style="margin:0; font-size:12px; color:var(--muted);">Suez is below 90% of its 2025 typical flow while the Cape of Good Hope is above 110%.</p>
+      </div>
+    </div>
+
+    <div class="section-label">Method</div>
+    <h2 style="margin:0 0 0.5rem; font-size:1.25rem;">How the presentation values are calculated</h2>
+    <p style="color:var(--muted); margin:0 0 1rem;">Every value above follows this recipe, using public data only. It is a proxy for traffic conditions and contains no SCFL operators.</p>
+
+    <div class="method">
+      <pre>FOR each chokepoint c:
+  daily     = PortWatch transits per day (all ship types)
+  current   = average of daily over the latest 7 days
+  reference = median of 7-day averages, 1 Jan – 31 Dec 2025
+  flow      = current / reference     # 1.00 = typical
+
+  mix_now   = share of each ship type, latest 28 days
+  mix_ref   = share of each ship type, 2025
+  mix_shift = ½ × Σ |mix_now − mix_ref|
+
+  state = Normal flow      if flow ≥ 0.90
+          Reduced flow     if 0.60 ≤ flow < 0.90
+          Constrained flow if 0.20 ≤ flow < 0.60
+          Near-closed      if flow < 0.20</pre>
+      <pre>NETWORK FLOW INDEX
+  weight(c) = average daily tonnage of c in 2025
+  index     = 100 × Σ weight(c) × flow(c)
+              / Σ weight(c)
+
+REROUTING SIGNAL (Suez ↔ Cape of Good Hope)
+  shown if  one flow < 0.90
+         and the other flow > 1.10
+
+Data: IMF PortWatch Daily Chokepoints Data
+      (UN Global Platform; IMF PortWatch)
+Refresh: on every page load</pre>
+    </div>
+
+    <div class="section-label">Notes</div>
+    <div class="notes">
+      <p><strong>Not a forecast or an alarm.</strong> Flow states describe current traffic only. They say nothing about what happens next.</p>
+      <p><strong>Note on terminology.</strong> Earlier UCMS maritime work, including the HCDI 1.2 paper, used the phrase "public early-warning layer." That wording was not intended to describe an early-warning system (EWS). It referred to a structural layer reading only.</p>
+      <p><strong>Data limits.</strong> PortWatch figures come from vessel AIS signals and are published with a delay of several days. Ships that switch off transponders may be undercounted.</p>
+    </div>
+
+    <footer>
+      Data: UN Global Platform; IMF PortWatch<br>
+      Ronald Brogdon · Upstream Coherence Measurement Stratum (UCMS) · ORCID: <a href="https://orcid.org/0009-0009-0507-2971">https://orcid.org/0009-0009-0507-2971</a> · <a href="mailto:measurement@coherencemanagement.org">measurement@coherencemanagement.org</a>
+    </footer>
+  </div>
+</body>
+</html>
