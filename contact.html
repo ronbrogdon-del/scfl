@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Contact – SCFL / Souljourner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>
+  .contact-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 2rem 1.75rem;
+    box-shadow: var(--shadow);
+    max-width: 640px;
+    margin: 1.5rem 0 2rem;
+  }
+  .contact-card h2 {
+    margin-top: 0;
+    font-size: 1.35rem;
+  }
+  .email-link {
+    display: inline-block;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0.75rem 0 1rem;
+  }
+  .paths {
+    margin-top: 2rem;
+  }
+  .paths article {
+    margin-bottom: 1.5rem;
+  }
+  .paths h3 {
+    margin-bottom: 0.4rem;
+  }
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">SCFL</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Overview</a>
+        <a href="one-question.html">One Question Challenge</a>
+        <a href="videos.html">Videos</a>
+        <a href="souljourner.html">Souljourner</a>
+        <a href="cases.html">Cases</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container" style="max-width: 800px;">
+        <p class="section-kicker">Contact</p>
+        <h1>Get in touch</h1>
+        <p class="lede">Research collaboration, domain plates, institutional pilots, or Souljourner interior-coherence pathways.</p>
+
+        <div class="contact-card">
+          <h2>Email</h2>
+          <a class="email-link" href="mailto:measurement@coherencemanagement.org">measurement@coherencemanagement.org</a>
+          <p>For SCFL systems measurement (grid, hospitals, firms, cascades) or Souljourner interior / biological plates. Please note the domain and the question you are bringing.</p>
+        </div>
+
+        <div class="paths">
+          <h2>Preferred starting points</h2>
+          <article>
+            <h3>SCFL systems work</h3>
+            <p>Structural integrity scans, recoverability readings, Measurement as a Service prototypes. Start with the <a href="one-question.html">One Question Challenge</a> or review the <a href="videos.html">videos</a> and <a href="cases.html">cases</a>.</p>
+          </article>
+          <article>
+            <h3>Souljourner interior coherence</h3>
+            <p>Facilitator-guided, institutional, research, coaching, recovery, educational, or self-directed pathways. The journey architecture is fully specified and operational at the workflow level. See the <a href="souljourner.html">Souljourner page</a>.</p>
+          </article>
+          <article>
+            <h3>Foundational research</h3>
+            <p>Published corpus on Zenodo. The homepage lists the current plates and DOIs.</p>
+          </article>
+        </div>
+
+        <p style="margin-top: 2.5rem;">
+          <a href="index.html" class="button secondary">← Back to Overview</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>© <span id="year"></span> Ronald L. Brogdon. All rights reserved.</p>
+      <a href="index.html">Home</a>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
