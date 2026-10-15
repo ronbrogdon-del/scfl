@@ -61,7 +61,9 @@
   }
   button[type="submit"] {
     align-self: flex-start;
-    margin-top: 0.5rem;
+    margin-top: 0.75rem;
+    min-width: 140px;
+    font-size: 1rem;
   }
 </style>
 </head>
@@ -107,7 +109,7 @@
             <label for="message">Message</label>
             <textarea id="message" name="message" required></textarea>
 
-            <button type="submit" class="button primary">Send</button>
+            <button type="submit" class="button primary">Submit</button>
           </form>
           <p style="margin-top:1.25rem; font-size:0.9rem; color:var(--muted);">Or email directly: <a href="mailto:measurement@coherencemanagement.org">measurement@coherencemanagement.org</a></p>
         </div>
