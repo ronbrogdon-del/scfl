@@ -36,6 +36,33 @@
   .paths h3 {
     margin-bottom: 0.4rem;
   }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  label {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  input, textarea, select {
+    width: 100%;
+    padding: 0.65rem 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1rem;
+    background: #fff;
+  }
+  textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  button[type="submit"] {
+    align-self: flex-start;
+    margin-top: 0.5rem;
+  }
 </style>
 </head>
 <body>
@@ -61,9 +88,28 @@
         <p class="lede">Research collaboration, domain plates, institutional pilots, or Souljourner interior-coherence pathways.</p>
 
         <div class="contact-card">
-          <h2>Email</h2>
-          <a class="email-link" href="mailto:measurement@coherencemanagement.org">measurement@coherencemanagement.org</a>
-          <p>For SCFL systems measurement (grid, hospitals, firms, cascades) or Souljourner interior / biological plates. Please note the domain and the question you are bringing.</p>
+          <h2>Send a message</h2>
+          <form action="https://formspree.io/f/xzedvovk" method="POST">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="pathway">Pathway</label>
+            <select id="pathway" name="pathway">
+              <option value="SCFL systems">SCFL systems measurement</option>
+              <option value="Souljourner">Souljourner interior coherence</option>
+              <option value="Research collaboration">Research collaboration</option>
+              <option value="Other">Other</option>
+            </select>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit" class="button primary">Send</button>
+          </form>
+          <p style="margin-top:1.25rem; font-size:0.9rem; color:var(--muted);">Or email directly: <a href="mailto:measurement@coherencemanagement.org">measurement@coherencemanagement.org</a></p>
         </div>
 
         <div class="paths">
