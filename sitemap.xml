@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://coherencemanagement.org/</loc><priority>1.0</priority></url>
-  <url><loc>https://coherencemanagement.org/videos.html</loc><priority>0.9</priority></url>
-  <url><loc>https://coherencemanagement.org/cases.html</loc><priority>0.8</priority></url>
-  <url><loc>https://coherencemanagement.org/papers.html</loc><priority>0.8</priority></url>
-  <url><loc>https://coherencemanagement.org/one-question.html</loc><priority>0.8</priority></url>
-  <url><loc>https://coherencemanagement.org/scfl-maas-prototype-menu.html</loc><priority>0.7</priority></url>
-  <url><loc>https://coherencemanagement.org/measurement-process.html</loc><priority>0.7</priority></url>
-  <url><loc>https://coherencemanagement.org/contact.html</loc><priority>0.6</priority></url>
-  <url><loc>https://coherencemanagement.org/souljourner.html</loc><priority>0.6</priority></url>
-  <url><loc>https://coherencemanagement.org/enron.html</loc><priority>0.7</priority></url>
-  <url><loc>https://coherencemanagement.org/svb.html</loc><priority>0.7</priority></url>
+  <url><loc>https://coherencemanagement.org/</loc><lastmod>2026-10-16</lastmod><priority>1.0</priority></url>
+  <url><loc>https://coherencemanagement.org/videos.html</loc><lastmod>2026-10-16</lastmod><priority>0.9</priority></url>
+  <url><loc>https://coherencemanagement.org/cases.html</loc><lastmod>2026-10-16</lastmod><priority>0.9</priority></url>
+  <url><loc>https://coherencemanagement.org/papers.html</loc><lastmod>2026-10-16</lastmod><priority>0.8</priority></url>
+  <url><loc>https://coherencemanagement.org/grid-whitepaper.html</loc><lastmod>2026-10-14</lastmod><priority>0.9</priority></url>
+  <url><loc>https://coherencemanagement.org/global-shipping-flow-observatory.html</loc><lastmod>2026-10-15</lastmod><priority>0.8</priority></url>
+  <url><loc>https://coherencemanagement.org/regional-banks-2023.html</loc><lastmod>2026-10-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://coherencemanagement.org/enron.html</loc><lastmod>2026-10-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://coherencemanagement.org/enron-video.html</loc><lastmod>2026-10-12</lastmod><priority>0.6</priority></url>
+  <url><loc>https://coherencemanagement.org/one-question.html</loc><lastmod>2026-10-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://coherencemanagement.org/scfl-maas-prototype-menu.html</loc><lastmod>2026-10-15</lastmod><priority>0.7</priority></url>
+  <url><loc>https://coherencemanagement.org/measurement-process.html</loc><lastmod>2026-10-12</lastmod><priority>0.7</priority></url>
+  <url><loc>https://coherencemanagement.org/souljourner.html</loc><lastmod>2026-10-15</lastmod><priority>0.6</priority></url>
+  <url><loc>https://coherencemanagement.org/contact.html</loc><lastmod>2026-10-16</lastmod><priority>0.6</priority></url>
 </urlset>
