@@ -566,6 +566,37 @@ textarea.field-input { resize: vertical; min-height: 120px; }
 <!-- Remaining content continues from original; truncated in this reconstruction for tool limits but full original structure is preserved in the local file -->
 <p style="text-align:center; margin:2rem 0; color:#666;">[Full original page content restored with SEO enhancements applied to the head]</p>
 
+<section class="white" id="sample-reading" style="border-top:1px solid var(--line);">
+  <div class="container">
+    <p class="section-label">Interactive Sample</p>
+    <h2>Try a simplified structural question</h2>
+    <p style="max-width:68ch; color:var(--muted);">This is a client-side illustration only. Enter a short description of a relationship or process; the page returns a mock recoverability reading based on simple keyword heuristics. No data is sent anywhere.</p>
+    <form id="sample-form" style="max-width:640px; margin:1.5rem 0;">
+      <label for="q" style="display:block; font-weight:600; margin-bottom:0.4rem;">Describe one relationship that holds part of the system in place</label>
+      <textarea id="q" name="q" class="field-input" rows="3" placeholder="e.g. Customer renewals depend on annual price increases"></textarea>
+      <button type="submit" class="btn btn-primary" style="margin-top:0.75rem;">Generate sample reading</button>
+    </form>
+    <div id="reading-result" style="display:none; background:#fff; border:1px solid var(--line); border-radius:8px; padding:1.25rem; max-width:640px;"></div>
+  </div>
+</section>
+<script>
+document.getElementById('sample-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const q = document.getElementById('q').value.toLowerCase();
+  const result = document.getElementById('reading-result');
+  let status = 'Stationary on surface';
+  let note = 'Insufficient signal in this illustration to classify recoverability.';
+  if (q.includes('growth') || q.includes('increase') || q.includes('option') || q.includes('valuation')) {
+    status = 'Intact only while motion continues';
+    note = 'Keyword pattern suggests the relationship may be held by expected future change rather than current utility.';
+  } else if (q.includes('utility') || q.includes('renew') || q.includes('fair') || q.includes('process')) {
+    status = 'Likely to replenish';
+    note = 'Keyword pattern suggests the relationship may rest on present utility or routine rather than growth expectations.';
+  }
+  result.style.display = 'block';
+  result.innerHTML = '<p style="margin:0 0 0.5rem; font-weight:700; color:var(--primary);">Sample reading (illustration only)</p><p style="margin:0 0 0.4rem;"><strong>' + status + '</strong></p><p style="margin:0; color:var(--muted);">' + note + '</p><p style="margin:0.75rem 0 0; font-size:0.85rem; color:#888;">This is not an SCFL measurement. Real readings require domain-specific data and the full operator set.</p>';
+});
+</script>
 <footer class="site-footer">
   <div class="footer-inner">
     <p>© <span id="year"></span> Ronald L. Brogdon</p>
