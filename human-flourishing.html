@@ -1,1 +1,178 @@
-PLACEHOLDER_WILL_BE_REPLACED
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A compassionate inquiry into human flourishing, interior coherence, agency, meaning, relationship, and the conditions that help people grow.">
+<title>Human Flourishing | Coherence Measurement</title>
+<style>
+:root {
+  --ink: #202b32;
+  --muted: #596971;
+  --paper: #fbfaf7;
+  --panel: #ffffff;
+  --line: #dce3df;
+  --green: #315e51;
+  --green-dark: #23463d;
+  --sage: #e9f0eb;
+  --gold: #c39a58;
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.65; }
+a { color: var(--green-dark); }
+.site-header { border-bottom: 1px solid var(--line); background: rgba(251,250,247,.96); }
+.nav { max-width: 1120px; margin: auto; padding: 20px 26px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.brand { font-size: .83rem; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; color: var(--green-dark); text-decoration: none; }
+.nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+.nav-links a { font-size: .91rem; text-decoration: none; color: var(--muted); }
+.nav-links a:hover { color: var(--green-dark); }
+main { overflow: hidden; }
+.wrap { max-width: 1120px; margin: auto; padding: 0 26px; }
+.hero { padding: 92px 0 76px; background: radial-gradient(ellipse at 84% 15%, rgba(195,154,88,.13), transparent 34%), linear-gradient(135deg, #f5f7f2, #fbfaf7 68%); }
+.eyebrow { color: var(--green); font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 750; margin: 0 0 20px; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.15; }
+h1 { font-size: clamp(2.6rem, 6vw, 5.2rem); letter-spacing: -.045em; max-width: 900px; margin: 0 0 26px; }
+.hero .lede { font-size: clamp(1.15rem, 2vw, 1.42rem); line-height: 1.55; max-width: 760px; color: #43535a; margin: 0; }
+.hero .lede strong { color: var(--ink); font-weight: 650; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.button { display: inline-block; border-radius: 4px; padding: 12px 18px; background: var(--green); color: white; text-decoration: none; font-weight: 650; font-size: .94rem; }
+.button.secondary { background: transparent; color: var(--green-dark); border: 1px solid #a8bbb1; }
+.section { padding: 74px 0; }
+.section.soft { background: #f0f4f0; }
+.section.dark { background: #203b35; color: #f8f7f1; }
+.section.dark .eyebrow, .section.dark a { color: #d9c093; }
+.section.dark p { color: #e0e7e2; }
+.section h2 { font-size: clamp(2rem, 4vw, 3.35rem); max-width: 790px; margin: 0 0 22px; letter-spacing: -.025em; }
+.section .intro { font-size: 1.12rem; max-width: 780px; color: var(--muted); }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 34px; }
+.card { background: var(--panel); border: 1px solid var(--line); padding: 25px; border-radius: 8px; }
+.card .number { color: var(--gold); font-size: .78rem; letter-spacing: .12em; font-weight: 750; }
+.card h3 { font-size: 1.55rem; margin: 10px 0 12px; }
+.card p { margin: 0; color: var(--muted); }
+.callout { border-left: 3px solid var(--gold); padding: 7px 0 7px 24px; margin: 32px 0; max-width: 850px; font-family: var(--serif); font-size: clamp(1.35rem, 2.4vw, 1.9rem); line-height: 1.45; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.small-label { color: var(--green); font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 750; }
+ul.clean { list-style: none; padding: 0; margin: 24px 0 0; }
+ul.clean li { padding: 13px 0 13px 28px; border-bottom: 1px solid var(--line); position: relative; }
+ul.clean li:before { content: "—"; position: absolute; left: 0; color: var(--gold); }
+.note { font-size: .9rem; color: var(--muted); }
+.site-footer { border-top: 1px solid var(--line); padding: 26px; color: var(--muted); font-size: .88rem; }
+.footer-inner { max-width: 1120px; margin: auto; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+@media (max-width: 760px) {
+  .nav { align-items: flex-start; flex-direction: column; }
+  .hero { padding: 64px 0 56px; }
+  .grid, .two-col { grid-template-columns: 1fr; }
+  .section { padding: 55px 0; }
+}
+
+.hero.flourish { background: radial-gradient(ellipse at 82% 22%, rgba(195,154,88,.17), transparent 32%), linear-gradient(135deg, #f7f2e9, #fbfaf7 70%); }
+.hero.flourish h1 { max-width: 820px; }
+.gentle { font-family: var(--serif); font-size: clamp(1.45rem, 2.5vw, 2rem); line-height: 1.5; color: #354b43; max-width: 850px; }
+.soft-card { background: #f5f2ea; border: 1px solid #e6dece; padding: 25px; border-radius: 8px; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <nav class="nav" aria-label="Main navigation">
+    <a class="brand" href="larger-question.html">Coherence Measurement</a>
+    <div class="nav-links">
+      <a href="larger-question.html">The larger question</a>
+      <a href="#meaning">What flourishing means</a>
+      <a href="#research">The research horizon</a>
+    </div>
+  </nav>
+</header>
+<main>
+  <section class="hero flourish">
+    <div class="wrap">
+      <p class="eyebrow">Human flourishing</p>
+      <h1>A life is more than a set of outcomes.</h1>
+      <p class="lede">Human flourishing is not simply productivity, success, happiness, or the absence of difficulty. It concerns the possibility of living with meaning, agency, connection, dignity, and room to grow—even when life is complicated and uncertain.</p>
+      <div class="hero-actions">
+        <a class="button" href="#meaning">Explore the idea</a>
+        <a class="button secondary" href="#research">A research question, held carefully</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="meaning">
+    <div class="wrap">
+      <p class="eyebrow">A compassionate starting point</p>
+      <h2>People are not problems to be optimized.</h2>
+      <p class="gentle">A person can be struggling and still be growing. A life can look successful from the outside and feel fractured within. A person can lose certainty, direction, or capacity for a time without losing their worth.</p>
+      <p>Any serious inquiry into human flourishing should begin with that humility. People are shaped by relationships, bodies, histories, cultures, material circumstances, chance, and choices. No single metric can capture the whole of a human life, and no measurement should be used to rank a person’s worth.</p>
+      <p>Flourishing is not a demand to be cheerful or resilient at all costs. It includes the freedom to grieve, to rest, to ask for help, to change direction, and to live with questions that do not resolve neatly.</p>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="wrap">
+      <p class="eyebrow">What we hope to understand</p>
+      <h2>Conditions that make room for a fuller life.</h2>
+      <p class="intro">Rather than prescribing one ideal life, a compassionate approach asks what helps people retain or recover the freedom to participate in their own lives.</p>
+      <div class="grid">
+        <article class="card">
+          <span class="number">01 / AGENCY</span>
+          <h3>The room to choose</h3>
+          <p>Can a person make meaningful choices, act on what matters to them, and retain a sense of authorship over their life?</p>
+        </article>
+        <article class="card">
+          <span class="number">02 / CONNECTION</span>
+          <h3>Being held in relationship</h3>
+          <p>Can people experience mutual care, belonging, trust, and relationships in which they can be seen without being reduced to a label?</p>
+        </article>
+        <article class="card">
+          <span class="number">03 / MEANING</span>
+          <h3>A life that feels like one’s own</h3>
+          <p>Can people find continuity between their values, commitments, experiences, and hopes—even as those things change over time?</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="research">
+    <div class="wrap two-col">
+      <div>
+        <p class="eyebrow">Interior coherence</p>
+        <h2>Can we study the patterns that support a person's sense of wholeness?</h2>
+      </div>
+      <div>
+        <p>Our broader work on coherence asks whether relationships within complex systems can be characterized through measurement. Human experience raises a related but distinct question: might carefully designed, nonclinical research help us better understand patterns of continuity, conflict, connection, and change in a person’s inner life?</p>
+        <p>This is a research horizon, not a diagnostic promise. It should be approached with respect for privacy, cultural difference, personal agency, and the limits of measurement. The aim is not to tell people who they are, prescribe how they should feel, or turn inner life into a score that defines them.</p>
+        <p>Instead, the hope is to develop ways of listening and learning that may help researchers ask better questions about the conditions that support meaning, self-understanding, and a life that feels more integrated.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="soft-card">
+        <p class="eyebrow">A boundary worth keeping</p>
+        <h2>Measurement should serve human dignity.</h2>
+        <p>Any future application in this area should be transparent about what it measures, what it cannot know, and how information is used. It should not substitute for clinical care, impose a single definition of well-being, or treat vulnerability as a defect.</p>
+        <p>People deserve tools that help them understand their lives without taking ownership of those lives away from them.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="wrap">
+      <p class="eyebrow">The larger purpose</p>
+      <h2>Not to measure the worth of a life, but to better understand what helps life open.</h2>
+      <p class="intro">The ambition behind this work is practical and humane: to develop useful knowledge, test it honestly, and explore whether better ways of understanding coherence can contribute to the conditions in which people and communities flourish.</p>
+      <p>There are no guarantees in that ambition. There is a question worth pursuing—with rigor, humility, and care for the people whose lives give the question its meaning.</p>
+      <p><a href="larger-question.html">Return to the larger question behind coherence measurement</a></p>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>Human Flourishing · An open research horizon</span>
+    <span>Nonclinical, exploratory, and grounded in respect for human dignity</span>
+  </div>
+</footer>
+</body>
+</html>
