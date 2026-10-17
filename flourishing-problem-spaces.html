@@ -57,7 +57,10 @@ h1 { font-size: clamp(2.4rem, 5.5vw, 4.6rem); letter-spacing: -.04em; max-width:
 .priority { margin: 18px 0; }
 .priority h3 { font-size: 1.25rem; margin: 0 0 8px; }
 .site-footer { border-top: 1px solid var(--line); padding: 26px; color: var(--muted); font-size: .88rem; }
-.footer-inner { max-width: 1120px; margin: auto; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.footer-inner { max-width: 1120px; margin: auto; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; }
+.footer-meta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.footer-meta a { color: var(--muted); text-decoration: none; }
+.footer-meta a:hover { color: var(--green-dark); }
 @media (max-width: 760px) {
   .nav { align-items: flex-start; flex-direction: column; }
   .hero { padding: 64px 0 56px; }
@@ -274,19 +277,24 @@ h1 { font-size: clamp(2.4rem, 5.5vw, 4.6rem); letter-spacing: -.04em; max-width:
 
   <section class="section dark">
     <div class="wrap">
-      <p class="eyebrow">Next step</p>
-      <h2>A usable question bank.</h2>
-      <p>Each question should carry five associated elements: the human problem (what can go wrong, and for whom), the blind spot (what current measures may fail to capture), the relational hypothesis (what underlying relationships might matter), the observable evidence (what data could actually be collected), and the practical value (who would benefit from knowing the answer, and what decision might change).</p>
-      <p>This supports a growing library of problem spaces, candidate measures, and potential research or commercial engagements without claiming that every question has already been solved.</p>
-      <p>The organizing purpose is human flourishing. Coherence is the proposed underlying construct. SCFL is the measurement approach being developed to investigate it. Flourishing is not reduced to organizational productivity, psychological comfort, or the absence of crisis. The larger question is whether the conditions for meaningful, sustained human development remain intact.</p>
-      <p><a href="human-flourishing.html">Human flourishing</a> · <a href="bridge.html">Measurement foundation</a> · <a href="larger-question.html">The larger question</a></p>
+      <p class="eyebrow">How each question becomes research</p>
+      <h2>From problem space to testable proposition.</h2>
+      <p>Each question is developed by clarifying five elements: the human problem (what can go wrong, and for whom), the blind spot (what current measures may fail to capture), the relational hypothesis (what underlying relationships might matter), the observable evidence (what data could actually be collected), and the practical value (who would benefit from knowing the answer, and what decision might change).</p>
+      <p>This structure supports a growing set of problem spaces and candidate measures without treating every question as already solved. The organizing purpose is human flourishing. Coherence is the proposed underlying construct. The Standard Coherence Fidelity Layer (SCFL) is the measurement approach being developed to investigate it. Flourishing is not reduced to organizational productivity, psychological comfort, or the absence of crisis. The larger question is whether the conditions for meaningful, sustained human development remain intact.</p>
+      <p><a href="human-flourishing.html">Human flourishing</a> · <a href="bridge.html">Measurement foundation</a> · <a href="larger-question.html">The larger question</a> · <a href="index.html">SCFL research site</a></p>
     </div>
   </section>
 </main>
 <footer class="site-footer">
   <div class="footer-inner">
-    <span>Problem Spaces for Human Flourishing</span>
-    <span>Candidate spaces, not established measures</span>
+    <div>
+      <span>Upstream Coherence Measurement Stratum (UCMS)</span><br>
+      <span>Ronald L. Brogdon · <a href="https://orcid.org/0009-0009-0507-2971" target="_blank" rel="noopener">ORCID</a></span>
+    </div>
+    <div class="footer-meta">
+      <a href="contact.html">Contact</a>
+      <span>Candidate spaces, not established measures</span>
+    </div>
   </div>
 </footer>
 </body>
