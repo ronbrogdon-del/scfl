@@ -4,55 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Research Papers & Publications – SCFL / UCMS</title>
-  <meta name="description" content="Published research corpus for the Standard Coherence Fidelity Layer (SCFL) and Upstream Coherence Measurement Stratum (UCMS). Key Zenodo papers on coherence measurement, operators, domain plates, and recoverability.">
+  <meta name="description" content="Published research corpus for the Standard Coherence Fidelity Layer (SCFL) and Upstream Coherence Measurement Stratum (UCMS). Key Zenodo papers grouped by domain.">
   <link rel="stylesheet" href="style.css">
-
-<!-- SEO -->
-<link rel="canonical" href="https://coherencemanagement.org/papers.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="SCFL – Standard Coherence Fidelity Layer">
-<meta property="og:title" content="Research Papers &amp; Publications – SCFL / UCMS">
-<meta property="og:description" content="Published research corpus for the Standard Coherence Fidelity Layer (SCFL) and Upstream Coherence Measurement Stratum (UCMS). Key Zenodo papers on coherence measurement, operators, domain plates, and recoverability.">
-<meta property="og:url" content="https://coherencemanagement.org/papers.html">
-<meta property="og:image" content="https://coherencemanagement.org/IMG_0373.jpeg">
-<meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "ItemList",
- "name": "SCFL / UCMS Research Papers",
- "itemListElement": [
-  {
-   "@type": "ListItem",
-   "position": 1,
-   "item": {
-    "@type": "ScholarlyArticle",
-    "name": "Coherence as a Relational Property: Toward a Foundational Science of Coherence",
-    "identifier": {
-     "@type": "PropertyValue",
-     "propertyID": "DOI",
-     "value": "10.5281/zenodo.23247214"
-    },
-    "url": "https://doi.org/10.5281/zenodo.23247214",
-    "author": {
-     "@type": "Person",
-     "name": "Ronald Brogdon",
-     "sameAs": "https://orcid.org/0009-0009-0507-2971",
-     "affiliation": {
-      "@type": "Organization",
-      "name": "Upstream Coherence Measurement Stratum (UCMS)",
-      "url": "https://coherencemanagement.org/"
-     }
-    },
-    "publisher": {
-     "@type": "Organization",
-     "name": "Zenodo"
-    }
-   }
-  }
- ]
-}
-</script>
+  <link rel="canonical" href="https://coherencemanagement.org/papers.html">
+  <style>
+    .papers-cat { margin: 2rem 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+    .papers-cat summary { background: var(--surface-alt); padding: 1rem 1.25rem; cursor: pointer; font-weight: 600; }
+    .papers-cat ul { margin: 0; padding: 1rem 1.25rem 1rem 2.5rem; }
+    .papers-cat li { margin-bottom: 0.5rem; }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -60,9 +20,10 @@
       <a href="index.html" class="brand">SCFL</a>
       <nav class="main-nav">
         <a href="index.html">Overview</a>
-        <a href="videos.html">Videos</a>
-        <a href="cases.html">Cases</a>
+        <a href="one-question.html">One Question</a>
         <a href="papers.html" aria-current="page">Papers</a>
+        <a href="cases.html">Cases</a>
+        <a href="human-flourishing.html">Human Flourishing</a>
         <a href="contact.html">Contact</a>
       </nav>
     </div>
@@ -71,45 +32,62 @@
     <section class="section">
       <div class="container narrow">
         <p class="section-kicker">Publications</p>
-        <h1>Research Papers</h1>
-        <p class="lede">Selected works from the SCFL / UCMS corpus. All available on Zenodo.</p>
+        <h1>Research Papers by Domain</h1>
+        <p class="lede">Selected works from the SCFL / UCMS corpus, grouped to reduce cognitive load. All available on Zenodo. SCFL systems plates and Souljourner interior plates are kept distinct.</p>
 
-        <div class="papers-cat">
-          <h2>Foundational / Framework</h2>
+        <details class="papers-cat" open>
+          <summary>Foundational / Framework</summary>
           <ul>
-            <li><a href="https://doi.org/10.5281/zenodo.23247214">10.5281/zenodo.23247214</a> — Coherence as a Relational Property: Toward a Foundational Science of Coherence</li>
+            <li><a href="https://doi.org/10.5281/zenodo.23247214">10.5281/zenodo.23247214</a> — Coherence as a Relational Property</li>
             <li><a href="https://doi.org/10.5281/zenodo.21728822">10.5281/zenodo.21728822</a> — Living Map v0.17</li>
             <li><a href="https://doi.org/10.5281/zenodo.19364489">10.5281/zenodo.19364489</a> — Candidate Hypotheses for a Structured Pre-Failure Regime in Human Systems</li>
             <li><a href="https://doi.org/10.5281/zenodo.22974080">10.5281/zenodo.22974080</a> — Occupational Intersects for SCFL</li>
           </ul>
-        </div>
+        </details>
 
-        <div class="papers-cat">
-          <h2>Grid / Infrastructure</h2>
+        <details class="papers-cat">
+          <summary>Grid / Infrastructure (SCFL systems)</summary>
           <ul>
             <li><a href="https://doi.org/10.5281/zenodo.20514713">10.5281/zenodo.20514713</a> — Before the Alarm (ORNL EAGLE-I plate)</li>
             <li><a href="https://doi.org/10.5281/zenodo.19488182">10.5281/zenodo.19488182</a> — SCFL validated on ERCOT grid stress events</li>
             <li><a href="https://doi.org/10.5281/zenodo.21513174">10.5281/zenodo.21513174</a> — Uri Precursor Window</li>
             <li><a href="https://doi.org/10.5281/zenodo.21740325">10.5281/zenodo.21740325</a> — Seven Trajectories, One Curve</li>
           </ul>
-        </div>
+        </details>
 
-        <div class="papers-cat">
-          <h2>Operators & Validation</h2>
+        <details class="papers-cat">
+          <summary>Maritime / Cascades (SCFL systems)</summary>
+          <ul>
+            <li><a href="https://doi.org/10.5281/zenodo.20222719">10.5281/zenodo.20222719</a> — Weaponized Chokepoints: The Hormuz Collapse</li>
+          </ul>
+        </details>
+
+        <details class="papers-cat">
+          <summary>Biological / Interior (Souljourner)</summary>
+          <ul>
+            <li><a href="https://doi.org/10.5281/zenodo.20839076">10.5281/zenodo.20839076</a> — Interior Coherence within the SCFL: The Souljourner Architecture</li>
+            <li><a href="https://doi.org/10.5281/zenodo.20966428">10.5281/zenodo.20966428</a> — The Souljourner Interior Coherence Architecture</li>
+            <li><a href="https://doi.org/10.5281/zenodo.18865667">10.5281/zenodo.18865667</a> — Toward a Structural Measurement Framework for Whole-Body Human Coherence</li>
+            <li><a href="https://doi.org/10.5281/zenodo.20653355">10.5281/zenodo.20653355</a> — Coherence Mechanics in the Contemplative Academy</li>
+          </ul>
+        </details>
+
+        <details class="papers-cat">
+          <summary>Operators & Validation</summary>
           <ul>
             <li><a href="https://doi.org/10.5281/zenodo.21644604">10.5281/zenodo.21644604</a> — SCFL Operators Test and Validation Notebook</li>
           </ul>
-        </div>
+        </details>
 
-        <div class="papers-cat">
-          <h2>Additional Plates</h2>
+        <details class="papers-cat">
+          <summary>Recoverability / CCV</summary>
           <ul>
-            <li><a href="https://doi.org/10.5281/zenodo.20222719">10.5281/zenodo.20222719</a> — Weaponized Chokepoints: The Hormuz Collapse</li>
             <li><a href="https://doi.org/10.5281/zenodo.22926195">10.5281/zenodo.22926195</a> — A Modest Coherence Horizon</li>
+            <li><a href="https://doi.org/10.5281/zenodo.22136130">10.5281/zenodo.22136130</a> — CCV_E Pre-registration</li>
           </ul>
-        </div>
+        </details>
 
-        <p style="margin-top:2rem;"><a href="index.html#foundational" class="button secondary">Back to overview →</a></p>
+        <p style="margin-top:2rem;"><a href="index.html" class="button secondary">Back to overview →</a> &nbsp; <a href="souljourner.html" class="button secondary">Souljourner</a></p>
       </div>
     </section>
   </main>
