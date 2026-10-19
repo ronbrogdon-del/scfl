@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Structural Integrity Scan – SCFL / UCMS</title>
+  <meta name="description" content="Structural Integrity Scan using the frozen SCFL operator set. Cryptographic integrity commitment (SHA-256) for the canonical operators DRIFT, SHIFT, RUPTURE, KINETIC, QUENCH, and STRESS.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="canonical" href="https://coherencemanagement.org/integrity-scan.html">
+  <style>
+    .fingerprint {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background: var(--surface-alt);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      word-break: break-all;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1.25rem;
+    }
+    .commitment-box {
+      background: var(--accent);
+      border-left: 4px solid var(--primary);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
+    }
+    .operator-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.75rem;
+      margin: 1rem 0 1.5rem;
+    }
+    .operator {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 0.75rem;
+      text-align: center;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">SCFL</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Overview</a>
+        <a href="measurement-process.html">Measurement Process</a>
+        <a href="integrity-scan.html" aria-current="page">Integrity Scan</a>
+        <a href="one-question.html">One Question</a>
+        <a href="papers.html">Papers</a>
+        <a href="cases.html">Cases</a>
+        <a href="videos.html">Videos</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <p class="section-kicker">Structural Integrity Scan</p>
+        <h1>Frozen Operator Set v1.0</h1>
+        <p class="lede">Upstream Coherence Measurement Stratum (UCMS). Cryptographic integrity commitment for the canonical SCFL operator set used in Structural Integrity Scans.</p>
+
+        <div class="commitment-box">
+          <strong>Publication Open</strong><br>
+          SCFL FROZEN OPERATOR SET v1.0 — INTEGRITY COMMITMENT (SHA-256)<br>
+          <a href="https://doi.org/10.5281/zenodo.23474275" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.23474275</a>
+        </div>
+
+        <h2>Canonical Operators (frozen 10 July 2026)</h2>
+        <div class="operator-list">
+          <div class="operator">DRIFT∘</div>
+          <div class="operator">SHIFT∘</div>
+          <div class="operator">RUPTURE∘</div>
+          <div class="operator">KINETIC∘</div>
+          <div class="operator">QUENCH∘</div>
+          <div class="operator">STRESS∘</div>
+        </div>
+        <p>The operator-relevant code — the SCFL operator class, Collapse Geometry proxy and attenuation logic, and associated vector and scoring logic — is fixed. All Structural Integrity Scans and pilot evaluations reported after this deposit run on code matching the fingerprint below.</p>
+
+        <h2>Integrity Commitment (SHA-256)</h2>
+        <p>Operator code fingerprint:</p>
+        <div class="fingerprint">d27e40576565e63a38ebfd752b84b53bab4b59cc97a0837bd8111b5cac3d6ef5</div>
+        <p>Freeze date: 10 July 2026. Unchanged from that date through the deposit of this commitment.</p>
+
+        <h2>Terms</h2>
+        <ol>
+          <li>All SCFL computations reported after this deposit, including Structural Integrity Scans and pilot evaluations, will be run on code matching this fingerprint.</li>
+          <li>Any change to the operators will be issued as a new version with a new fingerprint, deposited before any computation that uses it is reported.</li>
+          <li>The operator code remains private. An authorized reviewer (pilot client under confidentiality agreement, patent examiner, or independent replicator) can verify the code against this fingerprint by computing its SHA-256 hash.</li>
+          <li>This commitment establishes that the operators are fixed and verifiable. It is not a claim that they are validated.</li>
+        </ol>
+
+        <h2>Related Validation</h2>
+        <p>SCFL Operators Test and Validation Notebook<br>
+        Published 28 July 2026<br>
+        <a href="https://doi.org/10.5281/zenodo.21644604" target="_blank" rel="noopener">DOI: 10.5281/zenodo.21644604</a> (concept DOI: 10.5281/zenodo.21644603)</p>
+
+        <h2>How to Verify</h2>
+        <p>Given the operator code file as held by the author:</p>
+        <ul>
+          <li><strong>Python:</strong> <code>hashlib.sha256(open(path, 'rb').read()).hexdigest()</code></li>
+          <li><strong>macOS/Linux:</strong> <code>shasum -a 256 <file></code></li>
+          <li><strong>Windows:</strong> <code>certutil -hashfile <file> SHA256</code></li>
+        </ul>
+        <p>The result must equal the fingerprint above, character for character.</p>
+
+        <p style="margin-top:2.5rem;"><a class="button primary" href="https://doi.org/10.5281/zenodo.23474275" target="_blank" rel="noopener">View Full Commitment on Zenodo</a></p>
+        <p style="margin-top:1rem;"><a href="measurement-process.html" class="button secondary">← Measurement Process</a> &nbsp; <a href="papers.html" class="button secondary">Papers</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>© <span id="year"></span> Ronald L. Brogdon. Upstream Coherence Measurement Stratum (UCMS).</p>
+      <a href="index.html">Home</a>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
