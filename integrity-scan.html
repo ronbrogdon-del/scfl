@@ -112,6 +112,13 @@
         </ul>
         <p>The result must equal the fingerprint above, character for character.</p>
 
+        <h2>To access it</h2>
+        <ol>
+          <li>Open the operator notebook you hashed: the July Operator Notebook code cells as they stood at the freeze.</li>
+          <li>Find the extracted operator code file you saved from those cells. If you didn't keep one, copy the operator cells into a clean .py file again.</li>
+          <li>Confirm it's the right version: on Mac run <code>shasum -a 256 filename.py</code>, on Windows <code>certutil -hashfile filename.py SHA256</code>. It should return <code>d27e4057…6ef5</code> exactly. If it's close but doesn't match, the usual culprit is a trailing newline or Windows‑vs‑Mac line endings.</li>
+        </ol>
+
         <p style="margin-top:2.5rem;"><a class="button primary" href="https://doi.org/10.5281/zenodo.23474275" target="_blank" rel="noopener">View Full Commitment on Zenodo</a></p>
         <p style="margin-top:1rem;"><a href="measurement-process.html" class="button secondary">← Measurement Process</a> &nbsp; <a href="papers.html" class="button secondary">Papers</a></p>
       </div>
