@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request to Measure (RTM) Research Program | UCMS</title>
-    <meta name="description" content="Collaborate with UCMS on non-invasive, multi-domain system characterization across structural, microgrid, and complex facility infrastructure.">
+    <meta name="description" content="Collaborate with UCMS on non-invasive, multi-domain system characterization. University-hosted Structural Integrity Scan packages available.">
     <style>
         :root {
             --primary-color: #003366;
@@ -101,6 +101,13 @@
             border-radius: 0 6px 6px 0;
         }
 
+        .two-col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
         .btn {
             display: inline-block;
             background-color: var(--accent-color);
@@ -122,6 +129,10 @@
             padding: 2rem 1.5rem;
             color: #64748b;
             font-size: 0.875rem;
+        }
+
+        ul.outputs li {
+            margin-bottom: 0.5rem;
         }
     </style>
 </head>
@@ -157,6 +168,90 @@
                     </ol>
                 </li>
             </ul>
+        </section>
+
+        <!-- NEW SECTION: UNIVERSITY-HOSTED PACKAGE -->
+        <section id="university-package">
+            <h2>University-Hosted Structural Integrity Scan</h2>
+            <p>A bounded, in-situ SCFL Measurement Package for universities. The university supplies or identifies an existing dataset, the measurement process runs within its own environment, and the university receives a defined set of structural observations and outputs. You retain control of the calculation engine.</p>
+            
+            <div class="callout-box">
+                <p><strong>Important distinction:</strong> This is not a request to adopt SCFL as a theory, validate an entire research program, or build software. It is a limited, controlled measurement engagement on one dataset, one question, and one execution.</p>
+            </div>
+
+            <h3>The Package</h3>
+            <div class="two-col">
+                <div class="card">
+                    <h3>The university provides</h3>
+                    <ul>
+                        <li>An existing dataset</li>
+                        <li>A designated research or technical contact</li>
+                        <li>A secure computing environment</li>
+                        <li>Permission to analyze an agreed period or population of observations</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>SCFL provides</h3>
+                    <ul>
+                        <li>A bounded measurement protocol</li>
+                        <li>Approved data mapping</li>
+                        <li>Controlled execution of the protected operators</li>
+                        <li>A defined output specification</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <h3>The university receives</h3>
+                <ul>
+                    <li>A structural measurement report</li>
+                    <li>Time-resolved observations where supported</li>
+                    <li>Identified changes in measured relationships</li>
+                    <li>Limitations statement</li>
+                    <li>A reproducible record of what was actually measured</li>
+                </ul>
+                <p>The university can examine the outputs without receiving operator definitions or the internal calculation sequence. In-situ measurement does not require transferring ownership of the method.</p>
+            </div>
+
+            <h3>Proposed Pilot Specification (Deliberately Narrow)</h3>
+            <ul>
+                <li><strong>One dataset</strong> — One agreed asset, process, cohort, or system; no open-ended access to the university’s entire research estate.</li>
+                <li><strong>One measurement question</strong> — For example: Can an existing dataset reveal material changes in relational structure that conventional aggregate indicators do not describe?</li>
+                <li><strong>One bounded observation window</strong> — A defined historical interval or prospective period, selected according to the data’s temporal resolution.</li>
+                <li><strong>One controlled execution</strong> — Operators run in a controlled environment or restricted execution service. Raw data and intermediate calculations need not leave the university.</li>
+                <li><strong>One final deliverable</strong> — Measurement report, output files in agreed formats, methods-and-limitations statement, and a record sufficient to reproduce or audit the run to the extent contractually agreed.</li>
+            </ul>
+            <p>A reasonable initial scope is one dataset, one question, one execution, and one report. Duration is set after the dataset is identified.</p>
+
+            <h3>What the University Sees (Inspectable Evidence)</h3>
+            <p>The deliverable is more than a graph or a single score. Specified outputs include:</p>
+            <ul class="outputs">
+                <li><strong>Measurement coverage:</strong> what was measured, time span, sampling resolution, missing data, exclusions, and limitations imposed by the source data.</li>
+                <li><strong>Structural state outputs:</strong> the agreed SCFL measurements and state characterizations, with units, scales, and definitions for the reported outputs.</li>
+                <li><strong>Temporal record:</strong> changes in those measurements over time, where the data supports time-resolved analysis.</li>
+                <li><strong>Change-point or event annotations:</strong> where material changes appear in the measured structure, without automatically claiming they predict failure.</li>
+                <li><strong>Conventional-indicator comparison:</strong> where feasible, comparison against existing indicators or operating records to show what the additional measurement contributes.</li>
+                <li><strong>Interpretation and limitations:</strong> what the results support, what remains ambiguous, and what the run cannot establish.</li>
+                <li><strong>Technical execution record:</strong> dataset version or fingerprint, configuration identifier, run date, exclusions, and output integrity checks.</li>
+            </ul>
+            <p>The meaning of reported measurements can be disclosed without disclosing the proprietary procedure used to calculate them. The boundary is deliberate: proprietary computation remains internal; evidence remains inspectable.</p>
+
+            <h3>Suitable University Datasets</h3>
+            <p>Initial preference is for engineering or infrastructure datasets. Examples:</p>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Campus infrastructure</h3>
+                    <p>Building-management systems, chilled-water plants, electrical loads, HVAC telemetry, pump systems, and other instrumented facilities.</p>
+                </div>
+                <div class="card">
+                    <h3>Civil &amp; structural engineering</h3>
+                    <p>Structural-health monitoring, vibration measurements, load tests, fatigue experiments, and sensor networks.</p>
+                </div>
+                <div class="card">
+                    <h3>Energy &amp; power systems</h3>
+                    <p>Grid simulations, power-system testbeds, microgrids, inverter data, and operational time series.</p>
+                </div>
+            </div>
+            <p style="margin-top:1rem;">A university is not automatically the data owner. The initial request asks only for a dataset the institution is authorized to provide for this purpose.</p>
         </section>
 
         <!-- SECTION 2: RESEARCH AREAS -->
