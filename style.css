@@ -483,3 +483,15 @@ section.theme-research.alt-bg { background: var(--surface-alt); }
 .theme-research a.button.primary, .theme-research a.link-button { color: #fff; }
 .theme-research .section-kicker { color: var(--primary); }
 .theme-research .site-header { border-bottom-color: var(--primary); }
+
+/* Homepage subject-of-inquiry box */
+.inquiry-section { padding-top: 2rem; padding-bottom: 1rem; }
+.inquiry-box { border: 2px solid var(--primary); border-left-width: 8px; border-radius: 10px; background: var(--accent); padding: 1.75rem 2rem; box-shadow: var(--shadow); }
+.inquiry-row { display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; align-items: baseline; margin: 0; }
+.inquiry-row + .inquiry-row { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+.inquiry-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary); }
+.inquiry-text { font-size: clamp(1.15rem, 2.2vw, 1.45rem); font-weight: 600; line-height: 1.4; color: var(--text); }
+@media (max-width: 640px) {
+  .inquiry-box { padding: 1.25rem; }
+  .inquiry-row { grid-template-columns: 1fr; gap: 0.35rem; }
+}
