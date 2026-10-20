@@ -9,6 +9,8 @@
   --primary-dark: #0a3d91;
   --accent: #e3f2fd;
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --primary-glow: rgba(13, 71, 161, 0.08);
+  --primary-glow-strong: rgba(13, 71, 161, 0.2);
 }
 
 * {
@@ -55,7 +57,7 @@ a:hover {
   z-index: 10;
   background: #ffffff;
   border-bottom: 3px solid var(--primary);
-  box-shadow: 0 2px 12px rgba(13, 71, 161, 0.08);
+  box-shadow: 0 2px 12px var(--primary-glow);
 }
 
 .nav-wrap {
@@ -233,7 +235,7 @@ h3 {
 .button.primary:hover,
 .link-button:hover {
   background: var(--primary-dark);
-  box-shadow: 0 4px 12px rgba(13, 71, 161, 0.2);
+  box-shadow: 0 4px 12px var(--primary-glow-strong);
 }
 
 .button.secondary {
@@ -455,3 +457,29 @@ li {
 @media (max-width: 800px) {
   .site-header { position: static; }
 }
+
+/* ------------------------------------------------------------------
+   Research / Academic theme — deep green (matches Human Flourishing pages).
+   Apply class="theme-research" to <body> for a whole page, or to a
+   <section> for one block on a commercial page. Commercial stays blue.
+   ------------------------------------------------------------------ */
+.theme-research {
+  --bg: #fbfaf7;
+  --surface-alt: #eef3ef;
+  --line: #dce3df;
+  --text: #202b32;
+  --muted: #596971;
+  --primary: #315e51;
+  --primary-dark: #23463d;
+  --accent: #e9f0eb;
+  --gold: #c39a58;
+  --primary-glow: rgba(49, 94, 81, 0.10);
+  --primary-glow-strong: rgba(49, 94, 81, 0.22);
+}
+body.theme-research { background: var(--bg); }
+section.theme-research { background: var(--bg); }
+section.theme-research.alt-bg { background: var(--surface-alt); }
+.theme-research a { color: var(--primary); }
+.theme-research a.button.primary, .theme-research a.link-button { color: #fff; }
+.theme-research .section-kicker { color: var(--primary); }
+.theme-research .site-header { border-bottom-color: var(--primary); }
