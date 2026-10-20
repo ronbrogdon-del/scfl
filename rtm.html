@@ -147,6 +147,14 @@
 
     <main class="container">
 
+
+        <p style="text-align: center; margin: 1.5rem 0;">
+            <a href="#methodology" style="color: #2563eb; font-weight: bold; text-decoration: none; border-bottom: 1px solid #2563eb; margin-right: 1rem;">Methodology</a>
+            <a href="#real-time-need" style="color: #2563eb; font-weight: bold; text-decoration: none; border-bottom: 1px solid #2563eb; margin-right: 1rem;">Real-Time Cases</a>
+            <a href="#capability-codes" style="color: #2563eb; font-weight: bold; text-decoration: none; border-bottom: 1px solid #2563eb; margin-right: 1rem;">Capability Codes</a>
+            <a href="#university-package" style="color: #2563eb; font-weight: bold; text-decoration: none; border-bottom: 1px solid #2563eb; margin-right: 1rem;">University Package</a>
+            <a href="#research-domains" style="color: #2563eb; font-weight: bold; text-decoration: none; border-bottom: 1px solid #2563eb;">Domains</a>
+        </p>
         <!-- SECTION 1: PROGRAM OVERVIEW -->
         <section id="overview">
             <h2>Program Overview &amp; Mission</h2>
@@ -170,9 +178,221 @@
             </ul>
         </section>
 
+
+        <!-- PRACTICAL ANSWERS FOR INSTITUTIONS -->
+        <section id="practical-answers">
+            <h2>Practical Answers for Institutions</h2>
+            <p>The following answers define the engagement boundary. They are not a substitute for a written agreement.</p>
+
+            <div class="callout-box">
+                <p><strong>Key principle:</strong> The institution administers the approved research engagement; the founder provides the bounded measurement framework and agreed technical support. Participation does not require disclosure of protected operator calculations or transfer of ownership of the underlying intellectual property.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <h3>What the university receives</h3>
+                    <ul>
+                        <li>A defined measurement protocol</li>
+                        <li>A technical report</li>
+                        <li>An interpretation of the results within the agreed scope</li>
+                        <li>The underlying data or outputs it is authorized to retain</li>
+                        <li>A coverage record, baseline comparison, and limitations statement</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>What the university provides</h3>
+                    <ul>
+                        <li>An eligible existing dataset</li>
+                        <li>A research question</li>
+                        <li>An academic lead</li>
+                        <li>Agreed time and institutional support</li>
+                        <li>Authorization to use the data for the stated purpose</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>What remains protected</h3>
+                    <ul>
+                        <li>Frozen operators</li>
+                        <li>Implementation details</li>
+                        <li>Other designated intellectual property</li>
+                        <li>Subject to a written agreement that defines access and permitted use</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Who administers the program?</h3>
+            <p>The host institution handles research oversight, student supervision, data governance, and publication review within the agreed boundaries. The founder does not run the university’s program.</p>
+
+            <h3>What if the measurement does not produce a meaningful result?</h3>
+            <p>That outcome is acceptable. A bounded engagement is credible only if it can return an inconclusive or negative result rather than manufacture a positive finding. Stopping conditions are defined before execution.</p>
+
+            <div class="callout-box">
+                <p><strong>Important clarification:</strong> The academic pathways described (undergraduate capstone, graduate project, faculty-sponsored program) are options for structuring research, not established university partnerships or accredited programs. Any actual engagement requires separate institutional agreement.</p>
+            </div>
+        </section>
+
         <!-- NEW SECTION: UNIVERSITY-HOSTED PACKAGE -->
+
+
+
+        <!-- METHODOLOGY -->
+        <section id="methodology">
+            <h2>Methodology</h2>
+            <p>A Request to Measure engagement follows a bounded, documented process. The goal is to produce interpretable structural measurements under controlled conditions so that an institution can independently assess whether the outputs contribute information beyond an agreed baseline.</p>
+
+            <h3>1. Scope Definition</h3>
+            <ul>
+                <li>One authorized dataset</li>
+                <li>One primary research question</li>
+                <li>One defined observation window or experimental scenario</li>
+                <li>One pre-agreed comparison baseline, where feasible</li>
+                <li>Explicit stopping conditions and deliverables</li>
+            </ul>
+            <p>Scope is fixed before execution. Expansion is a separate decision, not an automatic continuation.</p>
+
+            <h3>2. Data Handling</h3>
+            <ul>
+                <li>The institution retains ownership of its raw data.</li>
+                <li>Accepted formats include CSV, Parquet, HDF5, and MiniSEED.</li>
+                <li>Partners may redact equipment identifiers, site names, or locations.</li>
+                <li>Required metadata: sensor type, units, timestamp sequence, and relative layout where relevant.</li>
+                <li>For blind evaluation, event timestamps, fault logs, and maintenance records are withheld until after the independent report is delivered.</li>
+            </ul>
+
+            <h3>3. Execution</h3>
+            <ol>
+                <li>Dataset transfer via secure method agreed by both parties.</li>
+                <li>Controlled execution of the frozen measurement specification (no source-code transfer required).</li>
+                <li>Internal processing produces structural state outputs, temporal observations where supported, and integrity checks.</li>
+                <li>Delivery of an independent report identifying findings, coverage, and limitations.</li>
+                <li>Optional unblinding and comparison against institutional ground truth.</li>
+            </ol>
+
+            <h3>4. Outputs</h3>
+            <p>The minimum package includes:</p>
+            <ul>
+                <li>Measurement report (question, scope, configuration, findings, limitations)</li>
+                <li>Structural state and change profile</li>
+                <li>Coverage and evidence register</li>
+                <li>Baseline comparison, where feasible</li>
+                <li>Method and integrity record (specification version, configuration identifier, execution date)</li>
+                <li>Decision brief stating what was established and what was not</li>
+            </ul>
+
+            <h3>5. Independent Assessment</h3>
+            <p>Researchers may examine the data, select baselines, analyze authorized outputs, and report findings under the agreed protocol. Negative or inconclusive results are acceptable outcomes. The measurement is evaluated against pre-agreed criteria rather than against a predetermined conclusion.</p>
+
+            <div class="callout-box">
+                <p><strong>Boundary:</strong> The institution administers the research engagement. The founder provides the bounded measurement framework and agreed technical support. Participation does not require disclosure of protected operator calculations or transfer of ownership of the underlying intellectual property.</p>
+            </div>
+        </section>
+
+
+        <!-- REAL-TIME / NEAR REAL-TIME NEED -->
+        <section id="real-time-need">
+            <h2>Real-Time and Near Real-Time Perspective Cases</h2>
+            <p>The majority of the dozens of prior test cases have been historical and retrospective. Those reconstructions have been useful for method development, but the current need is for real-time or near real-time perspective cases.</p>
+
+            <div class="callout-box">
+                <p><strong>Why this matters:</strong> Historical analysis can show that structural change was readable in recorded data. Real-time or near real-time engagements test whether the same measurement can be produced while the system is still operating, under the latency, data quality, and decision constraints that institutions actually face.</p>
+            </div>
+
+            <h3>What a real-time or near real-time engagement tests</h3>
+            <ul>
+                <li>Whether the measurement can be executed on current or recent telemetry rather than archived records alone</li>
+                <li>Whether outputs remain interpretable under ordinary operational data conditions</li>
+                <li>Whether the institution can receive and evaluate results on a timeline that is useful for its own research or operational questions</li>
+                <li>How the measurement behaves when the observation window is still open rather than closed and fully documented</li>
+            </ul>
+
+            <h3>Relationship to historical work</h3>
+            <p>Historical cases remain valuable for establishing baseline behavior, stress-event response, and method integrity. They do not, by themselves, answer whether the measurement can be produced prospectively. Real-time or near real-time cases are therefore a distinct and currently higher-priority class of engagement.</p>
+
+            <p>A bounded Request to Measure pilot can be designed as either a retrospective analysis of an existing record or a near real-time run on an active data stream. Both are valid. The program now explicitly seeks the latter where suitable datasets and institutional partners exist.</p>
+        </section>
+
+        <!-- SOURCE ACKNOWLEDGMENT -->
+        <section id="source-acknowledgment">
+            <h2>Partial Attribution of Sources</h2>
+            <p><strong>Partial attribution.</strong> Prior work in the development of coherence measurement standards has drawn on both public and private sources. The listing below is not exhaustive. We thank the institutions, agencies, and data providers whose records, reports, and datasets have supported retrospective analysis and the refinement of measurement methods. Additional sources remain under documentation.</p>
+
+            <h3>Investigation Reports</h3>
+            <ul>
+                <li>U.S. Chemical Safety and Hazard Investigation Board (CSB) cases, including Motiva, Allied Terminals, Freedom Industries, and the Nippon Dynawave update</li>
+                <li>National Transportation Safety Board (NTSB): Fern Hollow Bridge, Florida International University pedestrian bridge, and Enbridge</li>
+                <li>National Institute of Standards and Technology (NIST): Surfside</li>
+                <li>U.S. Nuclear Regulatory Commission (NRC): Davis-Besse</li>
+                <li>Oroville Dam and Edenville Dam forensic reports</li>
+            </ul>
+
+            <h3>Oversight Reports</h3>
+            <ul>
+                <li>U.S. Government Accountability Office (GAO): Denver International Airport</li>
+                <li>FDIC Office of Inspector General loss reviews: Signature Bank and First Republic Bank</li>
+            </ul>
+
+            <h3>Financial Statements and Regulatory Filings</h3>
+            <ul>
+                <li>SEC filings: Silicon Valley Bank, Signature Bank, First Republic Bank, and Enron</li>
+                <li>FDIC Call Reports</li>
+                <li>CMS hospital cost reports</li>
+            </ul>
+
+            <h3>Government Datasets</h3>
+            <ul>
+                <li>U.S. Energy Information Administration (EIA)</li>
+                <li>Electric Reliability Council of Texas (ERCOT)</li>
+                <li>National Bridge Inventory</li>
+                <li>Pipeline and Hazardous Materials Safety Administration (PHMSA) pipeline safety data</li>
+                <li>U.S. Geological Survey (USGS)</li>
+            </ul>
+
+            <div class="callout-box">
+                <p><strong>Note:</strong> Flint, Fukushima, and the three hospital reconstructions are included in the prior work. Specific source repositories for those cases are under continued documentation.</p>
+                <p>This partial attribution identifies selected sources that have informed the measurement program. It does not imply endorsement by any listed agency or institution, nor does it represent a claim of ongoing data access.</p>
+            </div>
+        </section>
+
+        <!-- RTM RESEARCH PROSPECT CAPABILITY CODES -->
+        <section id="capability-codes">
+            <h2>RTM Research Prospect List — Capability Code Legend</h2>
+            <p>These codes support preliminary screening of institutions for bounded SCFL/RTM research experiments. They indicate potentially relevant research capabilities, not confirmed dataset access or prior participation.</p>
+
+            <div style="overflow-x:auto; margin: 1.5rem 0;">
+                <table style="width:100%; border-collapse: collapse; font-size: 0.95rem;">
+                    <thead>
+                        <tr style="background-color: #003366; color: white; text-align: left;">
+                            <th style="padding: 0.75rem; border: 1px solid #e2e8f0;">Code</th>
+                            <th style="padding: 0.75rem; border: 1px solid #e2e8f0;">Research Capability</th>
+                            <th style="padding: 0.75rem; border: 1px solid #e2e8f0;">Potential Research Area</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td style="padding: 0.6rem; border: 1px solid #e2e8f0; font-weight: bold;">GRID</td><td style="padding: 0.6rem; border: 1px solid #e2e8f0;">Power systems and electrical grids</td><td style="padding: 0.6rem; border: 1px solid #e2e8f0;">Grid stability, load transitions, interdependencies, and recovery</td></tr>
+                        <tr style="background-color: #f8fafc;"><td style="padding: 0.6rem; border: 1px solid #e2e8f0; font-weight: bold;">HOSP</td><td style="padding: 0.6rem; border: 1px solid #e2e8f0;">Hospitals and health systems</td><td style="padding: 0.6rem; border: 1px solid #e2e8f0;">Operational coordination, hospital system dependencies, and continuity of care</td></tr>
+                        <tr><td style="padding: 0.6rem; border: 1px solid #e2e8f0; font-weight: bold;">INFRA</td><td style="padding: 0.6rem; border: 1px solid #e2e8f0;">Infrastructure and structural monitoring</td><td style="padding: 0.6rem; border: 1px solid #e2e8f0;">Bridges, buildings, transportation systems, and structural integrity</td></tr>
+                        <tr style="background-color: #f8fafc;"><td style="padding: 0.6rem; border: 1px solid #e2e8f0; font-weight: bold;">IND</td><td style="padding: 0.6rem; border: 1px solid #e2e8f0;">Industrial operations and telemetry</td><td style="padding: 0.6rem; border: 1px solid #e2e8f0;">Manufacturing, process control, industrial operations, and integrated systems</td></tr>
+                        <tr><td style="padding: 0.6rem; border: 1px solid #e2e8f0; font-weight: bold;">FIN</td><td style="padding: 0.6rem; border: 1px solid #e2e8f0;">Finance and systemic risk</td><td style="padding: 0.6rem; border: 1px solid #e2e8f0;">Financial networks, institutional dependencies, and systemic disruptions</td></tr>
+                        <tr style="background-color: #f8fafc;"><td style="padding: 0.6rem; border: 1px solid #e2e8f0; font-weight: bold;">CLIM</td><td style="padding: 0.6rem; border: 1px solid #e2e8f0;">Climate, environmental, and Earth systems</td><td style="padding: 0.6rem; border: 1px solid #e2e8f0;">Environmental transitions, ecosystem interactions, and recovery dynamics</td></tr>
+                        <tr><td style="padding: 0.6rem; border: 1px solid #e2e8f0; font-weight: bold;">BIO</td><td style="padding: 0.6rem; border: 1px solid #e2e8f0;">Biological, physiological, and population health</td><td style="padding: 0.6rem; border: 1px solid #e2e8f0;">Physiological coherence, biological systems, and population-level patterns</td></tr>
+                        <tr style="background-color: #f8fafc;"><td style="padding: 0.6rem; border: 1px solid #e2e8f0; font-weight: bold;">ORG</td><td style="padding: 0.6rem; border: 1px solid #e2e8f0;">Organizational and institutional performance</td><td style="padding: 0.6rem; border: 1px solid #e2e8f0;">Organizational coordination, institutional dependencies, and operational resilience</td></tr>
+                        <tr><td style="padding: 0.6rem; border: 1px solid #e2e8f0; font-weight: bold;">AI</td><td style="padding: 0.6rem; border: 1px solid #e2e8f0;">Artificial intelligence and computing</td><td style="padding: 0.6rem; border: 1px solid #e2e8f0;">Distributed systems, computational infrastructure, and AI-system interdependencies</td></tr>
+                        <tr style="background-color: #f8fafc;"><td style="padding: 0.6rem; border: 1px solid #e2e8f0; font-weight: bold;">CIV</td><td style="padding: 0.6rem; border: 1px solid #e2e8f0;">Civil systems and critical interdependence</td><td style="padding: 0.6rem; border: 1px solid #e2e8f0;">Supply chains, water, food systems, and essential-service dependencies</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>How to Interpret the Codes</h3>
+            <ul>
+                <li>Multiple codes indicate potentially relevant research capabilities, not confirmed access to specific datasets.</li>
+                <li>Research fit is preliminary. Each institution would need to be checked for an appropriate research center, data availability, and a viable collaboration or access pathway.</li>
+                <li>The codes are screening tools, intended to help match institutions with bounded SCFL/RTM research experiments—not to certify institutional capability or prior participation.</li>
+            </ul>
+        </section>
+
         <section id="university-package">
             <h2>University-Hosted Structural Integrity Scan</h2>
+            <p>Institutions can be preliminarily matched using the <a href="#capability-codes">Capability Codes</a>.</p>
             <p>A bounded, in-situ SCFL Measurement Package for universities. The university supplies or identifies an existing dataset, the measurement process runs within its own environment, and the university receives a defined set of structural observations and outputs. You retain control of the calculation engine.</p>
             
             <div class="callout-box">
@@ -331,6 +551,10 @@
         <!-- SECTION: INSTITUTIONAL ADMINISTRATION MODEL -->
         <section id="institutional-model">
             <h2>Institutional Administration Model</h2>
+            <div class="callout-box" style="margin-top:1.5rem;">
+                <p><strong>Full discussion document:</strong> <a href="rules-of-engagement.html">Rules of Engagement & Institutional Research Program Q&A</a> (Institutional Discussion Draft)</p>
+            </div>
+
             <p>The founder should not become the administrator of a distributed research program on top of being the originator of SCFL, its principal intellectual contributor, its commercial advocate, and the person responsible for protecting its operators. That would create a bottleneck. Design the structure so that intellectual stewardship is retained while an established institution assumes responsibility for research-program administration.</p>
 
             <h3>1. Roles</h3>
