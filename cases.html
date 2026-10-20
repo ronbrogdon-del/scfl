@@ -1,1 +1,1060 @@
-PLACEHOLDER_WILL_REPLACE
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Cases – SCFL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>
+
+  /* Reconstruction-specific styles */
+  .label-chip {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 4px;
+    padding: 2px 10px;
+    margin-bottom: 1.1rem;
+  }
+  .case-header { margin-bottom: 2.5rem; }
+  .case-header h1 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    text-wrap: balance;
+    margin-bottom: 0.6rem;
+  }
+  .case-header .subtitle {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.5;
+    max-width: 62ch;
+  }
+  .case-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .case-meta span { display: flex; align-items: center; gap: 0.4rem; }
+
+  .verdict {
+    background: #ffebee;
+    border: 1.5px solid #b71c1c;
+    border-radius: 8px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .verdict-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .verdict-text { font-size: 0.95rem; line-height: 1.5; }
+  .verdict-text strong { color: #b71c1c; display: block; margin-bottom: 0.2rem; font-size: 1rem; }
+
+  section { margin-bottom: 2.5rem; }
+  h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary);
+    color: var(--text);
+  }
+
+  .timeline { display: flex; flex-direction: column; gap: 0; position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 84px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: var(--line);
+  }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    gap: 1.2rem;
+    position: relative;
+    padding-bottom: 1.6rem;
+  }
+  .tl-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-align: right;
+    padding-top: 0.15rem;
+    line-height: 1.3;
+  }
+  .tl-body { padding-left: 1.2rem; position: relative; }
+  .tl-body::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 6px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 2px solid var(--muted);
+    z-index: 1;
+  }
+  .tl-item.phase-green .tl-body::before { border-color: #1b5e20; }
+  .tl-item.phase-amber .tl-body::before { border-color: #e65100; background: #e65100; }
+  .tl-item.phase-red .tl-body::before { border-color: #b71c1c; background: #b71c1c; }
+  .tl-title { font-weight: 600; font-size: 0.92rem; margin-bottom: 0.25rem; line-height: 1.3; }
+  .tl-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.5; }
+  .tl-signal {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    padding: 1px 7px;
+    margin-top: 0.4rem;
+  }
+  .sig-green { background: #e8f5e9; color: #1b5e20; }
+  .sig-amber { background: #fff3e0; color: #e65100; }
+  .sig-red { background: #ffebee; color: #b71c1c; }
+
+  .op-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .op-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1.1rem;
+  }
+  .op-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--primary);
+    margin-bottom: 0.4rem;
+  }
+  .op-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.35rem; }
+  .op-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.45; }
+  .op-state {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    padding: 1px 7px;
+    margin-top: 0.5rem;
+  }
+  .state-intact { background: #e8f5e9; color: #1b5e20; }
+  .state-stressed { background: #fff3e0; color: #e65100; }
+  .state-failed { background: #ffebee; color: #b71c1c; }
+
+  .seam-table { width: 100%; border-collapse: collapse; font-size: 0.87rem; }
+  .seam-table th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0.5rem 0.8rem;
+    border-bottom: 2px solid var(--line);
+  }
+  .seam-table td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    line-height: 1.4;
+  }
+  .seam-table tr:last-child td { border-bottom: none; }
+  .seam-name { font-weight: 600; }
+  .seam-year {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .seam-desc { color: var(--muted); font-size: 0.84rem; }
+
+  .mech-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; padding: 0; }
+  .mech-item {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid #b71c1c;
+    border-radius: 0 6px 6px 0;
+    padding: 0.85rem 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .mech-item strong { display: block; font-size: 0.85rem; color: #b71c1c; margin-bottom: 0.2rem; }
+
+  .finding-box {
+    background: var(--accent);
+    border: 1.5px solid var(--primary);
+    border-radius: 8px;
+    padding: 1.3rem 1.4rem;
+  }
+  .finding-box p { font-size: 0.93rem; line-height: 1.6; margin-bottom: 0.6rem; }
+  .finding-box p:last-child { margin-bottom: 0; }
+  .finding-box .finding-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .citation {
+    margin-top: 2.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .citation a { color: var(--primary); text-decoration: none; }
+  .citation a:hover { text-decoration: underline; }
+
+  @media (max-width: 480px) {
+    .timeline::before { left: 68px; }
+    .tl-item { grid-template-columns: 68px 1fr; }
+    .op-grid { grid-template-columns: 1fr; }
+  }
+
+
+  .label-chip {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 4px;
+    padding: 2px 10px;
+    margin-bottom: 1.1rem;
+  }
+  .case-header { margin-bottom: 2.5rem; }
+  .case-header h1 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    text-wrap: balance;
+    margin-bottom: 0.6rem;
+  }
+  .case-header .subtitle {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.5;
+    max-width: 68ch;
+  }
+  .case-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .case-meta span { display: flex; align-items: center; gap: 0.4rem; }
+
+  .verdict {
+    background: #ffebee;
+    border: 1.5px solid #b71c1c;
+    border-radius: 8px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .verdict-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .verdict-text { font-size: 0.95rem; line-height: 1.5; }
+  .verdict-text strong { color: #b71c1c; display: block; margin-bottom: 0.2rem; font-size: 1rem; }
+
+  section { margin-bottom: 2.5rem; }
+  h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary);
+    color: var(--text);
+  }
+
+  .bank-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .bank-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1.1rem;
+  }
+  .bank-card h3 { margin: 0 0 0.4rem; font-size: 1rem; }
+  .bank-card .assets { font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; color: var(--primary); margin-bottom: 0.5rem; }
+  .bank-card p { font-size: 0.83rem; color: var(--muted); margin: 0.25rem 0; }
+
+  .timeline { display: flex; flex-direction: column; gap: 0; position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 84px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: var(--line);
+  }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    gap: 1.2rem;
+    position: relative;
+    padding-bottom: 1.6rem;
+  }
+  .tl-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-align: right;
+    padding-top: 0.15rem;
+    line-height: 1.3;
+  }
+  .tl-body { padding-left: 1.2rem; position: relative; }
+  .tl-body::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 6px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 2px solid var(--muted);
+    z-index: 1;
+  }
+  .tl-item.phase-green .tl-body::before { border-color: #1b5e20; }
+  .tl-item.phase-amber .tl-body::before { border-color: #e65100; background: #e65100; }
+  .tl-item.phase-red .tl-body::before { border-color: #b71c1c; background: #b71c1c; }
+  .tl-title { font-weight: 600; font-size: 0.92rem; margin-bottom: 0.25rem; line-height: 1.3; }
+  .tl-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.5; }
+  .tl-signal {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    padding: 1px 7px;
+    margin-top: 0.4rem;
+  }
+  .sig-green { background: #e8f5e9; color: #1b5e20; }
+  .sig-amber { background: #fff3e0; color: #e65100; }
+  .sig-red { background: #ffebee; color: #b71c1c; }
+
+  .op-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .op-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1.1rem;
+  }
+  .op-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--primary);
+    margin-bottom: 0.4rem;
+  }
+  .op-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.35rem; }
+  .op-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.45; }
+  .op-state {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    padding: 1px 7px;
+    margin-top: 0.5rem;
+  }
+  .state-failed { background: #ffebee; color: #b71c1c; }
+  .state-stressed { background: #fff3e0; color: #e65100; }
+
+  .mech-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; padding: 0; }
+  .mech-item {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid #b71c1c;
+    border-radius: 0 6px 6px 0;
+    padding: 0.85rem 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .mech-item strong { display: block; font-size: 0.85rem; color: #b71c1c; margin-bottom: 0.2rem; }
+
+  .finding-box {
+    background: var(--accent);
+    border: 1.5px solid var(--primary);
+    border-radius: 8px;
+    padding: 1.3rem 1.4rem;
+  }
+  .finding-box p { font-size: 0.93rem; line-height: 1.6; margin-bottom: 0.6rem; }
+  .finding-box p:last-child { margin-bottom: 0; }
+  .finding-box .finding-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .citation {
+    margin-top: 2.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .citation a { color: var(--primary); text-decoration: none; }
+  .citation a:hover { text-decoration: underline; }
+
+  .scan-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    margin: 1.5rem 0;
+    display: block;
+  }
+
+  @media (max-width: 480px) {
+    .timeline::before { left: 68px; }
+    .tl-item { grid-template-columns: 68px 1fr; }
+    .op-grid, .bank-grid { grid-template-columns: 1fr; }
+  }
+
+  .case-divider { margin: 4rem 0 2rem; border: none; border-top: 3px solid var(--primary); }
+  .case-section { margin-bottom: 3rem; }
+</style>
+</head>
+<body class="theme-research">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">SCFL</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Overview</a>
+        <a href="one-question.html">One Question Challenge</a>
+        <a href="videos.html">Videos</a>
+        <a href="cases.html" aria-current="page">Cases</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container narrow">
+        <p class="section-kicker">Structural Integrity Scans</p>
+        <h1>Cases</h1>
+        <p class="lede">Public reconstructions of systems in which relational integrity was lost while conventional performance indicators remained stationary.</p>
+      </div>
+    </section>
+
+
+    <div class="case-section">
+      
+    <section class="section">
+      <div class="container" style="max-width: 860px;">
+        <div class="case-header">
+          <div class="label-chip">SCFL Reconstruction · Structural Case</div>
+          <h1>Champlain Towers South — Surfside</h1>
+          <p class="subtitle">
+            Applying Standard Coherence Fidelity Layer (SCFL) precursor geometry retroactively
+            to the June 24, 2021 partial collapse of Champlain Towers South in Surfside, Florida.
+            NIST technical findings (2026) place the initiation of punching-shear failure at two pool-deck slab-column connections in early June — weeks before the tower fell — while conventional occupancy and inspection signals remained stationary.
+          </p>
+          <div class="case-meta">
+            <span>📍 Surfside, Florida</span>
+            <span>📅 Collapse: June 24, 2021</span>
+            <span>🏗️ Built: 1981 · 12 stories + penthouse</span>
+            <span>⚠️ Fatalities: 98</span>
+          </div>
+        </div>
+
+        <!-- Surfside scan graphic: upload IMG_Surfside.jpeg to the repo root, then restore this line:
+        <img src="IMG_Surfside.jpeg" alt="Surfside / Champlain Towers South Structural Integrity Scan — Illustrative Reconstruction" class="scan-img">
+        -->
+
+        <div class="verdict">
+          <div class="verdict-icon">⚠️</div>
+          <div class="verdict-text">
+            <strong>SCFL Verdict: Full Structural Rupture — Precursor Window Opened Years Earlier, Initiation ~Early June 2021</strong>
+            The SCFL framework reads a multi-year degradation of the pool-deck / garage slab-column connections (design understrength + construction deviations + added loads + corrosion) that crossed irreversibility in early June 2021. Visible distress in planter walls and progressive cracking occurred while conventional indicators (occupancy, routine inspection status) remained stationary. The terminal cascade on June 24 was the outcome of that geometry, not its origin.
+          </div>
+        </div>
+
+        <section>
+          <h2>Precursor Geometry — Phase Map</h2>
+          <div class="timeline">
+            <div class="tl-item phase-green">
+              <div class="tl-date">1981–<br>2017</div>
+              <div class="tl-body">
+                <div class="tl-title">Nominal Regime — Low Margins Present from Construction</div>
+                <div class="tl-desc">Building designed and constructed with severe deviations from applicable codes; pool-deck slab-column connections already understrength. Waterproofing and corrosion issues appear and receive partial repairs (mid-1990s). Occupancy and conventional inspections continue.</div>
+                <span class="tl-signal sig-green">Phase I · Nominal (with latent understrength)</span>
+              </div>
+            </div>
+            <div class="tl-item phase-amber">
+              <div class="tl-date">2018</div>
+              <div class="tl-body">
+                <div class="tl-title">Seam Initiation Documented — Morabito Structural Field Survey</div>
+                <div class="tl-desc">October 2018 report documents major structural damage to the concrete slab under the pool deck, abundant cracking and spalling in garage columns/beams/walls, and failing waterproofing. Repair program recommended; conventional signals still stationary.</div>
+                <span class="tl-signal sig-amber">Phase II · Seam Initiation</span>
+              </div>
+            </div>
+            <div class="tl-item phase-amber">
+              <div class="tl-date">2019–<br>early 2021</div>
+              <div class="tl-body">
+                <div class="tl-title">Accelerating Degradation — Added Loads and Corrosion</div>
+                <div class="tl-desc">Further deterioration noted; planters, pavers, and other loads added to an already inadequate pool-deck system. Corrosion of reinforcement progresses. Association approves major rehabilitation; main structural work not yet started.</div>
+                <span class="tl-signal sig-amber">Phase II-B · Signal Gap</span>
+              </div>
+            </div>
+            <div class="tl-item phase-red">
+              <div class="tl-date">Early<br>June 2021</div>
+              <div class="tl-body">
+                <div class="tl-title">Initiation — Punching Shear at Two Slab-Column Connections</div>
+                <div class="tl-desc">NIST technical findings: two garage-column to pool-deck connections fail in punching shear. Cracks propagate; load redistributes onto adjacent understrength connections. Visible distress in planter walls and progressive cracking over the following weeks.</div>
+                <span class="tl-signal sig-red">Phase III · Decoherence / Initiation</span>
+              </div>
+            </div>
+            <div class="tl-item phase-red">
+              <div class="tl-date">June 24<br>2021</div>
+              <div class="tl-body">
+                <div class="tl-title">Cascade Rupture — Partial Collapse</div>
+                <div class="tl-desc">Pool deck fails first (minutes before the tower). Middle and east portions of the 12-story tower collapse. 98 fatalities. Terminal event of a multi-year structural geometry.</div>
+                <span class="tl-signal sig-red">Phase IV · Cascade / Rupture</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>SCFL Operator Lens — Retroactive Reading</h2>
+          <div class="op-grid">
+            <div class="op-card">
+              <div class="op-label">Structural Coherence</div>
+              <div class="op-name">Slab-Column Integrity</div>
+              <div class="op-desc">Design understrength and construction deviations created critically low margins from day one. Corrosion and added loads eroded them to zero.</div>
+              <span class="op-state state-failed">Failed — Early June 2021</span>
+            </div>
+            <div class="op-card">
+              <div class="op-label">Durability / Quench</div>
+              <div class="op-name">Corrosion & Waterproofing</div>
+              <div class="op-desc">Long-term chloride-driven corrosion of reinforcement in the pool-deck slabs was the primary degradation mechanism that brought margins to failure.</div>
+              <span class="op-state state-failed">Failed — Multi-year</span>
+            </div>
+            <div class="op-card">
+              <div class="op-label">Governance / Signal</div>
+              <div class="op-name">Inspection & Association Response</div>
+              <div class="op-desc">2018 report documented major damage; subsequent inspections noted worsening. Repair program approved but not executed before terminal event.</div>
+              <span class="op-state state-stressed">Stressed — 2018–2021</span>
+            </div>
+            <div class="op-card">
+              <div class="op-label">Load Geometry</div>
+              <div class="op-name">Added Surface Loads</div>
+              <div class="op-desc">Planters, pavers, and other modifications increased demand on an already understrength and degrading slab-column system.</div>
+              <span class="op-state state-stressed">Contributing</span>
+            </div>
+          </div>
+        </section>
+
+        <div class="finding-box">
+          <div class="finding-label">Core Finding</div>
+          <p>Surfside is a textbook case of <strong>seam-masked rupture</strong> in a physical structure: design and construction deviations plus multi-decade corrosion and added loads produced a measurable precursor geometry while conventional occupancy and inspection indicators remained stationary. The NIST finding that initiation occurred weeks before the visible collapse confirms the upstream window.</p>
+        </div>
+
+        <div class="citation">
+          <p>
+            <strong>Reconstruction Author:</strong> Ronald Brogdon — Upstream Coherence Measurement Stratum (UCMS)<br>
+            ORCID: <a href="https://orcid.org/0009-0009-0507-2971">0009-0009-0507-2971</a> ·
+            <a href="mailto:measurement@coherencemanagement.org">measurement@coherencemanagement.org</a>
+          </p>
+          <p style="margin-top:0.4rem;">
+            This reconstruction applies the SCFL retroactively to the public NIST technical findings (2026) and historical record.
+            Illustrative only. Not a prediction model.
+          </p>
+        </div>
+      </div>
+    </section>
+  
+    </div>
+
+    <div class="case-section">
+      
+    <section class="section">
+      <div class="container" style="max-width: 860px;">
+        <div class="case-header">
+          <div class="label-chip">SCFL Reconstruction · Classic Case</div>
+          <h1>Enron Corporation</h1>
+          <p class="subtitle">
+            Applying Standard Coherence Fidelity Layer (SCFL) precursor geometry retroactively
+            to the largest corporate bankruptcy in U.S. history at the time of filing.
+            The structural seams were measurable years before the October 2001 disclosure cascade.
+          </p>
+          <div class="case-meta">
+            <span>📍 Houston, Texas</span>
+            <span>📅 Collapse: December 2, 2001</span>
+            <span>💰 Peak market cap: ~$70 billion (Aug 2000)</span>
+            <span>🏭 Sector: Energy / Financial Trading</span>
+          </div>
+        </div>
+
+        <img src="IMG_0375.jpeg" alt="Enron Structural Integrity Scan — Illustrative Reconstruction" class="scan-img">
+
+        <div class="verdict">
+          <div class="verdict-icon">⚠️</div>
+          <div class="verdict-text">
+            <strong>SCFL Verdict: Full Structural Rupture — Precursor Window Opened ~1997</strong>
+            The SCFL framework identifies a measurable precursor window beginning no later than 1997 when earnings restatement origins have been placed, and accelerating sharply through 1999–2000 as seam fractures across financial reporting, executive governance, and auditor coherence compounded. By August 2001 — four months before bankruptcy — the structural geometry had already crossed irreversibility. The market saw revenue; the SCFL would have seen seam shear.
+          </div>
+        </div>
+
+        <section>
+          <h2>Precursor Geometry — Phase Map</h2>
+          <div class="timeline">
+            <div class="tl-item phase-green">
+              <div class="tl-date">1985–<br>1996</div>
+              <div class="tl-body">
+                <div class="tl-title">Nominal Coherence — Pipeline to Trading Transformation</div>
+                <div class="tl-desc">Enron transitions from natural gas pipeline operator to energy trading firm. Mark-to-market accounting adopted in 1992 for trading contracts — an early seam: reported income is now structurally decoupled from cash receipt. Institutional coherence appears intact; board governance and auditor relationships operating within normal range.</div>
+                <span class="tl-signal sig-green">Phase I · Nominal</span>
+              </div>
+            </div>
+            <div class="tl-item phase-amber">
+              <div class="tl-date">1997–<br>1999</div>
+              <div class="tl-body">
+                <div class="tl-title">Seam Initiation — Off-Balance-Sheet Architecture Begins</div>
+                <div class="tl-desc">CFO Andrew Fastow begins constructing Special Purpose Entities (SPEs) — Chewco (1997), LJM Cayman (1999) — to hide losses and debt from consolidated financial statements. Earnings later restated as overstated by ~$600M back to this period. The financial reporting seam and the governance seam (board oversight) begin to diverge. Andersen signs off.</div>
+                <span class="tl-signal sig-amber">Phase II · Seam Initiation</span>
+              </div>
+            </div>
+            <div class="tl-item phase-amber">
+              <div class="tl-date">2000<br>Q1–Q3</div>
+              <div class="tl-body">
+                <div class="tl-title">Peak Signal Contradiction — Revenue Surge Masking Structural Decay</div>
+                <div class="tl-desc">Revenue reaches ~$100 billion (up 100% YoY). Stock hits $90.56 in August 2000. Meanwhile: operating cash flow of $4.8B includes ~$3.5B in one-time items (customer deposits, inventory sale, prepayments). EES division running ~$500M in the red once trading losses are corrected. The Raptor SPEs require a $1.2B reduction to shareholder equity. The signal gap — reported performance vs. structural state — is at maximum.</div>
+                <span class="tl-signal sig-amber">Phase II-B · Signal Gap Maximum</span>
+              </div>
+            </div>
+            <div class="tl-item phase-red">
+              <div class="tl-date">2001<br>Jan–Jul</div>
+              <div class="tl-body">
+                <div class="tl-title">Structural Decoherence — Executive Seam Fracture</div>
+                <div class="tl-desc">Stock declines from $82 (January 2001) to $38 by August — a 54% drawdown while Lay publicly insists shares are "an incredible bargain." CEO Skilling resigns August 14 after six months, citing personal reasons — a governance seam fracture with no coherent succession signal. VP Sherron Watkins delivers internal memo warning of imminent implosion from accounting irregularities (August 22). The internal and external coherence states are now irreconcilable.</div>
+                <span class="tl-signal sig-red">Phase III · Decoherence</span>
+              </div>
+            </div>
+            <div class="tl-item phase-red">
+              <div class="tl-date">Oct–Nov<br>2001</div>
+              <div class="tl-body">
+                <div class="tl-title">Cascade Rupture — Irreversibility Confirmed</div>
+                <div class="tl-desc">October 16: first quarterly loss in four years; $1.01B nonrecurring charge. October 22: SEC inquiry disclosed. Andersen begins shredding documents October 23. Credit ratings fall to junk November 28 — triggering $3.9B in accelerated debt obligations and $690M in Rawhide SPE repayment. Dynegy acquisition collapses. Stock falls from $90 to $0.61 in 16 months.</div>
+                <span class="tl-signal sig-red">Phase IV · Cascade / Rupture</span>
+              </div>
+            </div>
+            <div class="tl-item phase-red">
+              <div class="tl-date">Dec 2<br>2001</div>
+              <div class="tl-body">
+                <div class="tl-title">Terminal Event — Chapter 11 Filing</div>
+                <div class="tl-desc">Enron files for Chapter 11 bankruptcy protection. At the time, the largest corporate bankruptcy in U.S. history. ~$63 billion in assets. ~20,000 employees. 401(k) plans concentrated in Enron stock now worthless.</div>
+                <span class="tl-signal sig-red">Terminal Event</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>SCFL Operator Lens — Retroactive Reading</h2>
+          <div class="op-grid">
+            <div class="op-card">
+              <div class="op-label">Reporting Coherence</div>
+              <div class="op-name">Financial Signal Integrity</div>
+              <div class="op-desc">Mark-to-market accounting structurally decoupled reported income from cash reality. SPE architecture amplified the gap. The reporting layer was incoherent with operational reality from at least 1997.</div>
+              <span class="op-state state-failed">Failed — 1997</span>
+            </div>
+            <div class="op-card">
+              <div class="op-label">Governance Coherence</div>
+              <div class="op-name">Board & Executive Alignment</div>
+              <div class="op-desc">Board waived its own conflict-of-interest policy to allow Fastow to manage SPEs. CEO resignation with no coherent signal. Chairman publicly buying and immediately selling stock. Governance layer lost structural integrity by 2000.</div>
+              <span class="op-state state-failed">Failed — 2000</span>
+            </div>
+            <div class="op-card">
+              <div class="op-label">Auditor Coherence</div>
+              <div class="op-name">Third-Party Verification Layer</div>
+              <div class="op-desc">Andersen served as both auditor and consultant to Enron, creating a structural conflict. The verification layer that should have been a coherence check became a coherence participant. Document destruction confirmed the collapse of this seam.</div>
+              <span class="op-state state-failed">Failed — 2001</span>
+            </div>
+            <div class="op-card">
+              <div class="op-label">Liquidity Coherence</div>
+              <div class="op-name">Cash Flow vs. Obligation</div>
+              <div class="op-desc">$9B+ in debt maturing by end of 2002; $3.9B triggered by credit downgrade; $690M Rawhide SPE obligation triggered simultaneously. The liquidity seam collapsed in a single week once rating agencies moved.</div>
+              <span class="op-state state-failed">Failed — Nov 2001</span>
+            </div>
+            <div class="op-card">
+              <div class="op-label">Workforce Coherence</div>
+              <div class="op-name">Employee Signal Access</div>
+              <div class="op-desc">Employees locked out of 401(k) rebalancing during the collapse window while executives were selling. The information asymmetry between leadership and workforce represents a structural coherence failure with direct harm downstream.</div>
+              <span class="op-state state-stressed">Stressed — 2001</span>
+            </div>
+            <div class="op-card">
+              <div class="op-label">Regulatory Coherence</div>
+              <div class="op-name">External Oversight Layer</div>
+              <div class="op-desc">Enron lobbied successfully to keep energy trading largely unregulated. The absence of a functioning external coherence check allowed seam accumulation over years without correction signal from outside the system.</div>
+              <span class="op-state state-stressed">Absent Layer</span>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Structural Seams — Where Coherence Fractured</h2>
+          <div style="overflow-x: auto;">
+            <table class="seam-table">
+              <thead>
+                <tr>
+                  <th>Seam</th>
+                  <th>First Visible</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="seam-name">Accounting–Reality Seam</span></td>
+                  <td><span class="seam-year">1992–1997</span></td>
+                  <td><span class="seam-desc">Mark-to-market accounting divorced reported earnings from actual cash flows. The gap widened annually as trading complexity grew and SPE structures multiplied the surface area of the disconnect.</span></td>
+                </tr>
+                <tr>
+                  <td><span class="seam-name">Disclosure–Obligation Seam</span></td>
+                  <td><span class="seam-year">1997–1999</span></td>
+                  <td><span class="seam-desc">Off-balance-sheet SPEs concealed $30B+ in debt from public filings. The disclosed obligation profile bore no coherent relationship to the actual obligation structure. This seam is the primary structural precursor.</span></td>
+                </tr>
+                <tr>
+                  <td><span class="seam-name">Leadership–Signal Seam</span></td>
+                  <td><span class="seam-year">Aug 2001</span></td>
+                  <td><span class="seam-desc">Skilling's abrupt resignation while Lay publicly urged stock purchases created an irreconcilable contradiction between the internal state known to leadership and the signal being broadcast externally.</span></td>
+                </tr>
+                <tr>
+                  <td><span class="seam-name">Rating–Liquidity Trigger Seam</span></td>
+                  <td><span class="seam-year">Nov 2001</span></td>
+                  <td><span class="seam-desc">Debt covenants tied to credit ratings created a hidden nonlinearity: a junk downgrade simultaneously triggered $3.9B in accelerated obligations. The system was structured to rupture rapidly once a single threshold was crossed.</span></td>
+                </tr>
+                <tr>
+                  <td><span class="seam-name">Auditor–Client Seam</span></td>
+                  <td><span class="seam-year">1990s</span></td>
+                  <td><span class="seam-desc">Andersen's dual role as auditor and consultant eliminated structural independence. The verification function that should have constrained reporting incoherence was instead embedded in it — a seam that collapsed the entire audit framework when the primary rupture occurred.</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h2>Collapse Mechanics</h2>
+          <ul class="mech-list">
+            <li class="mech-item">
+              <strong>Multiplicative Seam Failure</strong>
+              No single seam produced the collapse. The accounting seam, governance seam, auditor seam, and liquidity seam had each been accumulating independently for years. When the SEC inquiry activated the disclosure cascade in October 2001, all four seams failed within six weeks.
+            </li>
+            <li class="mech-item">
+              <strong>Rating-Triggered Debt Acceleration</strong>
+              The junk downgrade on November 28, 2001 acted as a structural forcing function: it simultaneously matured $3.9B in obligations and cancelled the Dynegy acquisition — removing both the available capital and the exit pathway. This is a classic coherence-collapse nonlinearity: a continuous rating decline produces a discontinuous obligation event.
+            </li>
+            <li class="mech-item">
+              <strong>Signal Gap Maximization at Peak Value</strong>
+              The point of maximum structural vulnerability coincided with the point of maximum reported performance — $100B revenue, $90 stock price, August 2000. By SCFL geometry, this is not a paradox: it is the expected signature of a system sustaining coherence performance through structural debt accumulation, which compresses the available intervention window to near zero.
+            </li>
+            <li class="mech-item">
+              <strong>Irreversibility Before Public Disclosure</strong>
+              The internal memo from VP Watkins (August 22, 2001) demonstrates that by the time public signals appeared, internal actors already understood the system had crossed the irreversibility boundary. The precursor window had closed before any public intervention was possible.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <div class="finding-box">
+            <div class="finding-label">SCFL Key Finding</div>
+            <p>
+              Enron is a textbook case of <strong>seam-masked rupture</strong>: a system in which structural coherence degraded continuously and measurably across multiple operator layers — financial, governance, auditor, and liquidity — while reported surface metrics remained in nominal range or exceeded them.
+            </p>
+            <p>
+              The SCFL precursor geometry places the measurable intervention window between <strong>1997 and mid-2000</strong>. By the time Skilling resigned in August 2001, the system had already crossed the irreversibility boundary; the October–December 2001 events were the collapse sequence, not the onset.
+            </p>
+            <p>
+              The market saw revenue. The SCFL would have seen seam shear.
+            </p>
+          </div>
+        </section>
+
+        <div class="citation">
+          <p>
+            <strong>Reconstruction Author:</strong> Ronald Brogdon, Team Leader —
+            Upstream Coherence Measurement Stratum (UCMS)<br>
+            ORCID: <a href="https://orcid.org/0009-0009-0507-2971">https://orcid.org/0009-0009-0507-2971</a> ·
+            <a href="mailto:measurement@coherencemanagement.org">measurement@coherencemanagement.org</a>
+          </p>
+          <p style="margin-top:0.4rem;">
+            This reconstruction applies the Standard Coherence Fidelity Layer (SCFL) retroactively to publicly available historical record.
+            No proprietary operator computations are disclosed herein. All timeline facts sourced from public record.
+            See the <a href="https://zenodo.org/search?q=Ronald%20Brogdon&sort=newest" target="_blank" rel="noopener">UCMS Zenodo canon</a> for foundational framework documentation.
+          </p>
+        </div>
+
+        <p style="margin-top: 2rem;"><a href="cases.html" class="button secondary">← Back to Cases</a></p>
+      </div>
+    </section>
+  
+    </div>
+
+    <hr class="case-divider">
+
+    <div class="case-section">
+      
+    <section class="section">
+      <div class="container" style="max-width: 860px;">
+        <div class="case-header">
+          <div class="label-chip">SCFL Reconstruction · Cluster Case</div>
+          <h1>2023 Regional Bank Failures</h1>
+          <p class="subtitle">
+            Silicon Valley Bank · Signature Bank · First Republic Bank — three distinct institutions, three distinct seam profiles, one shared precursor geometry. Applying Standard Coherence Fidelity Layer (SCFL) analysis retroactively to the largest U.S. banking crisis since 2008.
+          </p>
+          <div class="case-meta">
+            <span>📅 SVB: March 10, 2023</span>
+            <span>📅 Signature: March 12, 2023</span>
+            <span>📅 First Republic: May 1, 2023</span>
+            <span>💰 Combined assets at failure: ~$530 billion</span>
+          </div>
+        </div>
+
+        <h2>Three Banks — Three Seam Profiles</h2>
+        <div class="bank-grid">
+          <div class="bank-card">
+            <h3>SVB</h3>
+            <div class="assets">Silicon Valley Bank · Assets: $209B</div>
+            <p><strong>Primary seam:</strong> Asset-Liability Mismatch</p>
+            <p>Bond portfolio yield: 1.79% avg</p>
+            <p>10-yr Treasury at failure: ~3.9%</p>
+            <p>Failure window: 48 hours</p>
+          </div>
+          <div class="bank-card">
+            <h3>SIGNATURE</h3>
+            <div class="assets">Signature Bank · Assets: $110B</div>
+            <p><strong>Primary seam:</strong> Deposit Concentration</p>
+            <p>Uninsured deposits: ~90% of total</p>
+            <p>Crypto-related deposits: ~30% at peak</p>
+            <p>Cash as % of assets: 5% vs 13% avg</p>
+          </div>
+          <div class="bank-card">
+            <h3>FIRST REPUBLIC</h3>
+            <div class="assets">First Republic Bank · Assets: $229B</div>
+            <p><strong>Primary seam:</strong> Duration + Deposit Risk</p>
+            <p>Uninsured deposits: >66% of total</p>
+            <p>Loan book growth: $58B → $135B (5 yrs)</p>
+            <p>Q1 2023 deposit outflow: $72B</p>
+          </div>
+        </div>
+
+
+        <img src="IMG_0397.jpeg" alt="SVB Structural Integrity Scan — Illustrative Reconstruction" class="scan-img">
+
+        <div class="verdict">
+          <div class="verdict-icon">⚠️</div>
+          <div class="verdict-text">
+            <strong>SVB SCFL Verdict: Asset-Liability Seam — Precursor Window Opened 2020–2021</strong>
+            SVB's primary seam was measurable in its balance sheet structure from 2020 onward: a $21B bond portfolio locked at 1.79% average yield purchased when rates were near-zero, held against a deposit base serving venture-backed startups. When the Fed raised rates aggressively beginning March 2022, both sides of the seam activated simultaneously — bond values fell and deposit outflows accelerated. The 48-hour run in March 2023 was not the crisis. It was the terminal event of a multi-year structural geometry.
+          </div>
+        </div>
+
+        <section>
+          <h2>SVB — Phase Map</h2>
+          <div class="timeline">
+            <div class="tl-item phase-green">
+              <div class="tl-date">2018–<br>2020</div>
+              <div class="tl-body">
+                <div class="tl-title">Nominal Coherence — Tech Boom Banking</div>
+                <div class="tl-desc">SVB grows rapidly as VC-backed startup banking partner. Deposit inflows from tech funding surge. Model is operationally coherent: deposit growth funds short-duration lending and securities. Rates near zero; asset-liability mismatch is not yet structurally dangerous.</div>
+                <span class="tl-signal sig-green">Phase I · Nominal</span>
+              </div>
+            </div>
+            <div class="tl-item phase-amber">
+              <div class="tl-date">2020–<br>2021</div>
+              <div class="tl-body">
+                <div class="tl-title">Seam Initiation — Duration Lock at Zero-Rate</div>
+                <div class="tl-desc">SVB deploys a flood of pandemic-era deposit inflows into long-duration mortgage-backed securities and Treasuries at historically low yields — the $21B portfolio averaging 1.79%. This locks the asset side of the balance sheet into a rate environment that will not persist. The liability side (startup deposits) remains short-duration and rate-sensitive. The structural seam is set.</div>
+                <span class="tl-signal sig-amber">Phase II · Seam Initiation</span>
+              </div>
+            </div>
+            <div class="tl-item phase-amber">
+              <div class="tl-date">Mar 2022–<br>Jan 2023</div>
+              <div class="tl-body">
+                <div class="tl-title">Seam Activation — Rate Hikes vs. Bond Book</div>
+                <div class="tl-desc">The Fed begins the most aggressive rate hiking cycle in decades. Every hike increases the unrealized loss in SVB's bond portfolio. Simultaneously, VC funding dries up — startups draw down cash reserves held at SVB rather than raising new rounds. Both jaws of the seam are moving: asset values falling, deposit outflows accelerating. The 10-year Treasury reaches ~3.9% against SVB's 1.79% portfolio yield.</div>
+                <span class="tl-signal sig-amber">Phase II-B · Dual Seam Activation</span>
+              </div>
+            </div>
+            <div class="tl-item phase-red">
+              <div class="tl-date">Mar 8–9<br>2023</div>
+              <div class="tl-body">
+                <div class="tl-title">Disclosure Cascade — Loss Realization + Capital Raise Announcement</div>
+                <div class="tl-desc">SVB announces it sold $21B in securities at a $1.8B after-tax loss and intends to raise $2.25B in new capital. The announcement is interpreted by VC firms as a liquidity signal. Peter Thiel's Founders Fund and others advise portfolio companies to withdraw. Within hours, $42B in withdrawal requests are queued — more than the bank can process.</div>
+                <span class="tl-signal sig-red">Phase III · Cascade Trigger</span>
+              </div>
+            </div>
+            <div class="tl-item phase-red">
+              <div class="tl-date">Mar 10<br>2023</div>
+              <div class="tl-body">
+                <div class="tl-title">Terminal Event — FDIC Receivership in 48 Hours</div>
+                <div class="tl-desc">Trading in SVB shares halted Friday morning. Capital raise and acquisition search both fail. California regulators close the bank and place it in FDIC receivership. Largest U.S. bank failure since Washington Mutual (2008). The 48-hour window from announcement to closure is among the fastest institutional collapses in modern banking history.</div>
+                <span class="tl-signal sig-red">Terminal Event</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Shared Structural Seams — Across All Three Failures</h2>
+          <div class="op-grid">
+            <div class="op-card">
+              <div class="op-label">Deposit Architecture</div>
+              <div class="op-name">Uninsured Deposit Concentration</div>
+              <div class="op-desc">All three banks held disproportionate shares of uninsured deposits: Signature ~90%, First Republic >66%, SVB heavily concentrated in venture-backed startups. Uninsured depositors have no FDIC backstop and will exit on the first credible signal of distress.</div>
+              <span class="op-state state-failed">Failed — All Three</span>
+            </div>
+            <div class="op-card">
+              <div class="op-label">Rate Sensitivity</div>
+              <div class="op-name">Asset-Liability Duration Mismatch</div>
+              <div class="op-desc">SVB and First Republic both locked long-duration assets at near-zero rates while their deposit bases remained short-duration. When the Fed raised rates, the seam activated on both sides simultaneously.</div>
+              <span class="op-state state-failed">Failed — SVB, FRB</span>
+            </div>
+            <div class="op-card">
+              <div class="op-label">Sector Concentration</div>
+              <div class="op-name">Client-Base Coherence</div>
+              <div class="op-desc">SVB was concentrated in VC-backed tech; Signature in crypto platforms; First Republic in high-net-worth California/NY. Each bank's deposit stability depended on a single sector's health — making each vulnerable to sector-specific contagion, not just systemic events.</div>
+              <span class="op-state state-failed">Failed — All Three</span>
+            </div>
+            <div class="op-card">
+              <div class="op-label">Regulatory Coverage</div>
+              <div class="op-name">Oversight Threshold Gap</div>
+              <div class="op-desc">The 2018 Crapo Act raised enhanced oversight thresholds from $50B to $250B in assets. All three banks fell in this gap — too large to fail quietly, too loosely supervised to be caught early. The regulatory coherence layer was structurally absent.</div>
+              <span class="op-state state-stressed">Absent Layer</span>
+            </div>
+            <div class="op-card">
+              <div class="op-label">Contagion Transmission</div>
+              <div class="op-name">Social Media Run Acceleration</div>
+              <div class="op-desc">SVB's 48-hour collapse and Signature's weekend closure were both accelerated by digital communication: VC advisories spread via text and Slack; social media amplified withdrawal urgency. The velocity of information transmission compressed the available intervention window to near zero.</div>
+              <span class="op-state state-stressed">New Variable</span>
+            </div>
+            <div class="op-card">
+              <div class="op-label">Liquidity Buffer</div>
+              <div class="op-name">Cash Reserve Inadequacy</div>
+              <div class="op-desc">Signature held only 5% of assets as cash vs. a 13% industry average. SVB's liquid assets were consumed within hours of the run beginning. First Republic's $30B rescue deposit did not rebuild the structural buffer — it papered over a seam for seven weeks.</div>
+              <span class="op-state state-failed">Failed — All Three</span>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Cluster Collapse Mechanics</h2>
+          <ul class="mech-list">
+            <li class="mech-item">
+              <strong>Sequential Trigger — SVB as Seam Activator for Signature</strong>
+              SVB and Signature did not fail for the same reasons — but Signature failed because SVB failed. SVB's closure created a weekend window during which Signature's 90%-uninsured deposit base, already structurally fragile, received an unambiguous contagion signal. The structural seam preceded the trigger by over a year; the trigger simply set it off.
+            </li>
+            <li class="mech-item">
+              <strong>False Recovery Signal — First Republic's $30B Rescue</strong>
+              The March 16 deposit rescue by eleven major banks was read by markets as a stabilization. By SCFL geometry, it was a signal that the structural problem had been recognized without being resolved. The $72B Q1 deposit outflow, disclosed just seven weeks later, confirms that the rescue bought time — not recoverability.
+            </li>
+            <li class="mech-item">
+              <strong>Velocity Compression — Digital Communication as Collapse Accelerant</strong>
+              All three collapses were faster than any comparable historical event. The mechanism was not new: bank runs have always been driven by information asymmetry. What changed was transmission speed. VC advisories via Slack and text reached thousands of depositors simultaneously; social media amplified the signal beyond the tech community. The intervention window was measured in hours, not days.
+            </li>
+            <li class="mech-item">
+              <strong>Regulatory Seam — The Crapo Gap</strong>
+              All three banks benefited from the 2018 removal of enhanced oversight for banks between $50B and $250B in assets. This regulatory seam allowed the structural vulnerabilities — duration mismatch, deposit concentration, sector exposure — to accumulate without external coherence checks. The supervisory layer that should have constrained the geometry was structurally absent.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <div class="finding-box">
+            <div class="finding-label">SCFL Key Finding — Cluster Case</div>
+            <p>
+              The 2023 regional bank failures are not a single collapse — they are three distinct seam profiles with one shared structural property: each bank's depositor base was held in place by confidence rather than by structural coherence. When confidence transferred, the structural seam activated.
+            </p>
+            <p>
+              The SCFL precursor geometry places the measurable seam initiation for all three banks in 2020–2021 — before rate hikes began, before FTX collapsed, and before SVB's capital raise triggered the run. The rate environment did not create the seams; it activated them.
+            </p>
+            <p>
+              This is the canonical signature of a pre-state geometry failure: the structural conditions for collapse were fully established years before any public signal appeared. The market saw deposit growth and revenue. The SCFL would have seen seam shear.
+            </p>
+          </div>
+        </section>
+
+        <div class="citation">
+          <p>
+            <strong>Reconstruction Author:</strong> Ronald Brogdon, Team Leader —
+            Upstream Coherence Measurement Stratum (UCMS)<br>
+            ORCID: <a href="https://orcid.org/0009-0009-0507-2971">https://orcid.org/0009-0009-0507-2971</a> ·
+            <a href="mailto:measurement@coherencemanagement.org">measurement@coherencemanagement.org</a>
+          </p>
+          <p style="margin-top:0.4rem;">
+            This reconstruction applies the Standard Coherence Fidelity Layer (SCFL) retroactively to publicly available historical record.
+            No proprietary operator computations are disclosed herein.
+            See also: <a href="https://doi.org/10.5281/zenodo.21664081" target="_blank" rel="noopener">DOI 10.5281/zenodo.21664081</a> (SVB, Signature, First Republic precursor geometry) and the <a href="https://zenodo.org/search?q=Ronald%20Brogdon&sort=newest" target="_blank" rel="noopener">UCMS Zenodo canon</a>.
+          </p>
+        </div>
+
+        <p style="margin-top: 2rem;"><a href="cases.html" class="button secondary">← Back to Cases</a></p>
+      </div>
+    </section>
+  
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>© <span id="year"></span> Ronald L. Brogdon. All rights reserved.</p>
+      <a href="index.html">Home</a>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
