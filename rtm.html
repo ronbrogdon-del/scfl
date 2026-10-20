@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request to Measure (RTM) Research Program | UCMS</title>
+    <meta name="description" content="Collaborate with UCMS on non-invasive, multi-domain system characterization across structural, microgrid, and complex facility infrastructure.">
+    <style>
+        :root {
+            --primary-color: #003366;
+            --accent-color: #2563eb;
+            --text-color: #1f2937;
+            --bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2.25rem;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: var(--accent-color);
+            margin-top: 1.5rem;
+        }
+
+        .diagram-box {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1.5rem;
+            text-align: center;
+            font-family: monospace;
+            font-size: 0.95rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1.5rem;
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        .callout-box {
+            border-left: 4px solid var(--accent-color);
+            background-color: var(--bg-light);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            padding: 2rem 1.5rem;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Request to Measure (RTM) Research Program</h1>
+            <p>Souljourner Simulations / UCMS Operations</p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- SECTION 1: PROGRAM OVERVIEW -->
+        <section id="overview">
+            <h2>Program Overview &amp; Mission</h2>
+            <p>The <strong>UCMS Request to Measure (RTM) Research Program</strong> invites facility managers, national laboratories, and academic institutions to collaborate on non-invasive, multi-domain system characterization.</p>
+            <p>Using proprietary internal operators, UCMS evaluates stress-event coherence, operational recoverability, and system health from raw structural, energy, and environmental telemetry. <strong>Our operational framework requires zero proprietary software or algorithm installation on host systems.</strong> Host partners provide raw time-series exports; UCMS performs computation internally and returns actionable diagnostic insights.</p>
+            
+            <div class="diagram-box">
+                [ Host Facility / Dataset ] &mdash;&gt; ( Raw Telemetry Export ) &mdash;&gt; [ UCMS Internal Processing ] &mdash;&gt; [ Diagnostic Report ]
+            </div>
+
+            <h3>Collaboration Framework</h3>
+            <ul>
+                <li><strong>Data Security &amp; IP Protection:</strong> Partners maintain full ownership of all raw data exports. UCMS proprietary operators and formulas remain internal, avoiding complex IP disputes or network integration hurdles.</li>
+                <li><strong>Participation Tiers:</strong>
+                    <ol>
+                        <li><strong>Retrospective Data Analysis:</strong> Diagnostic evaluation of historical telemetry covering documented stress events.</li>
+                        <li><strong>Controlled Testbed Runs:</strong> Evaluation during scheduled, imposed-disturbance testing at research facilities.</li>
+                        <li><strong>Live System Monitoring:</strong> Continuous or episodic analysis on active, occupied campuses and commercial sites.</li>
+                    </ol>
+                </li>
+            </ul>
+        </section>
+
+        <!-- SECTION 2: RESEARCH AREAS -->
+        <section id="research-domains">
+            <h2>Research Domains &amp; Target Facilities</h2>
+            <div class="grid-3">
+                
+                <div class="card">
+                    <h3>Domain A: Structural &amp; Environmental Physics</h3>
+                    <p><strong>Objective:</strong> Evaluate structural dynamics, strain, and vibration coherence during extreme environmental or operational events.</p>
+                    <p><strong>Desired Measurements:</strong> High-rate accelerometry, tilt/displacement, ambient vibration spectra, structural strain, temperature gradients.</p>
+                    <p><strong>Target Facilities:</strong></p>
+                    <ul>
+                        <li>CSMIP / CESMD Facilities</li>
+                        <li>Streicker Bridge SHM (Princeton)</li>
+                        <li>Community Seismic Network (Caltech)</li>
+                        <li>Factor Building (UCLA)</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Domain B: Multi-Energy Grids &amp; Microgrids</h3>
+                    <p><strong>Objective:</strong> Measure power quality, phase dynamics, and load recoverability under distribution disturbances or grid events.</p>
+                    <p><strong>Desired Measurements:</strong> High-frequency PMU/synchrophasor data, bus voltage/frequency transients, real/reactive power logs, inverter response.</p>
+                    <p><strong>Target Facilities:</strong></p>
+                    <ul>
+                        <li>Smart Grid Center / RELLIS (TAMU/TEES)</li>
+                        <li>DERConnect / Microgrid (UC San Diego)</li>
+                        <li>UT Austin Campus Microgrid</li>
+                        <li>ARIES / ESIF (National Lab of the Rockies)</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Domain C: Coupled Infrastructure</h3>
+                    <p><strong>Objective:</strong> Analyze cross-domain propagation across building thermal dynamics, critical services, and district utility feeds.</p>
+                    <p><strong>Desired Measurements:</strong> Concurrent sub-metering, chilled water/steam delta-T, central plant load variations, BMS time-series.</p>
+                    <p><strong>Target Facilities:</strong></p>
+                    <ul>
+                        <li>Texas Medical Center / TECO District Energy</li>
+                        <li>Smart &amp; Connected Homes Testbed (TAMU)</li>
+                        <li>FLEXLAB (LBNL)</li>
+                        <li>CITRC (Idaho National Laboratory)</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 3: TESTING REQUIREMENTS TEMPLATE -->
+        <section id="blind-testing">
+            <h2>Blind Real-Time &amp; Retrospective Testing Requirements</h2>
+            
+            <div class="callout-box">
+                <p><strong>Document Reference:</strong> RTM-REQ-2026-01</p>
+                <p><strong>Inquiry Type:</strong> Blind Diagnostic Capabilities Evaluation</p>
+                
+                <h3>1. Protocol Purpose</h3>
+                <p>This protocol establishes the operational terms for a <strong>Blind Evaluation</strong>. UCMS processes raw, unlabelled time-series data provided by the host facility without prior knowledge of internal fault logs or event timestamps. The goal is to independently detect, isolate, and characterize system state transitions and anomalies.</p>
+
+                <h3>2. Data Requirements &amp; Anonymization</h3>
+                <ul>
+                    <li><strong>Accepted Formats:</strong> CSV, Parquet, HDF5, MiniSEED.</li>
+                    <li><strong>Anonymization:</strong> Partners may redact exact equipment IDs, site names, or GPS locations.</li>
+                    <li><strong>Provided Metadata:</strong> Sensor type, physical units, timestamp sequence (UTC/local), relative layout.</li>
+                    <li><strong>Withheld Information (Blind Validation):</strong> Specific event timestamps, fault logs, or maintenance records.</li>
+                </ul>
+
+                <h3>3. Execution Steps</h3>
+                <ol>
+                    <li><strong>Transfer:</strong> Partner transmits dataset via secure file transfer.</li>
+                    <li><strong>Internal Processing:</strong> UCMS executes proprietary calculations offline.</li>
+                    <li><strong>Reporting:</strong> UCMS delivers an independent report identifying event timestamps and coherence metrics.</li>
+                    <li><strong>Unblinding &amp; Review:</strong> Results are compared against partner ground-truth operational logs.</li>
+                </ol>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Souljourner Simulations / UCMS. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
