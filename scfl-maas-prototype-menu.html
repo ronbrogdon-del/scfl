@@ -7,14 +7,14 @@
   <title>SCFL Measurement as a Service | Coherence Management</title>
   <style>
     :root {
-      --ink: #17252b;
-      --muted: #5d6d73;
-      --paper: #f5f7f5;
+      --ink: #1a1a1a;
+      --muted: #5a5a5a;
+      --paper: #f8f9fa;
       --white: #ffffff;
-      --line: #dce4e1;
-      --green: #23685b;
-      --green-dark: #17483f;
-      --mint: #e7f1ed;
+      --line: #e0e0e0;
+      --green: #0d47a1;
+      --green-dark: #0a3d91;
+      --mint: #e3f2fd;
       --gold: #b88a46;
       --max: 1160px;
     }
@@ -48,8 +48,8 @@
     .navlinks .contact { background: var(--green); color: white; padding: 10px 15px; border-radius: 7px; }
     .hero {
       position: relative; overflow: hidden; color: white;
-      background: radial-gradient(ellipse at 88% 18%, rgba(83,147,127,.34), transparent 36%),
-                  linear-gradient(120deg, #132b30 0%, #1b4945 58%, #23685b 100%);
+      background: radial-gradient(ellipse at 88% 18%, rgba(66,120,200,.34), transparent 36%),
+                  linear-gradient(120deg, #0b1f3f 0%, #0f3a75 58%, #0d47a1 100%);
       padding: 88px 0 78px;
     }
     .hero:after {
@@ -57,14 +57,14 @@
       border-radius: 50%; right: -95px; top: 38px; box-shadow: 0 0 0 42px rgba(255,255,255,.025), 0 0 0 90px rgba(255,255,255,.025);
       pointer-events: none;
     }
-    .eyebrow { color: #b9d8cb; font-size: 11px; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; }
+    .eyebrow { color: #bbd3f0; font-size: 11px; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; }
     h1 { max-width: 800px; margin: 18px 0 22px; font-size: clamp(38px, 6vw, 68px); line-height: 1.04; letter-spacing: -.055em; font-weight: 730; }
-    .hero p { max-width: 700px; margin: 0; color: #dce9e4; font-size: clamp(17px, 2vw, 20px); line-height: 1.7; }
+    .hero p { max-width: 700px; margin: 0; color: #dbe7f6; font-size: clamp(17px, 2vw, 20px); line-height: 1.7; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
     .button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 18px; border-radius: 7px; text-decoration: none; font-size: 14px; font-weight: 750; }
     .button.light { background: white; color: var(--green-dark); }
     .button.outline { color: white; border: 1px solid rgba(255,255,255,.35); }
-    .hero-note { margin-top: 26px; color: #b9d0c8; font-size: 12px; }
+    .hero-note { margin-top: 26px; color: #b9cbe3; font-size: 12px; }
     section { padding: 76px 0; }
     .section-head { max-width: 730px; margin-bottom: 32px; }
     .kicker { color: var(--green); font-size: 11px; font-weight: 850; letter-spacing: .16em; text-transform: uppercase; }
@@ -75,19 +75,19 @@
     .principle .num { color: var(--gold); font-size: 12px; font-weight: 850; letter-spacing: .12em; }
     .principle h3 { margin: 12px 0 8px; font-size: 18px; letter-spacing: -.02em; }
     .principle p { margin: 0; color: var(--muted); font-size: 14px; }
-    .lines-section { background: #edf2ef; }
+    .lines-section { background: #eef2f7; }
     .lines-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
     .line-card {
       position: relative; display: flex; flex-direction: column; min-height: 300px; padding: 28px;
-      border: 1px solid #d7e1dc; border-radius: 13px; background: white;
+      border: 1px solid #d9e0ea; border-radius: 13px; background: white;
     }
     .line-card.featured { border-top: 4px solid var(--green); }
     .line-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
-    .line-number { color: #8a9c95; font-size: 12px; font-weight: 850; letter-spacing: .12em; }
+    .line-number { color: #8a96a3; font-size: 12px; font-weight: 850; letter-spacing: .12em; }
     .tag { display: inline-block; padding: 5px 9px; border-radius: 5px; background: var(--mint); color: var(--green-dark); font-size: 10px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
     .line-card h3 { margin: 20px 0 10px; font-size: 25px; line-height: 1.16; letter-spacing: -.04em; }
     .line-card p { margin: 0 0 16px; color: var(--muted); font-size: 14px; }
-    .line-card .buyer { margin-top: auto; padding-top: 16px; border-top: 1px solid #edf0ee; font-size: 12px; color: var(--muted); }
+    .line-card .buyer { margin-top: auto; padding-top: 16px; border-top: 1px solid #eef1f5; font-size: 12px; color: var(--muted); }
     .line-card .buyer strong { color: var(--ink); }
     .build-note { margin-top: 20px; padding: 17px 20px; border-left: 3px solid var(--gold); background: rgba(255,255,255,.72); color: var(--muted); font-size: 13px; }
     .how-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 54px; align-items: start; }
@@ -98,14 +98,14 @@
     .step-icon { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 10px; background: var(--mint); color: var(--green); font-size: 14px; font-weight: 850; }
     .step h3 { margin: 0 0 5px; font-size: 17px; }
     .step p { margin: 0; color: var(--muted); font-size: 14px; }
-    .deliverables { background: #173b3a; color: white; }
-    .deliverables .kicker { color: #b9d8cb; }
-    .deliverables .section-head p { color: #c7d9d3; }
+    .deliverables { background: #0d2b57; color: white; }
+    .deliverables .kicker { color: #bbd3f0; }
+    .deliverables .section-head p { color: #c5d6ec; }
     .deliver-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 32px; }
     .deliver-item { border: 1px solid rgba(255,255,255,.16); border-radius: 10px; padding: 20px; }
     .deliver-item h3 { margin: 0 0 8px; font-size: 16px; }
-    .deliver-item p { margin: 0; color: #c7d9d3; font-size: 13px; }
-    .caveat { margin-top: 22px; color: #c7d9d3; font-size: 12px; max-width: 880px; }
+    .deliver-item p { margin: 0; color: #c5d6ec; font-size: 13px; }
+    .caveat { margin-top: 22px; color: #c5d6ec; font-size: 12px; max-width: 880px; }
     .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 28px; }
     .price-card { background: white; border: 1px solid var(--line); border-radius: 12px; padding: 24px; display: flex; flex-direction: column; }
     .price-card.featured { border-top: 4px solid var(--green); }
@@ -114,14 +114,14 @@
     .price { font-size: 28px; font-weight: 750; letter-spacing: -.04em; color: var(--green-dark); margin: 4px 0 12px; }
     .price-card ul { margin: 0 0 14px; padding-left: 18px; color: var(--muted); font-size: 14px; }
     .price-card ul li { margin-bottom: 4px; }
-    .price-purpose { margin-top: auto; padding-top: 12px; border-top: 1px solid #edf0ee; font-size: 13px; color: var(--muted); }
+    .price-purpose { margin-top: auto; padding-top: 12px; border-top: 1px solid #eef1f5; font-size: 13px; color: var(--muted); }
     .pricing-note { margin-top: 22px; padding: 16px 18px; background: var(--mint); border-radius: 8px; font-size: 13px; color: var(--green-dark); }
     .rules { margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .rule { background: white; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
     .rule strong { display: block; margin-bottom: 4px; }
-    .illustrative { margin-top: 32px; background: #edf2ef; border-radius: 12px; padding: 22px 24px; }
+    .illustrative { margin-top: 32px; background: #eef2f7; border-radius: 12px; padding: 22px 24px; }
     .illustrative table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 10px; }
-    .illustrative td { padding: 6px 0; border-bottom: 1px solid #dce4e1; }
+    .illustrative td { padding: 6px 0; border-bottom: 1px solid #e0e0e0; }
     .illustrative td:last-child { text-align: right; font-weight: 650; }
     .cta { padding: 72px 0; }
     .cta-panel { display: flex; justify-content: space-between; align-items: center; gap: 28px; padding: 38px; background: white; border: 1px solid var(--line); border-radius: 14px; }
@@ -227,7 +227,7 @@
             <div class="line-top"><span class="line-number">LINE 03</span><span class="tag">Supply chain & geopolitics</span></div>
             <h3>Global Chokepoint Scan</h3>
             <p>Characterize relationships across selected shipping, trade, energy, or logistics indicators around a defined strategic chokepoint. Historical event comparisons may be included where appropriate data exists.</p>
-            <p style="margin-top:0.75rem;"><a href="global-shipping-flow-observatory.html" style="color:#23685b; font-weight:650;">View Global Shipping Flow Observatory →</a></p>
+            <p style="margin-top:0.75rem;"><a href="global-shipping-flow-observatory.html" style="color:#0d47a1; font-weight:650;">View Global Shipping Flow Observatory →</a></p>
             <div class="buyer"><strong>Potential partners:</strong> reinsurers, risk consultancies, commodity firms, and strategic analysts.</div>
           </article>
           <article class="line-card">
