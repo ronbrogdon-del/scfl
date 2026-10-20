@@ -442,3 +442,16 @@ li {
     font-size: 0.78rem;
   }
 }
+
+/* Research index (homepage Foundational Research → papers.html) */
+.research-index-heading { margin-top: 2rem; }
+.research-index { list-style: none; padding: 0; margin: 1rem 0 1.5rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.75rem; }
+.research-index a { display: block; height: 100%; padding: 0.9rem 1rem; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); text-decoration: none; color: var(--text); }
+.research-index a:hover, .research-index a:focus { border-color: var(--primary); background: var(--accent); }
+.research-index strong { display: block; color: var(--primary); }
+.research-index span { display: block; font-size: 0.88rem; color: var(--muted); margin-top: 0.2rem; }
+
+/* On phones the wrapped nav is ~300px tall; a sticky header hides jump-link targets */
+@media (max-width: 800px) {
+  .site-header { position: static; }
+}

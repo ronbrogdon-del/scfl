@@ -8,89 +8,195 @@
   <link rel="stylesheet" href="style.css">
   <link rel="canonical" href="https://coherencemanagement.org/papers.html">
   <style>
-    .papers-cat { margin: 2rem 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-    .papers-cat summary { background: var(--surface-alt); padding: 1rem 1.25rem; cursor: pointer; font-weight: 600; }
-    .papers-cat ul { margin: 0; padding: 1rem 1.25rem 1rem 2.5rem; }
-    .papers-cat li { margin-bottom: 0.5rem; }
+    .author-line { color: var(--muted); font-size: 0.95rem; margin: 0.5rem 0 1.5rem; }
+    .author-line a { white-space: nowrap; }
+    .domain-jump { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.5rem 0 0.5rem; padding: 0; list-style: none; }
+    .domain-jump a { display: inline-block; padding: 0.4rem 0.85rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); text-decoration: none; font-size: 0.9rem; }
+    .domain-jump a:hover, .domain-jump a:focus { background: var(--accent); }
+    .domain-jump .count { color: var(--muted); margin-left: 0.25rem; }
+    .papers-group { margin: 2.5rem 0 0; padding-top: 1rem; border-top: 1px solid var(--line); scroll-margin-top: 5rem; }
+    .papers-group h2 { font-size: 1.3rem; margin: 0 0 0.25rem; }
+    .papers-group .group-note { color: var(--muted); font-size: 0.92rem; margin: 0 0 1rem; }
+    .paper-list { list-style: none; margin: 0; padding: 0; }
+    .paper-list li { padding: 0.75rem 0; border-bottom: 1px dashed var(--line); }
+    .paper-list li:last-child { border-bottom: 0; }
+    .paper-title { display: block; font-weight: 600; line-height: 1.4; }
+    .paper-meta { display: block; font-size: 0.88rem; color: var(--muted); margin-top: 0.2rem; overflow-wrap: anywhere; }
+    .tag { display: inline-block; font-size: 0.75rem; font-weight: 600; padding: 0.1rem 0.5rem; border-radius: 4px; margin-left: 0.35rem; vertical-align: middle; background: var(--surface-alt); color: var(--muted); border: 1px solid var(--line); }
+    .tag.core { background: var(--accent); color: var(--primary); border-color: var(--accent); }
+    .to-top { display: inline-block; margin-top: 0.75rem; font-size: 0.85rem; }
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="container nav-wrap">
       <a href="index.html" class="brand">SCFL</a>
-      <nav class="main-nav">
+      <nav class="main-nav" aria-label="Main navigation">
         <a href="index.html">Overview</a>
+        <a href="index.html#program">Research Program</a>
+        <a href="papers.html" aria-current="page">Papers</a>
         <a href="measurement-process.html">Measurement Process</a>
         <a href="integrity-scan.html">Integrity Scan</a>
+        <a href="scfl-maas-prototype-menu.html">MaaS Prototypes</a>
+        <a href="rtm.html">Request to Measure</a>
         <a href="one-question.html">One Question</a>
-        <a href="papers.html" aria-current="page">Papers</a>
+        <a href="videos.html">Videos</a>
         <a href="cases.html">Cases</a>
         <a href="human-flourishing.html">Human Flourishing</a>
         <a href="contact.html">Contact</a>
       </nav>
     </div>
   </header>
-  <main>
+  <main id="top">
     <section class="section">
       <div class="container narrow">
         <p class="section-kicker">Publications</p>
         <h1>Research Papers by Domain</h1>
-        <p class="lede">Selected works from the SCFL / UCMS corpus, grouped to reduce cognitive load. All available on Zenodo. SCFL systems plates and Souljourner interior plates are kept distinct.</p>
+        <p class="author-line">Ronald L. Brogdon · Team Leader, Upstream Coherence Measurement Stratum (UCMS) · ORCID: <a href="https://orcid.org/0009-0009-0507-2971" target="_blank" rel="noopener">https://orcid.org/0009-0009-0507-2971</a></p>
+        <p class="lede">Selected works from the SCFL / UCMS corpus, grouped by domain. All are open-access on Zenodo. SCFL systems plates and Souljourner interior plates are kept distinct.</p>
+        <p><a href="https://zenodo.org/search?q=SCFL%20Brogdon" target="_blank" rel="noopener">Browse the full corpus on Zenodo →</a></p>
 
-        <details class="papers-cat" open>
-          <summary>Foundational / Framework</summary>
-          <ul>
-            <li><a href="https://doi.org/10.5281/zenodo.23247214">10.5281/zenodo.23247214</a> — Coherence as a Relational Property</li>
-            <li><a href="https://doi.org/10.5281/zenodo.21728822">10.5281/zenodo.21728822</a> — Living Map v0.17</li>
-            <li><a href="https://doi.org/10.5281/zenodo.19364489">10.5281/zenodo.19364489</a> — Candidate Hypotheses for a Structured Pre-Failure Regime in Human Systems</li>
-            <li><a href="https://doi.org/10.5281/zenodo.22974080">10.5281/zenodo.22974080</a> — Occupational Intersects for SCFL</li>
+        <nav aria-label="Jump to domain">
+          <ul class="domain-jump">
+            <li><a href="#foundational">Foundational<span class="count">4</span></a></li>
+            <li><a href="#grid">Grid / Infrastructure<span class="count">4</span></a></li>
+            <li><a href="#maritime">Maritime / Geopolitical<span class="count">1</span></a></li>
+            <li><a href="#operators">Operators &amp; Validation<span class="count">1</span></a></li>
+            <li><a href="#recoverability">Recoverability / CCV<span class="count">2</span></a></li>
+            <li><a href="#interior">Biological / Interior<span class="count">5</span></a></li>
+            <li><a href="#relational">Theological / Relational<span class="count">1</span></a></li>
           </ul>
-        </details>
+        </nav>
 
-        <details class="papers-cat">
-          <summary>Grid / Infrastructure (SCFL systems)</summary>
-          <ul>
-            <li><a href="https://doi.org/10.5281/zenodo.20514713">10.5281/zenodo.20514713</a> — Before the Alarm (ORNL EAGLE-I plate)</li>
-            <li><a href="https://doi.org/10.5281/zenodo.19488182">10.5281/zenodo.19488182</a> — SCFL validated on ERCOT grid stress events</li>
-            <li><a href="https://doi.org/10.5281/zenodo.21513174">10.5281/zenodo.21513174</a> — Uri Precursor Window</li>
-            <li><a href="https://doi.org/10.5281/zenodo.21740325">10.5281/zenodo.21740325</a> — Seven Trajectories, One Curve</li>
+        <section id="foundational" class="papers-group">
+          <h2>Foundational / Framework</h2>
+          <p class="group-note">Definitions, hypotheses, and the program map.</p>
+          <ul class="paper-list">
+            <li>
+              <a class="paper-title" href="https://doi.org/10.5281/zenodo.23247214" target="_blank" rel="noopener">Coherence as a Relational Property: Toward a Foundational Science of Coherence</a><span class="tag core">Core paper</span>
+              <span class="paper-meta">doi:10.5281/zenodo.23247214</span>
+            </li>
+            <li>
+              <a class="paper-title" href="https://doi.org/10.5281/zenodo.19364489" target="_blank" rel="noopener">Candidate Hypotheses for a Structured Pre-Failure Regime in Human Systems: A Cross-Domain Empirical Program</a>
+              <span class="paper-meta">doi:10.5281/zenodo.19364489</span>
+            </li>
+            <li>
+              <a class="paper-title" href="https://doi.org/10.5281/zenodo.22974080" target="_blank" rel="noopener">Occupational Intersects and the Work Ahead: A Neighboring-Class Map for the Standard Coherence Fidelity Layer</a><span class="tag">Conceptual working note</span>
+              <span class="paper-meta">doi:10.5281/zenodo.22974080</span>
+            </li>
+            <li>
+              <a class="paper-title" href="https://doi.org/10.5281/zenodo.21728822" target="_blank" rel="noopener">Coherence Physics Research Program: A Living Map of SCFL/UCMS Operators, Evidence Status, and Open Replication Gaps (v0.17)</a><span class="tag">Historical · superseded</span>
+              <span class="paper-meta">doi:10.5281/zenodo.21728822</span>
+            </li>
           </ul>
-        </details>
+          <a class="to-top" href="#top">↑ Back to domains</a>
+        </section>
 
-        <details class="papers-cat">
-          <summary>Maritime / Cascades (SCFL systems)</summary>
-          <ul>
-            <li><a href="https://doi.org/10.5281/zenodo.20222719">10.5281/zenodo.20222719</a> — Weaponized Chokepoints: The Hormuz Collapse</li>
+        <section id="grid" class="papers-group">
+          <h2>Grid / Infrastructure</h2>
+          <p class="group-note">SCFL systems plates on U.S. power-grid data.</p>
+          <ul class="paper-list">
+            <li>
+              <a class="paper-title" href="https://doi.org/10.5281/zenodo.20514713" target="_blank" rel="noopener">Before the Alarm: Detecting Irreversible Coherence Deformation and Loss of Recoverability in the U.S. Power Grid (2015–2020)</a>
+              <span class="paper-meta">doi:10.5281/zenodo.20514713 · ORNL EAGLE-I outage data</span>
+            </li>
+            <li>
+              <a class="paper-title" href="https://doi.org/10.5281/zenodo.19488182" target="_blank" rel="noopener">The Standard Coherence Fidelity Layer (SCFL): A Real-Time Measurement Instrument Validated on ERCOT Grid Stress Events</a>
+              <span class="paper-meta">doi:10.5281/zenodo.19488182</span>
+            </li>
+            <li>
+              <a class="paper-title" href="https://doi.org/10.5281/zenodo.21513174" target="_blank" rel="noopener">Uri Precursor Window and Operator Decision Rule: Quantitative Characterization from Real ERCOT Data</a>
+              <span class="paper-meta">doi:10.5281/zenodo.21513174</span>
+            </li>
+            <li>
+              <a class="paper-title" href="https://doi.org/10.5281/zenodo.21740325" target="_blank" rel="noopener">Seven Trajectories, One Curve: Cross-Grid Evidence for a Graded Coherence Response</a>
+              <span class="paper-meta">doi:10.5281/zenodo.21740325</span>
+            </li>
           </ul>
-        </details>
+          <a class="to-top" href="#top">↑ Back to domains</a>
+        </section>
 
-        <details class="papers-cat">
-          <summary>Biological / Interior (Souljourner)</summary>
-          <ul>
-            <li><a href="https://doi.org/10.5281/zenodo.20839076">10.5281/zenodo.20839076</a> — Interior Coherence within the SCFL: The Souljourner Architecture</li>
-            <li><a href="https://doi.org/10.5281/zenodo.20966428">10.5281/zenodo.20966428</a> — The Souljourner Interior Coherence Architecture</li>
-            <li><a href="https://doi.org/10.5281/zenodo.18865667">10.5281/zenodo.18865667</a> — Toward a Structural Measurement Framework for Whole-Body Human Coherence</li>
-            <li><a href="https://doi.org/10.5281/zenodo.20653355">10.5281/zenodo.20653355</a> — Coherence Mechanics in the Contemplative Academy</li>
+        <section id="maritime" class="papers-group">
+          <h2>Maritime / Geopolitical</h2>
+          <p class="group-note">SCFL systems plates on shipping chokepoints and cascades.</p>
+          <ul class="paper-list">
+            <li>
+              <a class="paper-title" href="https://doi.org/10.5281/zenodo.20222719" target="_blank" rel="noopener">Weaponized Chokepoints: The Hormuz Collapse and the Global Cascade We Saw Coming (HCDI v1.3)</a>
+              <span class="paper-meta">doi:10.5281/zenodo.20222719</span>
+            </li>
           </ul>
-        </details>
+          <a class="to-top" href="#top">↑ Back to domains</a>
+        </section>
 
-        <details class="papers-cat">
-          <summary>Operators & Validation</summary>
-          <ul>
-            <li><a href="https://doi.org/10.5281/zenodo.23474275">10.5281/zenodo.23474275</a> — SCFL Frozen Operator Set v1.0 — Integrity Commitment (SHA-256)</li>
-            <li><a href="https://doi.org/10.5281/zenodo.21644604">10.5281/zenodo.21644604</a> — SCFL Operators Test and Validation Notebook</li>
+        <section id="operators" class="papers-group">
+          <h2>Operators &amp; Validation</h2>
+          <p class="group-note">Operator tests and adversarial null-testing.</p>
+          <ul class="paper-list">
+            <li>
+              <a class="paper-title" href="https://doi.org/10.5281/zenodo.21644604" target="_blank" rel="noopener">SCFL Operators Test and Validation Notebook: Cross-Domain Single-Event Verification, Adversarial Null-Testing Protocol, and Gap-4 Brittle-Seam Generalization</a>
+              <span class="paper-meta">doi:10.5281/zenodo.21644604</span>
+            </li>
           </ul>
-        </details>
+          <a class="to-top" href="#top">↑ Back to domains</a>
+        </section>
 
-        <details class="papers-cat">
-          <summary>Recoverability / CCV</summary>
-          <ul>
-            <li><a href="https://doi.org/10.5281/zenodo.22926195">10.5281/zenodo.22926195</a> — A Modest Coherence Horizon</li>
-            <li><a href="https://doi.org/10.5281/zenodo.22136130">10.5281/zenodo.22136130</a> — CCV_E Pre-registration</li>
+        <section id="recoverability" class="papers-group">
+          <h2>Recoverability / CCV</h2>
+          <p class="group-note">Whether a system can still replenish itself.</p>
+          <ul class="paper-list">
+            <li>
+              <a class="paper-title" href="https://doi.org/10.5281/zenodo.22926195" target="_blank" rel="noopener">A Modest Coherence Horizon, with Primal Coherence Logic / CCV(t) Measurement Bridge (Plate v0.2)</a><span class="tag">Preprint</span>
+              <span class="paper-meta">doi:10.5281/zenodo.22926195</span>
+            </li>
+            <li>
+              <a class="paper-title" href="https://doi.org/10.5281/zenodo.22136130" target="_blank" rel="noopener">Pre-registration of an ERCOT Self-Replenishment Threshold Test (CCV_E)</a><span class="tag">Pre-registration</span>
+              <span class="paper-meta">doi:10.5281/zenodo.22136130</span>
+            </li>
           </ul>
-        </details>
+          <a class="to-top" href="#top">↑ Back to domains</a>
+        </section>
 
-        <p style="margin-top:2rem;"><a href="index.html" class="button secondary">Back to overview →</a> &nbsp; <a href="integrity-scan.html" class="button secondary">Integrity Scan</a> &nbsp; <a href="souljourner.html" class="button secondary">Souljourner</a></p>
+        <section id="interior" class="papers-group">
+          <h2>Biological / Interior</h2>
+          <p class="group-note">Human coherence and the Souljourner interior plates — a separate family from the SCFL systems program. <a href="souljourner.html">About Souljourner →</a></p>
+          <ul class="paper-list">
+            <li>
+              <a class="paper-title" href="https://doi.org/10.5281/zenodo.18865667" target="_blank" rel="noopener">Toward a Structural Measurement Framework for Whole-Body Human Coherence: A Tri-Domain Dynamical Model</a>
+              <span class="paper-meta">doi:10.5281/zenodo.18865667</span>
+            </li>
+            <li>
+              <a class="paper-title" href="https://doi.org/10.5281/zenodo.20653355" target="_blank" rel="noopener">Coherence Mechanics in the Contemplative Academy: Operator Residency, Domain Anchors, and Fault Lines Across 100 Contemplative-Integrative Scholars</a>
+              <span class="paper-meta">doi:10.5281/zenodo.20653355 · N=100</span>
+            </li>
+            <li>
+              <a class="paper-title" href="https://doi.org/10.5281/zenodo.19116203" target="_blank" rel="noopener">SCFL Human State Transitions: Invariant Structure Across Grief, Trauma, and Meditation and Early-Warning Forecasting of Attractor Outcomes</a>
+              <span class="paper-meta">doi:10.5281/zenodo.19116203</span>
+            </li>
+            <li>
+              <a class="paper-title" href="https://doi.org/10.5281/zenodo.20966428" target="_blank" rel="noopener">The Souljourner Interior Coherence Architecture: Core Mathematical Engine and Applied Structural Sonar Benchmarks</a><span class="tag">Souljourner</span>
+              <span class="paper-meta">doi:10.5281/zenodo.20966428</span>
+            </li>
+            <li>
+              <a class="paper-title" href="https://doi.org/10.5281/zenodo.20839076" target="_blank" rel="noopener">Interior Coherence within the SCFL: The Souljourner Architecture for Reflective-State Measurement and Operator-Deterministic Dynamics</a><span class="tag">Souljourner</span>
+              <span class="paper-meta">doi:10.5281/zenodo.20839076</span>
+            </li>
+          </ul>
+          <a class="to-top" href="#top">↑ Back to domains</a>
+        </section>
+
+        <section id="relational" class="papers-group">
+          <h2>Theological / Relational</h2>
+          <p class="group-note">The relational foundation of the framework.</p>
+          <ul class="paper-list">
+            <li>
+              <a class="paper-title" href="https://doi.org/10.5281/zenodo.21983299" target="_blank" rel="noopener">Agápē as an Upstream Invariant Hypothesis: Relational Integrity as the Substrate of Recoverable Coherence</a>
+              <span class="paper-meta">doi:10.5281/zenodo.21983299</span>
+            </li>
+          </ul>
+          <a class="to-top" href="#top">↑ Back to domains</a>
+        </section>
+
+        <p style="margin-top:2.5rem;"><a href="index.html#program" class="button secondary">← Research Program</a> &nbsp; <a href="cases.html" class="button secondary">Cases</a> &nbsp; <a href="contact.html" class="button secondary">Contact</a></p>
       </div>
     </section>
   </main>
