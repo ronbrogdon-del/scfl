@@ -27,7 +27,7 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.65;
-  font-size: 16px;
+  font-size: 16.5px;
 }
 
 img {
@@ -64,15 +64,15 @@ a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 72px;
-  gap: 2rem;
+  min-height: 80px;
+  gap: 1.5rem;
 }
 
 .brand {
   font-weight: 800;
   letter-spacing: -0.03em;
   color: var(--primary);
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   flex-shrink: 0;
   text-transform: uppercase;
 }
@@ -85,15 +85,15 @@ a:hover {
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.5rem;
   flex-wrap: wrap;
 }
 
 .main-nav a {
   color: var(--text);
   font-weight: 600;
-  font-size: 0.92rem;
-  padding: 0.45rem 0.75rem;
+  font-size: 1.1rem;
+  padding: 0.55rem 0.9rem;
   border-radius: 6px;
   transition: background 0.15s ease, color 0.15s ease;
 }
@@ -111,7 +111,7 @@ a:hover {
   overflow: hidden;
   white-space: nowrap;
   border-bottom: 1px solid #0a3d91;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.02em;
   line-height: 1;
@@ -119,7 +119,7 @@ a:hover {
 
 .ticker {
   display: inline-block;
-  padding: 0.55rem 0;
+  padding: 0.6rem 0;
   animation: ticker-scroll 60s linear infinite;
 }
 
@@ -148,9 +148,9 @@ a:hover {
 .section-kicker {
   display: inline-block;
   margin: 0 0 0.75rem;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--primary);
 }
@@ -165,34 +165,34 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
   margin-bottom: 1rem;
   font-weight: 800;
 }
 
 h2 {
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-size: clamp(2rem, 3.2vw, 2.7rem);
   margin-bottom: 1.25rem;
   font-weight: 700;
 }
 
 h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.6rem;
+  font-size: 1.35rem;
+  margin-bottom: 0.7rem;
   font-weight: 700;
 }
 
 .lede {
   max-width: 60ch;
   color: var(--muted);
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   margin-bottom: 1rem;
 }
 
 .core-def {
   max-width: 60ch;
   color: var(--text);
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-style: italic;
   margin: 1.5rem 0 1.5rem 0;
   padding-left: 1.2rem;
@@ -211,11 +211,11 @@ h3 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
-  padding: 0.75rem 1.5rem;
+  min-height: 48px;
+  padding: 0.85rem 1.6rem;
   border-radius: 6px;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   transition: all 0.2s ease;
   border: 1px solid transparent;
 }
@@ -271,7 +271,7 @@ h3 {
 }
 
 .label {
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--muted);
@@ -305,7 +305,7 @@ h3 {
 }
 
 .content-grid h3 {
-  font-size: 1rem;
+  font-size: 1.25rem;
   margin-top: 0;
 }
 
@@ -327,7 +327,7 @@ h3 {
 }
 
 .doi-note {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--muted);
   margin-top: 1rem;
   margin-bottom: 0.5rem;
@@ -364,7 +364,7 @@ h3 {
 }
 
 .contact-placeholder {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   padding: 1rem;
   background: var(--accent);
   border-left: 3px solid var(--primary);
@@ -384,7 +384,7 @@ h3 {
   gap: 1rem;
   min-height: 64px;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 ul, ol {
@@ -413,7 +413,12 @@ li {
 
   .main-nav {
     justify-content: center;
-    gap: 0.35rem;
+    gap: 0.4rem;
+  }
+
+  .main-nav a {
+    font-size: 1.05rem;
+    padding: 0.5rem 0.75rem;
   }
 
   .footer-row {
@@ -441,7 +446,7 @@ li {
   }
 
   .ticker {
-    font-size: 0.78rem;
+    font-size: 0.85rem;
   }
 }
 
@@ -450,8 +455,8 @@ li {
 .research-index { list-style: none; padding: 0; margin: 1rem 0 1.5rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.75rem; }
 .research-index a { display: block; height: 100%; padding: 0.9rem 1rem; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); text-decoration: none; color: var(--text); }
 .research-index a:hover, .research-index a:focus { border-color: var(--primary); background: var(--accent); }
-.research-index strong { display: block; color: var(--primary); }
-.research-index span { display: block; font-size: 0.88rem; color: var(--muted); margin-top: 0.2rem; }
+.research-index strong { display: block; color: var(--primary); font-size: 1.05rem; }
+.research-index span { display: block; font-size: 1rem; color: var(--muted); margin-top: 0.2rem; }
 
 /* On phones the wrapped nav is ~300px tall; a sticky header hides jump-link targets */
 @media (max-width: 800px) {
@@ -487,10 +492,10 @@ section.theme-research.alt-bg { background: var(--surface-alt); }
 /* Homepage subject-of-inquiry box */
 .inquiry-section { padding-top: 2rem; padding-bottom: 1rem; }
 .inquiry-box { border: 2px solid var(--primary); border-left-width: 8px; border-radius: 10px; background: var(--accent); padding: 1.75rem 2rem; box-shadow: var(--shadow); }
-.inquiry-row { display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; align-items: baseline; margin: 0; }
+.inquiry-row { display: grid; grid-template-columns: 10rem 1fr; gap: 1rem; align-items: baseline; margin: 0; }
 .inquiry-row + .inquiry-row { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--line); }
-.inquiry-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary); }
-.inquiry-text { font-size: clamp(1.15rem, 2.2vw, 1.45rem); font-weight: 600; line-height: 1.4; color: var(--text); }
+.inquiry-label { font-size: 0.95rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary); }
+.inquiry-text { font-size: clamp(1.2rem, 2.3vw, 1.55rem); font-weight: 600; line-height: 1.4; color: var(--text); }
 @media (max-width: 640px) {
   .inquiry-box { padding: 1.25rem; }
   .inquiry-row { grid-template-columns: 1fr; gap: 0.35rem; }
