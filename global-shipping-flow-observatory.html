@@ -246,7 +246,7 @@ Refresh: on every page load</pre>
   }
 
   function fetchChokepoint(cp){
-    var where = "portid = '"+cp.id+"'";
+    var where = "portid = '"+cp.id+"' AND date >= '"+REF_START+"'";
     var fields = ["date","n_total","capacity"].concat(TYPES).join(",");
     var rows = [];
     function page(offset){
