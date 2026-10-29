@@ -352,7 +352,13 @@ Refresh: on every page load</pre>
 
   function fail(err){
     $("feed").innerHTML = '<span class="dot err"></span>PortWatch data unavailable';
-    $("rows").innerHTML = '<tr><td colspan="8" class="empty">Live traffic could not be loaded from IMF PortWatch ('+esc(err.message||err)+'). Try reloading the page later. No values are shown rather than stale or estimated ones.</td></tr>';
+    $("rows").innerHTML = '<tr><td colspan="8" class="empty">'+
+      '<strong>Live feed currently unavailable.</strong><br>'+
+      'The page could not load current transit counts from the IMF PortWatch ArcGIS service ('+esc(err.message||err)+'). '+
+      'No values are shown rather than stale or estimated ones.<br><br>'+
+      'The architecture is still visible below: a continuous stream of time-stamped observations against a fixed 2025 baseline, with an explicit multi-day AIS lag, separate from any UCMS structural-state reading. '+
+      'See the Method section for the exact calculation. Hard-refresh to retry.'+
+      '</td></tr>';
   }
 
   var readingsP = fetch(READINGS_FILE, {cache:"no-store"}).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; });
