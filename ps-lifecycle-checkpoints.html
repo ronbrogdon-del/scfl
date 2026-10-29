@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lifecycle checkpoints – SCFL Problem Spaces</title>
+  <meta name="description" content="Did we start where we think? Did the repair actually restore structure?">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="canonical" href="https://coherencemanagement.org/ps-lifecycle-checkpoints.html">
+  <style>
+    .ps-figure { margin: 1.5rem 0 0.5rem; }
+    .ps-figure img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+    .ps-figure figcaption { font-size: 0.92rem; color: var(--muted); margin-top: 0.5rem; }
+    .ps-recognize { background: var(--accent); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.25rem 0; font-size: 1.05rem; }
+    .ps-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
+    .ps-grid div { border-top: 3px solid var(--primary); padding-top: 0.6rem; }
+    .ps-grid h3 { font-size: 1rem; margin: 0 0 0.3rem; }
+    .ps-grid p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+    .ps-cta { border: 1.5px solid var(--primary); border-radius: 12px; padding: 1.25rem 1.5rem; margin: 2rem 0 1rem; }
+    .ps-cta h2 { margin: 0.2rem 0 0.4rem; font-size: 1.35rem; }
+    .ps-cta p { margin: 0 0 0.9rem; color: var(--muted); }
+    .ps-pager { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+    .ps-note { font-size: 0.85rem; color: var(--muted); margin-top: 1.5rem; }
+    .ps-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+    .ps-table th { text-align: left; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--primary); padding: 0.5rem 0.6rem; }
+    .ps-table td { border-bottom: 1px solid var(--line); padding: 0.75rem 0.6rem; vertical-align: top; }
+    .ps-table td:first-child { font-weight: 700; white-space: nowrap; }
+    .ps-table a { color: var(--primary); text-decoration: none; }
+    .ps-table a:hover { text-decoration: underline; }
+    @media (max-width: 760px) {
+      .ps-grid { grid-template-columns: 1fr; }
+      .ps-table td:first-child { white-space: normal; }
+      .ps-table thead { display: none; }
+      .ps-table, .ps-table tbody, .ps-table tr, .ps-table td { display: block; width: 100%; }
+      .ps-table tr { border-bottom: 1px solid var(--line); padding: 0.5rem 0; }
+      .ps-table td { border: 0; padding: 0.2rem 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">SCFL</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Overview</a>
+        <a href="measurement-process.html">Measurement Process</a>
+        <a href="integrity-scan.html">Integrity Scan</a>
+        <a href="problem-spaces.html">Problem Spaces</a>
+        <a href="one-question.html">One Question</a>
+        <a href="papers.html">Papers</a>
+        <a href="cases.html">Cases</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container narrow">
+        <p class="section-kicker">Problem Space 5 of 7 · Lifecycle checkpoints</p>
+        <h1>Did we start where we think? Did the repair actually restore structure?</h1>
+        <p class="lede">Two moments anchor a system&#x27;s record. At handover, the as-built structural state is locked as a versioned baseline, so later readings are compared to what was built, not to design intent. After a repair, the instrument checks whether structural state was actually restored, or only the output.</p>
+        <p class="ps-recognize"><strong>You'll recognize this if</strong> the as-built record is still the design drawings, or a repair closed the work order but the system never quite behaved the same.</p>
+        <figure class="ps-figure">
+          <img src="problem-spaces-img/as-built-baseline.jpg" alt="Design baseline compared with as-built measurement, with the as-built state locked at commissioning handover" loading="lazy">
+          <figcaption>Illustrative. At handover, the as-built structural state is locked as an append-only, versioned record.</figcaption>
+        </figure>
+        <figure class="ps-figure">
+          <img src="problem-spaces-img/repair-verification.jpg" alt="After an intervention, service output returns to normal while structural state is only partially restored" loading="lazy">
+          <figcaption>Illustrative. Output returns to normal after the intervention; structural state is only partly restored.</figcaption>
+        </figure>
+        <div class="ps-grid">
+          <div><h3>What you receive</h3><p>A locked as-built baseline, and a before-and-after structural reading around each repair.</p></div>
+          <div><h3>When to use it</h3><p>At commissioning or acquisition, and after any significant repair or intervention.</p></div>
+          <div><h3>What it starts from</h3><p>Handover and maintenance records, and dated records before and after the work.</p></div>
+        </div>
+        <div class="ps-cta">
+          <p class="section-kicker">One Question Challenge</p>
+          <h2>Can the answer to one question begin a transformation for your organization?</h2>
+          <p>Bring us your version of this question. One well-formed structural question shows whether SCFL can reach your organization's condition space. No data leaves your environment. No implementation required. No commitment beyond the question itself.</p>
+          <a href="one-question.html" class="button primary">Take the Challenge</a>
+        </div>
+        <div class="ps-pager"><a href="problem-spaces.html" class="button secondary">← All problem spaces</a> <a href="ps-localization.html" class="button secondary">Next: Localization →</a></div>
+        <p class="ps-note">Figures are illustrative. SCFL-Quad is patent pending. Upstream Coherence Measurement Stratum (UCMS).</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>© <span id="year"></span> Ronald L. Brogdon. Upstream Coherence Measurement Stratum (UCMS). Patent pending.</p>
+      <a href="index.html">Home</a>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
