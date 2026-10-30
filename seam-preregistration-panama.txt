@@ -1,0 +1,60 @@
+MEASUREMENT SEAM PRE-REGISTRATION: PANAMA CANAL
+Global Shipping Flow Observatory, coherencemanagement.org
+Upstream Coherence Measurement Stratum (UCMS)
+Ronald L. Brogdon, ORCID https://orcid.org/0009-0009-0507-2971
+Registered: 30 October 2026 (the Git commit timestamp of this file is the
+registration time; any later change to this file is visible in its history)
+
+LAYER
+Measurement only. No SCFL operators are applied. This record defines how two
+independently maintained series are brought into relation and how the
+displacement between them is displayed.
+
+SERIES A: AIS-derived transits
+  Source:   IMF PortWatch, Daily_Chokepoints_Data (ArcGIS FeatureServer),
+            portid = 'chokepoint2' (Panama Canal)
+  Quantity: n_total, summed over each calendar month
+  Notes:    PortWatch values may be revised after first publication. The page
+            uses the values PortWatch serves at the time of viewing and shows
+            the date the data runs through. A month is used only if every
+            calendar day of that month is present in Series A.
+
+SERIES B: Official transits
+  Source:   Panama Canal Authority (ACP), Advisory to Shipping,
+            "Monthly Canal Operations Summary"
+  Quantity: "Oceangoing Transits", Total, for the month covered
+  Notes:    Entered by hand from the published advisory. Each entry records
+            the advisory number and the PDF link. Figures are entered as
+            published and are not adjusted.
+
+KNOWN DEFINITIONAL DIFFERENCE
+ACP counts oceangoing transits by its own records and beam classes. PortWatch
+counts vessels from AIS signals by ship type. No category mapping is applied
+to either series. The difference in definitions is part of what the seam
+displays and is not corrected for.
+
+DISPLACEMENT (computed per month, both series as defined above)
+  Gap           = A - B                (vessels)
+  Relative gap  = (A - B) / B          (shown as a percentage)
+
+RULES
+  1. Months: January 2025 onward, plus any later month for which both series
+     are available. Months missing either series are not shown and are not
+     interpolated.
+  2. No smoothing, no thresholds, no state labels, and no colour bands are
+     applied to the seam. It is displayed as recorded.
+  3. Every month that meets rule 1 is shown. No month is excluded after the
+     data are examined.
+  4. Any change to this rule is made by a new, dated revision of this file,
+     applies only to months entered after the revision, and is noted on the
+     page.
+
+EXTERNAL VERIFICATION
+Each Series B figure must be traceable to its ACP advisory PDF, linked beside
+the figure. Each Series A figure must be reproducible from the PortWatch
+query shown in the page's Method section.
+
+DISCLOSURE
+Before registration, one Series B figure had been seen while confirming the
+advisory format: December 2025, 1,075 oceangoing transits (ACP A-01-2026).
+No Series A monthly totals had been computed.
