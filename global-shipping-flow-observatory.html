@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="description" content="Global Shipping Flow Observatory: live chokepoint traffic from IMF PortWatch, shown as presentation values beside dated UCMS readings. Upstream Coherence Measurement Stratum (UCMS).">
+<meta name="description" content="Global Shipping Flow Observatory: live chokepoint traffic from IMF PortWatch, shown as time-stamped measurements. No SCFL operators are applied on this page. Upstream Coherence Measurement Stratum (UCMS).">
 <title>Global Shipping Flow Observatory | SCFL / UCMS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -105,13 +105,13 @@ footer .mono{font-size:12px}
   <div class="warning" role="note">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 2 21h20L12 3z"/><path d="M12 10v5"/><circle cx="12" cy="18" r="0.6" fill="currentColor"/></svg>
     <div>
-      <strong>Presentation values only</strong>
-      <p>The figures on this page are presentation values: a transparent proxy calculated from public IMF PortWatch traffic data, using the method shown below. They are not SCFL operator-derived measurements. UCMS readings appear only where marked, each with its own date.</p>
+      <strong>Measurement layer only</strong>
+      <p>The figures on this page are time-stamped measurements of chokepoint traffic, calculated from public IMF PortWatch data using the method shown below. No SCFL operators are applied on this page; operator work is performed separately by UCMS.</p>
     </div>
   </div>
 
   <h1>Global Shipping Flow Observatory</h1>
-  <p class="byline">Ronald Brogdon · Upstream Coherence Measurement Stratum (UCMS) · <span class="mono">ORCID: <a href="https://orcid.org/0009-0009-0507-2971">https://orcid.org/0009-0009-0507-2971</a></span></p>
+  <p class="byline">Ronald L. Brogdon · Upstream Coherence Measurement Stratum (UCMS) · <span class="mono">ORCID: <a href="https://orcid.org/0009-0009-0507-2971">https://orcid.org/0009-0009-0507-2971</a></span></p>
 
   <section aria-labelledby="h-net">
     <p class="kicker">Network</p>
@@ -129,9 +129,9 @@ footer .mono{font-size:12px}
         <div class="statelist num" id="stateCounts"></div>
       </div>
       <div class="card">
-        <div class="label">UCMS reading</div>
-        <div id="ucmsNet" class="ucms" style="margin-top:8px">No UCMS reading posted.</div>
-        <p>Readings are posted by UCMS on their own schedule and dated. They are separate from the presentation values on this page.</p>
+        <div class="label">Layer</div>
+        <div style="font-size:18px;font-weight:600;margin-top:8px">Measurement</div>
+        <p>Time-stamped observations against a fixed 2025 baseline. No SCFL operators are applied here; operator work is performed separately by UCMS.</p>
       </div>
     </div>
   </section>
@@ -143,9 +143,9 @@ footer .mono{font-size:12px}
     <div class="table-wrap">
       <table>
         <thead>
-          <tr><th scope="col">Chokepoint</th><th scope="col">Flow state</th><th scope="col" class="r">Transits / day<br>(7-day avg)</th><th scope="col" class="r">2025 typical</th><th scope="col" class="r">Flow vs 2025</th><th scope="col" class="r">Mix shift</th><th scope="col">Last 180 days</th><th scope="col">UCMS reading</th></tr>
+          <tr><th scope="col">Chokepoint</th><th scope="col">Flow state</th><th scope="col" class="r">Transits / day<br>(7-day avg)</th><th scope="col" class="r">2025 typical</th><th scope="col" class="r">Flow vs 2025</th><th scope="col" class="r">Mix shift</th><th scope="col">Last 180 days</th></tr>
         </thead>
-        <tbody id="rows"><tr><td colspan="8" class="empty">Loading live traffic from IMF PortWatch…</td></tr></tbody>
+        <tbody id="rows"><tr><td colspan="7" class="empty">Loading live traffic from IMF PortWatch…</td></tr></tbody>
       </table>
     </div>
   </section>
@@ -163,8 +163,8 @@ footer .mono{font-size:12px}
 
   <section aria-labelledby="h-m">
     <p class="kicker">Method</p>
-    <h2 id="h-m">How the presentation values are calculated</h2>
-    <p class="sub">Every value above follows this recipe, using public data only. It is a proxy for traffic conditions and contains no SCFL operators.</p>
+    <h2 id="h-m">How the measurements are calculated</h2>
+    <p class="sub">Every value above follows this recipe, using public data only. This is measurement only and contains no SCFL operators.</p>
     <div class="method">
 <pre>FOR each chokepoint c:
   daily      = PortWatch transits per day (all ship types)
@@ -217,7 +217,6 @@ Refresh: on every page load</pre>
   "use strict";
   var API = "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer/0/query";
   var REF_START = "2025-01-01", REF_END = "2025-12-31";
-  var READINGS_FILE = "shipping-readings.json"; // optional file of dated UCMS readings, edited by hand
   var CHOKEPOINTS = [
     {id:"chokepoint6", name:"Strait of Hormuz"},
     {id:"chokepoint1", name:"Suez Canal"},
@@ -315,13 +314,7 @@ Refresh: on every page load</pre>
       '</svg>';
   }
 
-  function readingCell(readings, id){
-    var r = readings && readings.chokepoints && readings.chokepoints[id];
-    if(!r) return '<span class="ucms">Not posted</span>';
-    return '<span class="ucms"><b>'+esc(r.reading||"")+'</b><br>as of '+esc(r.asOf||readings.asOf||"")+'</span>';
-  }
-
-  function render(results, readings){
+  function render(results){
     var tbody = $("rows");
     tbody.innerHTML = results.map(function(r){
       return '<tr>'+
@@ -332,7 +325,6 @@ Refresh: on every page load</pre>
         '<td class="r mono num">'+pct(r.flow)+'</td>'+
         '<td class="r mono num">'+(isFinite(r.mixShift)? r.mixShift.toFixed(2) : "—")+'</td>'+
         '<td>'+sparkSvg(r.spark)+'</td>'+
-        '<td>'+readingCell(readings, r.id)+'</td>'+
       '</tr>';
     }).join("");
 
@@ -358,9 +350,6 @@ Refresh: on every page load</pre>
       $("rrSignal").textContent = sig; $("rrText").textContent = txt;
     }
 
-    if(readings && readings.network){
-      $("ucmsNet").innerHTML = '<b>'+esc(readings.network.reading||"")+'</b><br>as of '+esc(readings.network.asOf||readings.asOf||"");
-    }
     var latest = results.map(function(r){return r.latest;}).sort().pop();
     $("asof").textContent = "Data through "+latest;
     $("feed").innerHTML = '<span class="dot live"></span>LIVE · IMF PortWatch';
@@ -368,16 +357,15 @@ Refresh: on every page load</pre>
 
   function fail(err){
     $("feed").innerHTML = '<span class="dot err"></span>PortWatch data unavailable';
-    $("rows").innerHTML = '<tr><td colspan="8" class="empty">'+
+    $("rows").innerHTML = '<tr><td colspan="7" class="empty">'+
       '<strong>Live feed currently unavailable.</strong><br>'+
       'The page could not load current transit counts from the IMF PortWatch ArcGIS service ('+esc(err.message||err)+'). '+
       'No values are shown rather than stale or estimated ones.<br><br>'+
-      'The architecture is still visible below: a continuous stream of time-stamped observations against a fixed 2025 baseline, with an explicit multi-day AIS lag, separate from any UCMS structural-state reading. '+
+      'The architecture is still visible below: a continuous stream of time-stamped observations against a fixed 2025 baseline, with an explicit multi-day AIS lag, separate from any UCMS operator work. '+
       'See the Method section for the exact calculation. Hard-refresh to retry.'+
       '</td></tr>';
   }
 
-  var readingsP = fetch(READINGS_FILE, {cache:"no-store"}).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; });
   // Load each chokepoint independently: show the ones that succeed, and only
   // fall back to the "unavailable" message if every one fails.
   Promise.all(CHOKEPOINTS.map(function(cp){
@@ -388,14 +376,12 @@ Refresh: on every page load</pre>
     var results = outcomes.filter(function(o){ return o.ok; }).map(function(o){ return o.value; });
     var failed = outcomes.filter(function(o){ return !o.ok; });
     if(!results.length) throw (failed[0] && failed[0].error) || new Error("no data returned");
-    return readingsP.then(function(rd){
-      render(results, rd);
-      if(failed.length){
-        $("feed").innerHTML = '<span class="dot live"></span>LIVE · IMF PortWatch (partial)';
-        $("rows").insertAdjacentHTML("beforeend", '<tr><td colspan="8" class="empty">Not loaded this time: '+
-          esc(failed.map(function(f){ return f.name; }).join(", "))+'. Refresh to retry.</td></tr>');
-      }
-    });
+    render(results);
+    if(failed.length){
+      $("feed").innerHTML = '<span class="dot live"></span>LIVE · IMF PortWatch (partial)';
+      $("rows").insertAdjacentHTML("beforeend", '<tr><td colspan="7" class="empty">Not loaded this time: '+
+        esc(failed.map(function(f){ return f.name; }).join(", "))+'. Refresh to retry.</td></tr>');
+    }
   }).catch(fail);
 })();
 </script>
