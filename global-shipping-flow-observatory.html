@@ -244,36 +244,71 @@ Refresh: on every page load</pre>
     return String(v).slice(0,10);
   }
 
-  function fetchChokepoint(cp){
-    // "date" is a DateOnly field and the service enforces standardized SQL, so a
-    // plain string comparison on it can be rejected. Filter on the integer "year"
-    // field instead; analyse() sorts by date and applies the exact window.
-    var where = "portid = '"+cp.id+"' AND year >= "+parseInt(REF_START.slice(0,4),10);
-    var fields = ["date","year","n_total","capacity"].concat(TYPES).join(",");
+  // Loading strategy (phones on slow or busy connections were dropping ports):
+  //  1. One combined query for all six chokepoints, paged one request at a time,
+  //     instead of six parallel queries.
+  //  2. Any chokepoint missing after that is retried on its own.
+  //  3. The last successful rows per chokepoint are kept in this browser, so a
+  //     port that still fails shows its last loaded data, labelled with its date.
+  // "date" is a DateOnly field under standardized SQL, so the filter uses the
+  // integer "year" field; exact date windows are applied in analyse().
+  var FIELDS = ["portid","date","year","n_total","capacity"].concat(TYPES).join(",");
+  var YEAR0 = parseInt(REF_START.slice(0,4),10);
+  var CACHE_KEY = "gsfo-rows-v1";
+
+  function getJson(url, attempt){
+    attempt = attempt || 0;
+    var ctrl = (typeof AbortController !== "undefined") ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function(){ ctrl.abort(); }, 45000) : null;
+    return fetch(url, ctrl ? {signal: ctrl.signal} : undefined)
+      .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
+      .then(function(j){ if(timer) clearTimeout(timer); if(j.error) throw new Error(j.error.message || "Query error"); return j; })
+      .catch(function(e){
+        if(timer) clearTimeout(timer);
+        if(attempt < 2) return new Promise(function(res){ setTimeout(res, 2000*(attempt+1)); }).then(function(){ return getJson(url, attempt+1); });
+        throw (e && e.name === "AbortError") ? new Error("request timed out") : e;
+      });
+  }
+
+  function queryRows(where){
     var rows = [];
-    function getJson(url, attempt){
-      var ctrl = (typeof AbortController !== "undefined") ? new AbortController() : null;
-      var timer = ctrl ? setTimeout(function(){ ctrl.abort(); }, 20000) : null;
-      return fetch(url, ctrl ? {signal: ctrl.signal} : undefined)
-        .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
-        .then(function(j){ if(timer) clearTimeout(timer); if(j.error) throw new Error(j.error.message || "Query error"); return j; })
-        .catch(function(e){
-          if(timer) clearTimeout(timer);
-          if(attempt < 1) return new Promise(function(res){ setTimeout(res, 1500); }).then(function(){ return getJson(url, attempt+1); });
-          throw (e && e.name === "AbortError") ? new Error("request timed out") : e;
-        });
-    }
     function page(offset){
-      var url = API+"?where="+encodeURIComponent(where)+"&outFields="+fields+"&orderByFields="+encodeURIComponent("ObjectId ASC")+"&resultOffset="+offset+"&resultRecordCount=1000&returnGeometry=false&f=json";
-      return getJson(url, 0).then(function(j){
-        (j.features||[]).forEach(function(f){ rows.push(f.attributes); });
-        if(((j.features||[]).length === 1000 || j.exceededTransferLimit) && offset < 5000) return page(offset+1000);
+      var url = API+"?where="+encodeURIComponent(where)+"&outFields="+FIELDS+"&orderByFields="+encodeURIComponent("ObjectId ASC")+"&resultOffset="+offset+"&resultRecordCount=1000&returnGeometry=false&f=json";
+      return getJson(url).then(function(j){
+        var f = j.features||[];
+        f.forEach(function(x){ rows.push(x.attributes); });
+        if((f.length === 1000 || j.exceededTransferLimit) && offset < 20000) return page(offset+f.length);
         return rows;
       });
     }
-    return page(0).then(function(all){
-      return all.filter(function(a){ return dateStr(a.date) >= REF_START; });
-    });
+    return page(0);
+  }
+
+  function groupByPort(rows){
+    var g = {};
+    rows.forEach(function(a){ if(dateStr(a.date) >= REF_START){ (g[a.portid] = g[a.portid] || []).push(a); } });
+    return g;
+  }
+
+  function loadCache(){ try { return JSON.parse(localStorage.getItem(CACHE_KEY) || "{}") || {}; } catch(e){ return {}; } }
+  function saveCache(c){ try { localStorage.setItem(CACHE_KEY, JSON.stringify(c)); } catch(e){} }
+
+  function loadAll(){
+    var ids = CHOKEPOINTS.map(function(c){ return "'"+c.id+"'"; }).join(",");
+    var byPort = {};
+    return queryRows("portid IN ("+ids+") AND year >= "+YEAR0)
+      .then(function(rows){ byPort = groupByPort(rows); }, function(){ /* fall through to per-port */ })
+      .then(function(){
+        var missing = CHOKEPOINTS.filter(function(c){ return !(byPort[c.id] && byPort[c.id].length >= 30); });
+        // retry missing ports one at a time
+        return missing.reduce(function(p, c){
+          return p.then(function(){
+            return queryRows("portid = '"+c.id+"' AND year >= "+YEAR0)
+              .then(function(rows){ var g = groupByPort(rows); if(g[c.id]) byPort[c.id] = g[c.id]; }, function(){});
+          });
+        }, Promise.resolve());
+      })
+      .then(function(){ return byPort; });
   }
 
   function analyse(cp, raw){
@@ -366,21 +401,27 @@ Refresh: on every page load</pre>
       '</td></tr>';
   }
 
-  // Load each chokepoint independently: show the ones that succeed, and only
-  // fall back to the "unavailable" message if every one fails.
-  Promise.all(CHOKEPOINTS.map(function(cp){
-    return fetchChokepoint(cp)
-      .then(function(rows){ return {ok:true, value:analyse(cp, rows)}; })
-      .catch(function(e){ return {ok:false, name:cp.name, error:e}; });
-  })).then(function(outcomes){
-    var results = outcomes.filter(function(o){ return o.ok; }).map(function(o){ return o.value; });
-    var failed = outcomes.filter(function(o){ return !o.ok; });
-    if(!results.length) throw (failed[0] && failed[0].error) || new Error("no data returned");
+  loadAll().then(function(byPort){
+    var cache = loadCache(), results = [], stale = [], failed = [];
+    CHOKEPOINTS.forEach(function(cp){
+      var r = null;
+      if(byPort[cp.id]){
+        try { r = analyse(cp, byPort[cp.id]); cache[cp.id] = {saved: new Date().toISOString().slice(0,10), rows: byPort[cp.id]}; } catch(e){ r = null; }
+      }
+      if(!r && cache[cp.id]){
+        try { r = analyse(cp, cache[cp.id].rows); r.stale = cache[cp.id].saved; stale.push(cp.name+" (data through "+r.latest+")"); } catch(e){ r = null; }
+      }
+      if(r) results.push(r); else failed.push(cp.name);
+    });
+    saveCache(cache);
+    if(!results.length) throw new Error("no chokepoint data returned");
     render(results);
-    if(failed.length){
+    var notes = [];
+    if(stale.length) notes.push("Showing last loaded data for: "+stale.join(", ")+".");
+    if(failed.length) notes.push("Not loaded: "+failed.join(", ")+".");
+    if(notes.length){
       $("feed").innerHTML = '<span class="dot live"></span>LIVE · IMF PortWatch (partial)';
-      $("rows").insertAdjacentHTML("beforeend", '<tr><td colspan="7" class="empty">Not loaded this time: '+
-        esc(failed.map(function(f){ return f.name; }).join(", "))+'. Refresh to retry.</td></tr>');
+      $("rows").insertAdjacentHTML("beforeend", '<tr><td colspan="7" class="empty">'+esc(notes.join(" "))+' Refresh to retry.</td></tr>');
     }
   }).catch(fail);
 })();
