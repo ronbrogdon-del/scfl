@@ -246,19 +246,35 @@ Refresh: on every page load</pre>
   }
 
   function fetchChokepoint(cp){
-    var where = "portid = '"+cp.id+"' AND date >= '"+REF_START+"'";
-    var fields = ["date","n_total","capacity"].concat(TYPES).join(",");
+    // "date" is a DateOnly field and the service enforces standardized SQL, so a
+    // plain string comparison on it can be rejected. Filter on the integer "year"
+    // field instead; analyse() sorts by date and applies the exact window.
+    var where = "portid = '"+cp.id+"' AND year >= "+parseInt(REF_START.slice(0,4),10);
+    var fields = ["date","year","n_total","capacity"].concat(TYPES).join(",");
     var rows = [];
+    function getJson(url, attempt){
+      var ctrl = (typeof AbortController !== "undefined") ? new AbortController() : null;
+      var timer = ctrl ? setTimeout(function(){ ctrl.abort(); }, 20000) : null;
+      return fetch(url, ctrl ? {signal: ctrl.signal} : undefined)
+        .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
+        .then(function(j){ if(timer) clearTimeout(timer); if(j.error) throw new Error(j.error.message || "Query error"); return j; })
+        .catch(function(e){
+          if(timer) clearTimeout(timer);
+          if(attempt < 1) return new Promise(function(res){ setTimeout(res, 1500); }).then(function(){ return getJson(url, attempt+1); });
+          throw (e && e.name === "AbortError") ? new Error("request timed out") : e;
+        });
+    }
     function page(offset){
-      var url = API+"?where="+encodeURIComponent(where)+"&outFields="+fields+"&orderByFields="+encodeURIComponent("date ASC")+"&resultOffset="+offset+"&resultRecordCount=1000&returnGeometry=false&f=json";
-      return fetch(url).then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); }).then(function(j){
-        if(j.error) throw new Error(j.error.message || "Query error");
+      var url = API+"?where="+encodeURIComponent(where)+"&outFields="+fields+"&orderByFields="+encodeURIComponent("ObjectId ASC")+"&resultOffset="+offset+"&resultRecordCount=1000&returnGeometry=false&f=json";
+      return getJson(url, 0).then(function(j){
         (j.features||[]).forEach(function(f){ rows.push(f.attributes); });
-        if((j.features||[]).length === 1000 && offset < 3000) return page(offset+1000);
+        if(((j.features||[]).length === 1000 || j.exceededTransferLimit) && offset < 5000) return page(offset+1000);
         return rows;
       });
     }
-    return page(0);
+    return page(0).then(function(all){
+      return all.filter(function(a){ return dateStr(a.date) >= REF_START; });
+    });
   }
 
   function analyse(cp, raw){
@@ -362,9 +378,25 @@ Refresh: on every page load</pre>
   }
 
   var readingsP = fetch(READINGS_FILE, {cache:"no-store"}).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; });
-  Promise.all(CHOKEPOINTS.map(function(cp){ return fetchChokepoint(cp).then(function(rows){ return analyse(cp, rows); }); }))
-    .then(function(results){ return readingsP.then(function(rd){ render(results, rd); }); })
-    .catch(fail);
+  // Load each chokepoint independently: show the ones that succeed, and only
+  // fall back to the "unavailable" message if every one fails.
+  Promise.all(CHOKEPOINTS.map(function(cp){
+    return fetchChokepoint(cp)
+      .then(function(rows){ return {ok:true, value:analyse(cp, rows)}; })
+      .catch(function(e){ return {ok:false, name:cp.name, error:e}; });
+  })).then(function(outcomes){
+    var results = outcomes.filter(function(o){ return o.ok; }).map(function(o){ return o.value; });
+    var failed = outcomes.filter(function(o){ return !o.ok; });
+    if(!results.length) throw (failed[0] && failed[0].error) || new Error("no data returned");
+    return readingsP.then(function(rd){
+      render(results, rd);
+      if(failed.length){
+        $("feed").innerHTML = '<span class="dot live"></span>LIVE · IMF PortWatch (partial)';
+        $("rows").insertAdjacentHTML("beforeend", '<tr><td colspan="8" class="empty">Not loaded this time: '+
+          esc(failed.map(function(f){ return f.name; }).join(", "))+'. Refresh to retry.</td></tr>');
+      }
+    });
+  }).catch(fail);
 })();
 </script>
 </body>
