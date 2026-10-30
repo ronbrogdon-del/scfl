@@ -166,23 +166,10 @@ footer .mono{font-size:12px}
   </section>
 
   <section aria-labelledby="h-seam">
-    <p class="kicker">Measurement seam</p>
-    <h2 id="h-seam">Panama Canal: two independent counts of the same transits</h2>
-    <p class="sub">A seam is where two independently maintained records of the same thing are required to agree. Here, monthly transits counted from ship AIS signals (IMF PortWatch) are set beside the Panama Canal Authority's official count of oceangoing transits. Each official figure links to the advisory it comes from. The gap is displayed as recorded: no smoothing, thresholds or colour bands, under a rule <a href="seam-preregistration-panama.txt">pre-registered on 30 October 2026</a> before any official figure was entered.</p>
-    <div class="card">
-      <div class="label">Monthly transits, AIS-derived vs official</div>
-      <div id="seamChart"><p>Loading…</p></div>
-      <div class="seam-legend"><span><i style="background:var(--accent)"></i>PortWatch (AIS-derived)</span><span><i style="background:var(--muted)"></i>Panama Canal Authority (official)</span></div>
-    </div>
-    <div class="table-wrap" style="margin-top:14px">
-      <table>
-        <thead>
-          <tr><th scope="col">Month</th><th scope="col" class="r">PortWatch<br>(AIS-derived)</th><th scope="col" class="r">Official<br>(ACP)</th><th scope="col" class="r">Gap<br>(vessels)</th><th scope="col" class="r">Relative gap</th><th scope="col">Official source</th></tr>
-        </thead>
-        <tbody id="seamRows"><tr><td colspan="6" class="empty">Loading…</td></tr></tbody>
-      </table>
-    </div>
-    <p class="sub" id="seamNote" style="margin-top:10px"></p>
+    <p class="kicker">Measurement seams</p>
+    <h2 id="h-seam">Two independent counts of the same transits</h2>
+    <p class="sub">A seam is where two independently maintained records of the same thing are required to agree. For each canal below, monthly transits counted from ship AIS signals (IMF PortWatch) are set beside the canal authority's own official count. Each official figure links to the document it comes from. Gaps are displayed as recorded: no smoothing, thresholds or colour bands, under rules pre-registered before any official figure was entered.</p>
+    <div id="seams"></div>
   </section>
 
   <section aria-labelledby="h-m">
@@ -217,13 +204,15 @@ Data:  IMF PortWatch Daily Chokepoints Data
        (UN Global Platform; IMF PortWatch)
 Refresh: on every page load
 
-MEASUREMENT SEAM (Panama Canal)
+MEASUREMENT SEAMS (Panama, Suez)
   A(m)  = Σ PortWatch n_total over month m,
           only if every day of m is present
-  B(m)  = ACP "Oceangoing Transits" Total, month m
+  B(m)  = canal authority's official count, month m
+          Panama: ACP "Oceangoing Transits" Total
+          Suez:   SCA "NO (Vessel)", monthly table
   gap   = A − B
   rel   = (A − B) / B
-  Rule fixed in seam-preregistration-panama.txt
+  Rules fixed in seam-preregistration-*.txt
 </pre>
     </div>
   </section>
@@ -369,10 +358,25 @@ MEASUREMENT SEAM (Panama Canal)
   }
 
 
-  var SEAM_FILE = "seam-panama-acp.json";
+  var SEAMS = [
+    {key:"panama", port:"chokepoint2", file:"seam-panama-acp.json", title:"Panama Canal", official:"Panama Canal Authority", short:"Official (ACP)", prereg:"seam-preregistration-panama.txt"},
+    {key:"suez",   port:"chokepoint1", file:"seam-suez-sca.json",   title:"Suez Canal",   official:"Suez Canal Authority",   short:"Official (SCA)", prereg:"seam-preregistration-suez.txt"}
+  ];
   function daysIn(ym){ var y=+ym.slice(0,4), m=+ym.slice(5,7); return new Date(Date.UTC(y,m,0)).getUTCDate(); }
   function monthLabel(ym){ return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+ym.slice(5,7)-1]+" "+ym.slice(0,4); }
-  function renderSeam(rows, seam, staleNote){
+  function seamBlock(cfg){
+    var k = cfg.key;
+    return '<div class="seam" style="margin-top:22px">'+
+      '<h3 style="margin:0 0 4px;font-size:17px">'+esc(cfg.title)+'</h3>'+
+      '<p class="sub" style="margin-bottom:10px">PortWatch AIS-derived transits vs '+esc(cfg.official)+' official count. Rule: <a href="'+esc(cfg.prereg)+'">pre-registration</a>.</p>'+
+      '<div class="card"><div class="label">Monthly transits, AIS-derived vs official</div><div id="seamChart-'+k+'"><p>Loading…</p></div>'+
+      '<div class="seam-legend"><span><i style="background:var(--accent)"></i>PortWatch (AIS-derived)</span><span><i style="background:var(--muted)"></i>'+esc(cfg.official)+' (official)</span></div></div>'+
+      '<div class="table-wrap" style="margin-top:14px"><table><thead><tr><th scope="col">Month</th><th scope="col" class="r">PortWatch<br>(AIS-derived)</th><th scope="col" class="r">'+esc(cfg.short).replace(" (","<br>(")+'</th><th scope="col" class="r">Gap<br>(vessels)</th><th scope="col" class="r">Relative gap</th><th scope="col">Official source</th></tr></thead>'+
+      '<tbody id="seamRows-'+k+'"><tr><td colspan="6" class="empty">Loading…</td></tr></tbody></table></div>'+
+      '<p class="sub" id="seamNote-'+k+'" style="margin-top:10px"></p></div>';
+  }
+  function renderSeam(cfg, rows, seam, staleNote){
+    var k = cfg.key, rowsEl = $("seamRows-"+k), chartEl = $("seamChart-"+k), noteEl = $("seamNote-"+k);
     var byMonth = {};
     (rows||[]).forEach(function(a){ var d = dateStr(a.date), ym = d.slice(0,7); var e = byMonth[ym] || (byMonth[ym] = {sum:0, days:{}}); if(!e.days[d]){ e.days[d]=1; e.sum += (+a.n_total||0); } });
     var out = [];
@@ -382,8 +386,8 @@ MEASUREMENT SEAM (Panama Canal)
       out.push({month:m.month, a:e.sum, b:m.official, adv:m.advisory, url:m.url});
     });
     out.sort(function(x,y){ return x.month<y.month?-1:1; });
-    if(!out.length){ $("seamRows").innerHTML = '<tr><td colspan="6" class="empty">PortWatch data for these months is not available right now. Refresh to retry.</td></tr>'; $("seamChart").innerHTML = ""; return; }
-    $("seamRows").innerHTML = out.map(function(r){
+    if(!out.length){ rowsEl.innerHTML = '<tr><td colspan="6" class="empty">PortWatch data for these months is not available right now. Refresh to retry.</td></tr>'; chartEl.innerHTML = ""; return; }
+    rowsEl.innerHTML = out.map(function(r){
       var g = r.a - r.b, rel = g / r.b;
       return '<tr><td class="mono">'+esc(monthLabel(r.month))+'</td>'+
         '<td class="r mono num">'+r.a.toLocaleString("en-US")+'</td>'+
@@ -392,8 +396,7 @@ MEASUREMENT SEAM (Panama Canal)
         '<td class="r mono num">'+(rel>0?"+":"")+(rel*100).toFixed(1)+'%</td>'+
         '<td><a href="'+esc(r.url)+'" rel="noopener">'+esc(r.adv)+'</a></td></tr>';
     }).join("");
-    // neutral two-line chart, no bands or thresholds
-    var cw = ($("seamChart").clientWidth || 640);
+    var cw = (chartEl.clientWidth || 640);
     var narrow = cw < 560;
     var W = narrow ? 360 : 640, H = narrow ? 230 : 200, L = 40, R = narrow ? 26 : 30, T = 10, B = 28;
     var vals = []; out.forEach(function(r){ vals.push(r.a, r.b); });
@@ -407,14 +410,15 @@ MEASUREMENT SEAM (Panama Canal)
     var acc = (cs.getPropertyValue("--accent")||"#6aa9ff").trim(), mut = (cs.getPropertyValue("--muted")||"#9aa6b2").trim(), ln = (cs.getPropertyValue("--line")||"#2e3742").trim();
     var ticks = [lo, (lo+hi)/2, hi].map(function(v){ return '<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(v).toFixed(1)+'" y2="'+y(v).toFixed(1)+'" stroke="'+ln+'" stroke-width="1"/><text x="'+(L-6)+'" y="'+(y(v)+4).toFixed(1)+'" text-anchor="end" font-size="11" fill="'+mut+'">'+Math.round(v)+'</text>'; }).join("");
     var step = Math.max(1, Math.ceil(out.length/(narrow ? 4 : 7)));
-    var xl = out.map(function(r,i){ return ((i%step===0 && out.length-1-i >= Math.ceil(step/2)) || i===out.length-1) ? '<text x="'+x(i).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle" font-size="11" fill="'+mut+'">'+esc(monthLabel(r.month))+'</text>' : ''; }).join("");
-    $("seamChart").innerHTML = '<svg class="seam-chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Monthly Panama Canal transits: PortWatch AIS-derived count and Panama Canal Authority official count">'+ticks+xl+line("b", mut)+line("a", acc)+'</svg>';
+    var xl = out.map(function(r,i){ return ((i%step===0 && out.length-1-i >= step) || i===out.length-1) ? '<text x="'+x(i).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle" font-size="11" fill="'+mut+'">'+esc(monthLabel(r.month))+'</text>' : ''; }).join("");
+    chartEl.innerHTML = '<svg class="seam-chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Monthly '+esc(cfg.title)+' transits: PortWatch AIS-derived count and '+esc(cfg.official)+' official count">'+ticks+xl+line("b", mut)+line("a", acc)+'</svg>';
     var notes = [];
-    if(seam.pending && seam.pending.length) notes.push("Official figures not yet entered: "+seam.pending.map(function(p){ return monthLabel(p.month)+" ("+p.advisory+")"; }).join(", ")+".");
+    if(seam.pending && seam.pending.length) notes.push("Official figures not yet entered: "+seam.pending.map(function(p){ return (p.month.length===7 ? monthLabel(p.month)+" ("+p.advisory+")" : p.month+" months ("+p.advisory+")"); }).join(", ")+".");
     notes.push("Months are shown only when PortWatch has every day of the month.");
     if(staleNote) notes.push(staleNote);
-    $("seamNote").textContent = notes.join(" ");
+    noteEl.textContent = notes.join(" ");
   }
+
 
   function sparkSvg(vals){
     var w=150, h=34, pad=2, max=1.6;
@@ -482,7 +486,8 @@ MEASUREMENT SEAM (Panama Canal)
       '</td></tr>';
   }
 
-  var seamP = fetch(SEAM_FILE, {cache:"no-store"}).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; });
+  $("seams").innerHTML = SEAMS.map(seamBlock).join("");
+  var seamP = SEAMS.map(function(cfg){ return fetch(cfg.file, {cache:"no-store"}).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }); });
   loadAll().then(function(byPort){
     var cache = loadCache(), results = [], stale = [], failed = [];
     CHOKEPOINTS.forEach(function(cp){
@@ -498,9 +503,11 @@ MEASUREMENT SEAM (Panama Canal)
     saveCache(cache);
     if(!results.length) throw new Error("no chokepoint data returned");
     render(results);
-    var seamRows = byPort["chokepoint2"] || (cache["chokepoint2"] && cache["chokepoint2"].rows) || [];
-    var seamStale = (!byPort["chokepoint2"] && cache["chokepoint2"]) ? "PortWatch values are from this browser's last successful load ("+cache["chokepoint2"].saved+")." : "";
-    seamP.then(function(seam){ if(seam) renderSeam(seamRows, seam, seamStale); else $("seamRows").innerHTML = '<tr><td colspan="6" class="empty">Official figures could not be loaded. Refresh to retry.</td></tr>'; });
+    SEAMS.forEach(function(cfg, i){
+      var rows = byPort[cfg.port] || (cache[cfg.port] && cache[cfg.port].rows) || [];
+      var stale = (!byPort[cfg.port] && cache[cfg.port]) ? "PortWatch values are from this browser's last successful load ("+cache[cfg.port].saved+")." : "";
+      seamP[i].then(function(seam){ if(seam) renderSeam(cfg, rows, seam, stale); else $("seamRows-"+cfg.key).innerHTML = '<tr><td colspan="6" class="empty">Official figures could not be loaded. Refresh to retry.</td></tr>'; });
+    });
     var notes = [];
     if(stale.length) notes.push("Showing last loaded data for: "+stale.join(", ")+".");
     if(failed.length) notes.push("Not loaded: "+failed.join(", ")+".");

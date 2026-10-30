@@ -1,0 +1,87 @@
+{
+ "seam": "Suez Canal: AIS-derived transits (IMF PortWatch) vs official vessel count (Suez Canal Authority)",
+ "preregistration": "seam-preregistration-suez.txt",
+ "registered": "2026-10-30",
+ "seriesB": "SCA annual navigation report, Table (2) Monthly NO & Net Ton, NO (Vessel)",
+ "pending": [
+  {
+   "month": "2026",
+   "advisory": "awaiting SCA publication",
+   "reason": "not yet published by SCA in an admissible form"
+  }
+ ],
+ "months": [
+  {
+   "month": "2025-01",
+   "official": 1046,
+   "advisory": "SCA 2025 annual report, Table (2)",
+   "url": "https://www.suezcanal.gov.eg/English/Downloads/DownloadsDocLibrary/Navigation%20Reports/Annual%20Reports%E2%80%8B%E2%80%8B%E2%80%8B/2025.pdf"
+  },
+  {
+   "month": "2025-02",
+   "official": 864,
+   "advisory": "SCA 2025 annual report, Table (2)",
+   "url": "https://www.suezcanal.gov.eg/English/Downloads/DownloadsDocLibrary/Navigation%20Reports/Annual%20Reports%E2%80%8B%E2%80%8B%E2%80%8B/2025.pdf"
+  },
+  {
+   "month": "2025-03",
+   "official": 1071,
+   "advisory": "SCA 2025 annual report, Table (2)",
+   "url": "https://www.suezcanal.gov.eg/English/Downloads/DownloadsDocLibrary/Navigation%20Reports/Annual%20Reports%E2%80%8B%E2%80%8B%E2%80%8B/2025.pdf"
+  },
+  {
+   "month": "2025-04",
+   "official": 1038,
+   "advisory": "SCA 2025 annual report, Table (2)",
+   "url": "https://www.suezcanal.gov.eg/English/Downloads/DownloadsDocLibrary/Navigation%20Reports/Annual%20Reports%E2%80%8B%E2%80%8B%E2%80%8B/2025.pdf"
+  },
+  {
+   "month": "2025-05",
+   "official": 1035,
+   "advisory": "SCA 2025 annual report, Table (2)",
+   "url": "https://www.suezcanal.gov.eg/English/Downloads/DownloadsDocLibrary/Navigation%20Reports/Annual%20Reports%E2%80%8B%E2%80%8B%E2%80%8B/2025.pdf"
+  },
+  {
+   "month": "2025-06",
+   "official": 1001,
+   "advisory": "SCA 2025 annual report, Table (2)",
+   "url": "https://www.suezcanal.gov.eg/English/Downloads/DownloadsDocLibrary/Navigation%20Reports/Annual%20Reports%E2%80%8B%E2%80%8B%E2%80%8B/2025.pdf"
+  },
+  {
+   "month": "2025-07",
+   "official": 1055,
+   "advisory": "SCA 2025 annual report, Table (2)",
+   "url": "https://www.suezcanal.gov.eg/English/Downloads/DownloadsDocLibrary/Navigation%20Reports/Annual%20Reports%E2%80%8B%E2%80%8B%E2%80%8B/2025.pdf"
+  },
+  {
+   "month": "2025-08",
+   "official": 1070,
+   "advisory": "SCA 2025 annual report, Table (2)",
+   "url": "https://www.suezcanal.gov.eg/English/Downloads/DownloadsDocLibrary/Navigation%20Reports/Annual%20Reports%E2%80%8B%E2%80%8B%E2%80%8B/2025.pdf"
+  },
+  {
+   "month": "2025-09",
+   "official": 1152,
+   "advisory": "SCA 2025 annual report, Table (2)",
+   "url": "https://www.suezcanal.gov.eg/English/Downloads/DownloadsDocLibrary/Navigation%20Reports/Annual%20Reports%E2%80%8B%E2%80%8B%E2%80%8B/2025.pdf"
+  },
+  {
+   "month": "2025-10",
+   "official": 1128,
+   "advisory": "SCA 2025 annual report, Table (2)",
+   "url": "https://www.suezcanal.gov.eg/English/Downloads/DownloadsDocLibrary/Navigation%20Reports/Annual%20Reports%E2%80%8B%E2%80%8B%E2%80%8B/2025.pdf"
+  },
+  {
+   "month": "2025-11",
+   "official": 1160,
+   "advisory": "SCA 2025 annual report, Table (2)",
+   "url": "https://www.suezcanal.gov.eg/English/Downloads/DownloadsDocLibrary/Navigation%20Reports/Annual%20Reports%E2%80%8B%E2%80%8B%E2%80%8B/2025.pdf"
+  },
+  {
+   "month": "2025-12",
+   "official": 1138,
+   "advisory": "SCA 2025 annual report, Table (2)",
+   "url": "https://www.suezcanal.gov.eg/English/Downloads/DownloadsDocLibrary/Navigation%20Reports/Annual%20Reports%E2%80%8B%E2%80%8B%E2%80%8B/2025.pdf"
+  }
+ ]
+}
