@@ -1,0 +1,31 @@
+{
+  "seam": "Panama Canal: AIS-derived transits (IMF PortWatch) vs official oceangoing transits (Panama Canal Authority)",
+  "preregistration": "seam-preregistration-panama.txt",
+  "registered": "2026-10-30",
+  "seriesB": "ACP Advisory to Shipping, Monthly Canal Operations Summary, Oceangoing Transits, Total",
+  "pending": [
+    {"month": "2025-01", "advisory": "A-04-2025", "reason": "advisory not yet retrieved"},
+    {"month": "2025-05", "advisory": "A-18-2025", "reason": "advisory not yet retrieved"},
+    {"month": "2025-06", "advisory": "A-21-2025", "reason": "advisory not yet retrieved"}
+  ],
+  "months": [
+    {"month": "2025-02", "official": 975,  "advisory": "A-05-2025", "url": "https://pancanal.com/wp-content/uploads/2025/03/ADV-05-2025-Monthly-Canal-Operations-Summary-Feburary-2025.pdf"},
+    {"month": "2025-03", "official": 1045, "advisory": "A-08-2025", "url": "https://pancanal.com/wp-content/uploads/2025/01/ADV-08-2025-Monthly-Canal-Operations-Summary-March.pdf"},
+    {"month": "2025-04", "official": 1021, "advisory": "A-11-2025", "url": "https://pancanal.com/wp-content/uploads/2025/01/ADV-11-2025-Monthly-Canal-Operations-Summary-April-2025-.pdf"},
+    {"month": "2025-07", "official": 1012, "advisory": "A-24-2025", "url": "https://pancanal.com/wp-content/uploads/2025/01/ADV-24-2025-Monthly-Canal-Operations-Summary-July-2025.pdf"},
+    {"month": "2025-08", "official": 1009, "advisory": "A-26-2025", "url": "https://pancanal.com/wp-content/uploads/2025/01/ADV-26-2025-Monthly-Canal-Operations-Summary-August-2025.pdf"},
+    {"month": "2025-09", "official": 994,  "advisory": "A-30-2025", "url": "https://pancanal.com/wp-content/uploads/2025/01/ADV-30-2025-Monthly-Canal-Operations-Summary-September-2025.pdf"},
+    {"month": "2025-10", "official": 1028, "advisory": "A-35-2025", "url": "https://pancanal.com/wp-content/uploads/2025/11/ADV-35-2025-Monthly-Canal-Operations-Summary-October-2025-.pdf"},
+    {"month": "2025-11", "official": 1006, "advisory": "A-36-2025", "url": "https://pancanal.com/wp-content/uploads/2025/12/ADV-36-2025-Monthly-Canal-Operations-Summary-November-2025.pdf"},
+    {"month": "2025-12", "official": 1075, "advisory": "A-01-2026", "url": "https://pancanal.com/wp-content/uploads/2026/01/ADV-01-2026-Monthly-Canal-Operations-Summary-December-2025.pdf"},
+    {"month": "2026-01", "official": 1049, "advisory": "A-03-2026", "url": "https://pancanal.com/wp-content/uploads/2026/02/ADV-03-2026-Monthly-Canal-Operations-Summary-January-2026.pdf"},
+    {"month": "2026-02", "official": 981,  "advisory": "A-03-2026 (as printed)", "note": "Header reads A-03-2026; file name is ADV-04-2026", "url": "https://pancanal.com/wp-content/uploads/2026/03/ADV-04-2026-Monthly-Canal-Operations-Summary-February-2026.pdf"},
+    {"month": "2026-03", "official": 1148, "advisory": "A-09-2026", "url": "https://pancanal.com/wp-content/uploads/2026/04/ADV-09-2026-Monthly-Canal-Operations-Summary-March-2026.pdf"},
+    {"month": "2026-04", "official": 1161, "advisory": "A-14-2026", "url": "https://pancanal.com/wp-content/uploads/2026/04/ADV-14-2026-Monthly-Canal-Operations-Summary-April-2026-.pdf"},
+    {"month": "2026-05", "official": 1149, "advisory": "A-19-2026", "url": "https://pancanal.com/wp-content/uploads/2026/06/ADV-19-2026-Monthly-Canal-Operations-Summary-May-2026.pdf"},
+    {"month": "2026-06", "official": 975,  "advisory": "A-23-2026", "url": "https://pancanal.com/wp-content/uploads/2026/07/ADV-23-2026-Monthly-Canal-Operations-Summary-June-2026.pdf"},
+    {"month": "2026-07", "official": 1055, "advisory": "A-26-2026", "url": "https://pancanal.com/wp-content/uploads/2026/08/ADV-26-2026-Monthly-Canal-Operations-Summary-July-2026.pdf"},
+    {"month": "2026-08", "official": 1029, "advisory": "A-34-2026", "url": "https://pancanal.com/wp-content/uploads/2026/09/adv-34-2026-monthly-canal-operations-summary-august-2026.pdf"},
+    {"month": "2026-09", "official": 979,  "advisory": "A-38-2026", "url": "https://pancanal.com/wp-content/uploads/2026/10/ADV-38-2026-Monthly-Canal-Operations-Summary-September-2026.pdf"}
+  ]
+}
