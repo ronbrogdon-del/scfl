@@ -1,0 +1,64 @@
+MEASUREMENT SEAM PRE-REGISTRATION: SUEZ CANAL
+Global Shipping Flow Observatory, coherencemanagement.org
+Upstream Coherence Measurement Stratum (UCMS)
+Ronald L. Brogdon, ORCID https://orcid.org/0009-0009-0507-2971
+Registered: 30 October 2026 (the Git commit timestamp of this file is the
+registration time; any later change to this file is visible in its history)
+
+LAYER
+Measurement only. No SCFL operators are applied. This record defines how two
+independently maintained series are brought into relation and how the
+displacement between them is displayed. It follows the same rules as the
+Panama Canal seam (seam-preregistration-panama.txt).
+
+SERIES A: AIS-derived transits
+  Source:   IMF PortWatch, Daily_Chokepoints_Data (ArcGIS FeatureServer),
+            portid = 'chokepoint1' (Suez Canal)
+  Quantity: n_total, summed over each calendar month
+  Notes:    PortWatch values may be revised after first publication. The page
+            uses the values PortWatch serves at the time of viewing. A month
+            is used only if every calendar day of that month is present.
+
+SERIES B: Official transits
+  Source:   Suez Canal Authority (SCA), publications on suezcanal.gov.eg only.
+            Primary: the SCA annual navigation report, monthly table
+            "NO ( Vessel )" (for 2025: Table (2), "Monthly NO & Net Ton").
+            Also admissible: an SCA statement on suezcanal.gov.eg that gives
+            the vessel count for one complete calendar month.
+  Quantity: number of vessels for the month, as published
+  Notes:    Entered by hand. Each entry records the document and its link.
+            Figures reported only by third parties (news outlets, brokers)
+            are not used. If an annual report and an earlier SCA statement
+            differ for the same month, the annual report figure is used and
+            the difference is noted.
+
+KNOWN DEFINITIONAL DIFFERENCE
+SCA counts vessels by its own transit records (both directions, all ship
+types it records). PortWatch counts vessels from AIS signals by ship type. No
+category mapping is applied. The difference in definitions is part of what
+the seam displays and is not corrected for.
+
+DISPLACEMENT (computed per month)
+  Gap           = A - B                (vessels)
+  Relative gap  = (A - B) / B          (shown as a percentage)
+
+RULES
+  1. Months: January 2025 onward, for which both series are available.
+     Months missing either series are not shown and are not interpolated.
+  2. No smoothing, no thresholds, no state labels, and no colour bands.
+  3. Every month that meets rule 1 is shown. No month is excluded after the
+     data are examined.
+  4. Any change to this rule is made by a new, dated revision of this file,
+     applies only to months entered after the revision, and is noted on the
+     page.
+
+EXTERNAL VERIFICATION
+Each Series B figure must be traceable to the SCA document linked beside it.
+Each Series A figure must be reproducible from the PortWatch query shown in
+the page's Method section.
+
+DISCLOSURE
+Before registration, no Series B monthly figure from an SCA document had
+been read. News headlines seen while locating sources mentioned Suez monthly
+traffic levels in 2026 (e.g. a month above 1,300 ships); these are third-party
+reports and are not used. No Series A monthly totals had been computed.
