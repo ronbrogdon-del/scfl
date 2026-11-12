@@ -1,1 +1,289 @@
-$(cat /workspace/artifacts/flint_clean.html)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Flint Water Crisis: Layers and Seams – SCFL / UCMS Reconstruction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>
+:root {
+  --water: #1F6F8B; --water-soft: #E3F0F5; --seam: #B5650D; --seam-soft: #FBEEDD;
+}
+.theme-research {
+  --water: #1F6F8B; --seam: #B5650D;
+}
+.wrap { max-width: 980px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+.page-header { display: flex; flex-direction: column; gap: 10px; }
+.eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--water); }
+h1 { font-weight: 800; font-size: clamp(28px, 4.4vw, 44px); line-height: 1.1; margin: 0; }
+.lede { color: var(--muted); max-width: 66ch; margin: 0; }
+.legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.sw { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
+.stack { display: flex; flex-direction: column; }
+.layer { background: var(--surface); border: 1px solid var(--line); border-left: 6px solid var(--water); border-radius: 10px; padding: 16px 18px; display: grid; grid-template-columns: 150px 1fr; gap: 6px 20px; }
+.layer .num { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--water); letter-spacing: .06em; }
+.layer h2 { font-size: 18px; margin: 0; font-weight: 700; }
+.layer p { margin: 0; color: var(--muted); }
+.layer .head { display: flex; flex-direction: column; gap: 2px; }
+.seam { position: relative; margin: 0 0 0 28px; padding: 14px 18px 14px 26px; border-left: 3px dashed var(--seam); display: grid; grid-template-columns: 150px 1fr; gap: 6px 20px; }
+.seam::before { content: ""; position: absolute; left: -9px; top: 18px; width: 15px; height: 15px; border-radius: 50%; background: var(--seam); border: 3px solid var(--bg); }
+.seam .tag { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; color: var(--seam); letter-spacing: .06em; text-transform: uppercase; }
+.seam .body { display: flex; flex-direction: column; gap: 8px; }
+.seam .what { margin: 0; font-weight: 600; }
+.dates { display: flex; flex-direction: column; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.dates li { display: grid; grid-template-columns: 96px 1fr; gap: 10px; font-size: 14px; }
+.dates time { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--muted); padding-top: 2px; }
+.reads { background: var(--seam-soft); border-radius: 8px; padding: 8px 12px; font-size: 14px; }
+.reads b { color: var(--seam); font-weight: 700; }
+.cross { background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--seam); border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 8px; }
+.cross h2 { margin: 0; font-size: 18px; }
+.cross p { margin: 0; color: var(--muted); }
+.iso { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
+.iso svg { display: block; width: 100%; min-width: 640px; height: auto; }
+.iso .lbl { fill: var(--text); font-size: 15px; font-weight: 700; }
+.iso .sub { fill: var(--muted); font-size: 12.5px; }
+.iso .sl { fill: var(--seam); font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; font-weight: 600; letter-spacing: .04em; }
+.iso .seamline { stroke: var(--seam); }
+.iso .seamfill { fill: var(--seam); }
+.iso .leader { stroke: var(--muted); }
+.note { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; display: flex; flex-direction: column; gap: 6px; }
+.note p { margin: 0; }
+@media (max-width: 640px) {
+  .layer, .seam { grid-template-columns: 1fr; }
+  .seam { margin-left: 14px; }
+  .dates li { grid-template-columns: 84px 1fr; }
+}
+</style>
+</head>
+<body class="theme-research">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">SCFL</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Overview</a>
+        <a href="one-question.html">One Question Challenge</a>
+        <a href="videos.html">Videos</a>
+        <a href="cases.html">Cases</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="wrap">
+<header>
+  <div class="eyebrow">UCMS · SCFL reconstruction · Flint, Michigan, 2014–2016</div>
+  <h1>Flint water crisis: the layers and the seams between them</h1>
+  <p class="lede">Seven layers, from the river to the people who decided how it was used. Each seam is a place where two layers had to stay in step. In Flint they came apart one after another, and the signals at each seam were visible months before the emergency was declared.</p>
+  <div class="legend">
+    <span><i class="sw" style="background:var(--water)"></i>Layer of the system</span>
+    <span><i class="sw" style="background:var(--seam)"></i>Seam between layers</span>
+  </div>
+</header>
+
+<div class="iso" role="img" aria-label="Exploded view of the Flint water system: seven stacked layers from source water at the bottom to governance at the top, with six seams between them and a decision seam linking governance to treatment">
+<svg viewBox="0 0 1060 860" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="seamfill"/></marker>
+  </defs>
+
+  <!-- Layer 1: Source water (bottom) -->
+  <g transform="matrix(2.6 1.1 -2.6 1.1 600 610)">
+    <rect width="100" height="100" fill="#CFE6EE" fill-opacity=".95" stroke="#7F919B" vector-effect="non-scaling-stroke"/>
+    <path d="M0 58 C18 52 28 66 46 54 S76 40 100 46" fill="none" stroke="#2C7DA0" stroke-width="4" vector-effect="non-scaling-stroke"/>
+    <path d="M30 60 C34 74 30 86 36 100" fill="none" stroke="#2C7DA0" stroke-width="2" vector-effect="non-scaling-stroke"/>
+    <path d="M70 46 C66 30 74 18 70 0" fill="none" stroke="#2C7DA0" stroke-width="2" vector-effect="non-scaling-stroke"/>
+  </g>
+  <!-- Layer 2: Treatment plant -->
+  <g transform="matrix(2.6 1.1 -2.6 1.1 600 515)">
+    <rect width="100" height="100" fill="#D5ECE4" fill-opacity=".93" stroke="#7F919B" vector-effect="non-scaling-stroke"/>
+    <rect x="34" y="34" width="32" height="32" fill="#B9DCCF" stroke="#2E7D6B" vector-effect="non-scaling-stroke"/>
+    <circle cx="44" cy="44" r="5" fill="#2E7D6B" fill-opacity=".55"/><circle cx="56" cy="44" r="5" fill="#2E7D6B" fill-opacity=".55"/>
+    <circle cx="44" cy="56" r="5" fill="#2E7D6B" fill-opacity=".55"/><circle cx="56" cy="56" r="5" fill="#2E7D6B" fill-opacity=".55"/>
+  </g>
+  <!-- Layer 3: Distribution pipes -->
+  <g transform="matrix(2.6 1.1 -2.6 1.1 600 420)">
+    <rect width="100" height="100" fill="#E1E6EA" fill-opacity=".93" stroke="#7F919B" vector-effect="non-scaling-stroke"/>
+    <g stroke="#5F7280" stroke-width="2" vector-effect="non-scaling-stroke" fill="none">
+      <path d="M50 4V96" vector-effect="non-scaling-stroke"/><path d="M12 22H88" vector-effect="non-scaling-stroke"/><path d="M12 42H88" vector-effect="non-scaling-stroke"/>
+      <path d="M12 62H88" vector-effect="non-scaling-stroke"/><path d="M12 82H88" vector-effect="non-scaling-stroke"/>
+      <path d="M22 22V82" vector-effect="non-scaling-stroke"/><path d="M78 22V82" vector-effect="non-scaling-stroke"/>
+    </g>
+  </g>
+  <!-- Layer 4: Household taps -->
+  <g transform="matrix(2.6 1.1 -2.6 1.1 600 325)">
+    <rect width="100" height="100" fill="#EEE7DA" fill-opacity=".93" stroke="#7F919B" vector-effect="non-scaling-stroke"/>
+    <g fill="#A88E66">
+      <rect x="14" y="16" width="6" height="6"/><rect x="28" y="16" width="6" height="6"/><rect x="62" y="16" width="6" height="6"/><rect x="78" y="16" width="6" height="6"/>
+      <rect x="14" y="36" width="6" height="6"/><rect x="62" y="36" width="6" height="6"/><rect x="78" y="36" width="6" height="6"/>
+      <rect x="28" y="56" width="6" height="6"/><rect x="62" y="56" width="6" height="6"/><rect x="14" y="76" width="6" height="6"/>
+      <rect x="28" y="76" width="6" height="6"/><rect x="62" y="76" width="6" height="6"/><rect x="78" y="76" width="6" height="6"/>
+    </g>
+  </g>
+  <!-- Layer 5: Public health -->
+  <g transform="matrix(2.6 1.1 -2.6 1.1 600 230)">
+    <rect width="100" height="100" fill="#F2DEDE" fill-opacity=".93" stroke="#7F919B" vector-effect="non-scaling-stroke"/>
+    <g fill="#B5565A" fill-opacity=".7">
+      <circle cx="20" cy="24" r="2.4"/><circle cx="34" cy="30" r="2.4"/><circle cx="58" cy="22" r="2.4"/><circle cx="74" cy="34" r="2.4"/>
+      <circle cx="26" cy="52" r="2.4"/><circle cx="48" cy="48" r="2.4"/><circle cx="66" cy="58" r="2.4"/><circle cx="82" cy="64" r="2.4"/>
+      <circle cx="18" cy="76" r="2.4"/><circle cx="40" cy="78" r="2.4"/><circle cx="60" cy="84" r="2.4"/>
+    </g>
+  </g>
+  <!-- Layer 6: Community and residents -->
+  <g transform="matrix(2.6 1.1 -2.6 1.1 600 135)">
+    <rect width="100" height="100" fill="#EFE6D0" fill-opacity=".93" stroke="#7F919B" vector-effect="non-scaling-stroke"/>
+    <g fill="#8A6D3B" fill-opacity=".75">
+      <circle cx="24" cy="26" r="2"/><circle cx="29" cy="30" r="2"/><circle cx="21" cy="32" r="2"/>
+      <circle cx="66" cy="28" r="2"/><circle cx="71" cy="24" r="2"/><circle cx="70" cy="32" r="2"/>
+      <circle cx="40" cy="64" r="2"/><circle cx="45" cy="60" r="2"/><circle cx="44" cy="68" r="2"/><circle cx="36" cy="68" r="2"/>
+      <circle cx="78" cy="72" r="2"/><circle cx="74" cy="78" r="2"/>
+    </g>
+  </g>
+  <!-- Layer 7: Governance (top) -->
+  <g transform="matrix(2.6 1.1 -2.6 1.1 600 40)">
+    <rect width="100" height="100" fill="#D9DFEA" fill-opacity=".95" stroke="#7F919B" vector-effect="non-scaling-stroke"/>
+    <g fill="#4E5F7E" fill-opacity=".6">
+      <rect x="18" y="20" width="16" height="12"/><rect x="42" y="20" width="16" height="12"/><rect x="66" y="20" width="16" height="12"/>
+      <rect x="30" y="60" width="16" height="12"/><rect x="56" y="60" width="16" height="12"/>
+    </g>
+  </g>
+
+  <!-- Seams between layers -->
+  <g class="seamline" fill="none" stroke-width="2.5" stroke-dasharray="6 5">
+    <path d="M340 150V245"/><path d="M340 245V340"/><path d="M340 340V435"/><path d="M340 435V530"/><path d="M340 530V625"/><path d="M340 625V720"/>
+  </g>
+  <g class="seamfill">
+    <circle cx="340" cy="197" r="7"/><circle cx="340" cy="292" r="7"/><circle cx="340" cy="387" r="7"/><circle cx="340" cy="482" r="7"/><circle cx="340" cy="577" r="7"/><circle cx="340" cy="672" r="7"/>
+  </g>
+
+  <!-- Leaders from labels to layers -->
+  <g class="leader" stroke-width="1">
+    <path d="M322 150H338"/><path d="M322 245H338"/><path d="M322 340H338"/><path d="M322 435H338"/><path d="M322 530H338"/><path d="M322 625H338"/><path d="M322 720H338"/>
+  </g>
+
+  <!-- Layer labels -->
+  <text class="lbl" x="316" y="146" text-anchor="end">7. Governance and oversight</text>
+  <text class="sub" x="316" y="164" text-anchor="end">Emergency manager, city, MDEQ, EPA</text>
+  <text class="lbl" x="316" y="241" text-anchor="end">6. Community and residents</text>
+  <text class="sub" x="316" y="259" text-anchor="end">Complaints, citizen sampling</text>
+  <text class="lbl" x="316" y="336" text-anchor="end">5. Public health</text>
+  <text class="sub" x="316" y="354" text-anchor="end">Blood lead, Legionnaires’ disease</text>
+  <text class="lbl" x="316" y="431" text-anchor="end">4. Household taps</text>
+  <text class="sub" x="316" y="449" text-anchor="end">Homes, schools, businesses</text>
+  <text class="lbl" x="316" y="526" text-anchor="end">3. Distribution pipes</text>
+  <text class="sub" x="316" y="544" text-anchor="end">Iron mains, lead service lines</text>
+  <text class="lbl" x="316" y="621" text-anchor="end">2. Treatment plant</text>
+  <text class="sub" x="316" y="639" text-anchor="end">Flint Water Treatment Plant</text>
+  <text class="lbl" x="316" y="716" text-anchor="end">1. Source water</text>
+  <text class="sub" x="316" y="734" text-anchor="end">Flint River, from April 2014</text>
+
+  <!-- Seam labels -->
+  <text class="sl" x="316" y="201" text-anchor="end">SEAM 6 · RESIDENTS TO REGULATORS</text>
+  <text class="sl" x="316" y="296" text-anchor="end">SEAM 5 · HEALTH TO COMMUNITY</text>
+  <text class="sl" x="316" y="391" text-anchor="end">SEAM 4 · TAPS TO HEALTH</text>
+  <text class="sl" x="316" y="486" text-anchor="end">SEAM 3 · PIPES TO TAPS</text>
+  <text class="sl" x="316" y="581" text-anchor="end">SEAM 2 · TREATMENT TO PIPES</text>
+  <text class="sl" x="316" y="676" text-anchor="end">SEAM 1 · SOURCE TO TREATMENT</text>
+
+  <!-- Cross-layer decision seam -->
+  <path class="seamline" d="M864 150C978 265 978 512 864 622" fill="none" stroke-width="2.5" stroke-dasharray="6 5" marker-end="url(#arw)"/>
+  <text class="sl" x="958" y="372">DECISION</text>
+  <text class="sl" x="958" y="390">SEAM</text>
+  <text class="sub" x="958" y="408">2014 source</text>
+  <text class="sub" x="958" y="424">switch</text>
+</svg>
+</div>
+
+<div class="stack">
+
+  <div class="layer"><div class="head"><span class="num">LAYER 7</span><h2>Governance and oversight</h2></div>
+    <p>State-appointed emergency management, the city, the Michigan Department of Environmental Quality, and EPA Region 5.</p></div>
+
+  <div class="seam"><span class="tag">Seam 6 · Residents to regulators</span>
+    <div class="body"><p class="what">Warnings reached the decision makers and were not acted on.</p>
+      <ul class="dates">
+        <li><time>Jun 2015</time><span>An EPA staff memo flags missing corrosion control and high lead.</span></li>
+        <li><time>Oct 16, 2015</time><span>Flint switches back to Detroit water.</span></li>
+        <li><time>Jan 2016</time><span>State and federal emergency declarations.</span></li>
+      </ul>
+      <div class="reads"><b>What SCFL would read:</b> whether reports from below and decisions from above still moved together, or decoupled.</div></div></div>
+
+  <div class="layer"><div class="head"><span class="num">LAYER 6</span><h2>Community and residents</h2></div>
+    <p>Households reporting discolored, foul-smelling water and rashes, and organizing their own testing.</p></div>
+
+  <div class="seam"><span class="tag">Seam 5 · Health to community</span>
+    <div class="body"><p class="what">People felt the effects before any official measure confirmed them.</p>
+      <ul class="dates">
+        <li><time>2014–2015</time><span>Repeated resident complaints at public meetings.</span></li>
+        <li><time>Aug–Sep 2015</time><span>Citizen sampling with Virginia Tech finds elevated lead across the city.</span></li>
+      </ul>
+      <div class="reads"><b>What SCFL would read:</b> the gap between what residents reported and what official monitoring showed.</div></div></div>
+
+  <div class="layer"><div class="head"><span class="num">LAYER 5</span><h2>Public health</h2></div>
+    <p>Blood lead levels, bacterial illness and disease surveillance.</p></div>
+
+  <div class="seam"><span class="tag">Seam 4 · Taps to health</span>
+    <div class="body"><p class="what">Contaminated water reached people's bodies.</p>
+      <ul class="dates">
+        <li><time>2014–2015</time><span>A Legionnaires’ disease outbreak in Genesee County, with at least 12 deaths.</span></li>
+        <li><time>Sep 2015</time><span>Hurley Medical Center study shows children’s elevated blood lead rose after the switch.</span></li>
+      </ul>
+      <div class="reads"><b>What SCFL would read:</b> whether health indicators stayed coupled to normal water quality, or began tracking the change in source.</div></div></div>
+
+  <div class="layer"><div class="head"><span class="num">LAYER 4</span><h2>Household taps</h2></div>
+    <p>Premise plumbing in homes, schools and businesses.</p></div>
+
+  <div class="seam"><span class="tag">Seam 3 · Pipes to taps</span>
+    <div class="body"><p class="what">Lead and iron released from pipes arrived at the tap.</p>
+      <ul class="dates">
+        <li><time>Oct 2014</time><span>General Motors stops using city water at its engine plant because it corrodes parts.</span></li>
+        <li><time>Feb 2015</time><span>Very high lead found in a resident’s home, prompting EPA attention.</span></li>
+      </ul>
+      <div class="reads"><b>What SCFL would read:</b> whether water leaving the plant and water arriving at taps still matched.</div></div></div>
+
+  <div class="layer"><div class="head"><span class="num">LAYER 3</span><h2>Distribution pipes</h2></div>
+    <p>Aging iron mains and lead service lines carrying water to the city.</p></div>
+
+  <div class="seam"><span class="tag">Seam 2 · Treatment to pipes</span>
+    <div class="body"><p class="what">No corrosion control was added, so the protective scale inside the pipes broke down.</p>
+      <ul class="dates">
+        <li><time>Aug–Sep 2014</time><span>Boil-water advisories after coliform bacteria detections.</span></li>
+        <li><time>Jan 2015</time><span>Notice of violation for disinfection byproducts (TTHM).</span></li>
+      </ul>
+      <div class="reads"><b>What SCFL would read:</b> whether chlorine dosing, residuals and water age still held their normal relationship across the network.</div></div></div>
+
+  <div class="layer"><div class="head"><span class="num">LAYER 2</span><h2>Treatment plant</h2></div>
+    <p>The Flint Water Treatment Plant, brought back into full-time use to treat river water.</p></div>
+
+  <div class="seam"><span class="tag">Seam 1 · Source to treatment</span>
+    <div class="body"><p class="what">The source changed and the treatment did not change to match it.</p>
+      <ul class="dates">
+        <li><time>Apr 25, 2014</time><span>Flint switches from Detroit’s treated Lake Huron water to the Flint River.</span></li>
+      </ul>
+      <div class="reads"><b>What SCFL would read:</b> whether treatment settings tracked the new source’s chemistry, or stayed fixed while the water changed.</div></div></div>
+
+  <div class="layer"><div class="head"><span class="num">LAYER 1</span><h2>Source water</h2></div>
+    <p>The Flint River, more corrosive than the Lake Huron water it replaced.</p></div>
+
+</div>
+
+<div class="cross">
+  <span class="tag" style="font-family:var(--mono);font-size:12px;font-weight:600;color:var(--seam);letter-spacing:.06em;text-transform:uppercase">Cross-layer seam · Governance to treatment</span>
+  <h2>The decision seam that set the rest in motion</h2>
+  <p>The source switch was an interim cost decision made under state emergency management, and corrosion control was not required at the start. This seam skips the layers in between: a choice at the top changed the physics at the bottom, and each seam above it then had to absorb the change.</p>
+</div>
+
+<div class="note">
+  <p><b>About this map.</b> It is drawn from the public record to show the structure of the system: its layers, its seams and the dated signals at each one. It does not show SCFL readings. The “What SCFL would read” lines describe the relationship measured at each seam, not results.</p>
+  <p>Sources: Flint Water Advisory Task Force, Final Report (March 2016); U.S. EPA Office of Inspector General, Report 18-P-0221 (2018); Hanna-Attisha et al., American Journal of Public Health (2016).</p>
+  <p>Ronald L. Brogdon · Team Leader, Upstream Coherence Measurement Stratum (UCMS) · ORCID: https://orcid.org/0009-0009-0507-2971 · measurement@coherencemanagement.org</p>
+</div>
+</div>
+    </section>
+  </main>
+</body>
+</html>
