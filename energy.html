@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Energy | SCFL / UCMS</title>
+  <meta name="description" content="Common and hard problems across energy segments — generation, transmission, distribution, markets, oil & gas — and how SCFL reads the relational structure and recoverability conventional monitoring misses.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="canonical" href="https://coherencemanagement.org/energy.html">
+  <style>
+    .segment-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .segment-card { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.1rem; }
+    .segment-card h3 { margin: 0 0 0.4rem; font-size: 1.05rem; }
+    .segment-card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+    .problem-block { margin: 2rem 0; padding-bottom: 1.5rem; border-bottom: 1px solid var(--line); }
+    .problem-block h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .problem-meta { font-size: 0.9rem; color: var(--primary); font-weight: 600; margin-bottom: 0.75rem; }
+    .ps-cta { border: 1.5px solid var(--primary); border-radius: 12px; padding: 1.25rem 1.5rem; margin: 2rem 0 1rem; }
+    .ps-cta h2 { margin: 0.2rem 0 0.4rem; font-size: 1.35rem; }
+    .ps-cta p { margin: 0 0 0.9rem; color: var(--muted); }
+    .sources { font-size: 0.9rem; color: var(--muted); margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">SCFL</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Overview</a>
+        <a href="energy.html" aria-current="page">Energy</a>
+        <a href="problem-spaces.html">Problem Spaces</a>
+        <a href="scfl-maas-prototype-menu.html">MaaS Prototypes</a>
+        <a href="papers.html">Papers</a>
+        <a href="cases.html">Cases</a>
+        <a href="videos.html">Videos</a>
+        <a href="one-question.html">One Question</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container narrow">
+        <p class="section-kicker">Energy</p>
+        <h1>Common hard problems across energy segments.</h1>
+        <p class="lede">Generation, transmission, distribution, markets, and the oil & gas value chain look different on the surface. Underneath, they share the same structural problems: seams no single operator fully sees, margin being consumed while output still holds, and recoverability that can be lost before conventional indicators move.</p>
+        <p>SCFL reads the relational structure of these systems from data organizations already collect. It is not a dashboard replacement, not early-warning software, and not a forecast. It characterizes whether the relationships that hold the system together remain intact under stress.</p>
+
+        <h2>The segments</h2>
+        <p>The same questions appear across:</p>
+        <div class="segment-grid">
+          <div class="segment-card">
+            <h3>Generation</h3>
+            <p>Thermal, nuclear, hydro, wind, solar, and emerging firm resources. Declining synchronous inertia, weather-correlated output, and retirement of legacy fleets.</p>
+          </div>
+          <div class="segment-card">
+            <h3>Transmission</h3>
+            <p>Bulk power system. Interconnection queues, congestion, and the multi-year lag between new generation and the lines that move it.</p>
+          </div>
+          <div class="segment-card">
+            <h3>Distribution & utilities</h3>
+            <p>IOUs, munis, co-ops. Aging assets, DER integration, data-center load growth, and localized reliability under extreme weather.</p>
+          </div>
+          <div class="segment-card">
+            <h3>Markets & RTOs/ISOs</h3>
+            <p>Wholesale markets, capacity constructs, and the seam between price signals and physical deliverability.</p>
+          </div>
+          <div class="segment-card">
+            <h3>Oil & Gas value chain</h3>
+            <p>Upstream, midstream, downstream, and LNG. Physical flows, contractual seams, and the decoupling of reported performance from structural capacity.</p>
+          </div>
+          <div class="segment-card">
+            <h3>Emerging interfaces</h3>
+            <p>Storage, DERs, hydrogen, electrification of transport and industry. Boundaries that are shifting while the system is under load.</p>
+          </div>
+        </div>
+
+        <p>Fit is not by industry label. It is by whether the system has interdependent parts, dated records of those parts and their relationships, and a decision that depends on remaining margin.</p>
+
+        <h2>The common hard problems</h2>
+        <p>These map directly to the <a href="problem-spaces.html">seven questions</a> conventional monitoring misses. Each is visible across multiple energy segments.</p>
+
+        <div class="problem-block">
+          <h2>1. Seams no single operator sees</h2>
+          <p class="problem-meta">Problem space: <a href="ps-across-boundaries.html">Across boundaries</a></p>
+          <p>Generation, transmission, distribution, and markets are operated by different entities with different incentives and data boundaries. Interconnection queues sit at the seam between new generation and the transmission system. Market prices can clear while physical constraints bind. Oil & gas midstream contracts can decouple from upstream deliverability.</p>
+          <p>Public reconstructions already show this geometry. The ERCOT plates and the Uri precursor window read relationships across operators while surface metrics remained stationary. Enron is the classic case of market and financial layers shearing from physical energy flows years before disclosure.</p>
+          <p>See: <a href="grid-whitepaper.html">America's Grid Is Running Out of Runway</a> · <a href="enron.html">Enron reconstruction</a> · Grid papers on <a href="papers.html">Papers</a></p>
+        </div>
+
+        <div class="problem-block">
+          <h2>2. Margin consumed while output holds</h2>
+          <p class="problem-meta">Problem space: <a href="ps-hidden-erosion.html">Hidden erosion</a></p>
+          <p>A line can stay within thermal limits, a plant can meet its capacity factor, and a utility can meet reliability standards while the structural margin underneath is being consumed. Declining inertia from inverter-based resources, deferred maintenance on aging assets, rising wildfire or storm liabilities, and capital stress all reduce recoverability without immediately moving the conventional performance numbers.</p>
+          <p>The EAGLE-I outage corpus (738 rupture events, 2015–2020) and ERCOT stress-event validations show precursor geometry readable while conventional indicators remained inside tolerance. Mean lead in the national outage set was 8.9 hours (range 1–71).</p>
+          <p>See: <a href="https://doi.org/10.5281/zenodo.20514713">Before the Alarm</a> · <a href="https://doi.org/10.5281/zenodo.19488182">SCFL on ERCOT stress events</a></p>
+        </div>
+
+        <div class="problem-block">
+          <h2>3. Recoverability lost before the alarm</h2>
+          <p class="problem-meta">Problem spaces: <a href="ps-localization.html">Localization</a> · <a href="ps-seams-in-motion.html">Seams in motion</a></p>
+          <p>Extreme weather, cascading outages, and sudden load growth (data centers, electrification) test whether the system can still replenish itself. The documented five-minute window between irreversible cascade and grid failure during Uri is a boundary condition. The upstream window is larger; the question is whether the structural state is readable while operators still have room to act.</p>
+          <p>Seams move as boundaries shift—new large loads, retiring thermal plants, growing renewable penetration, and changing market rules. The reading asks whether those seams still hold under the new load, not only whether each component is inside its own limit.</p>
+          <p>See: <a href="videos.html">While It Still Stands — Uri</a> and Before the Alarm videos · <a href="https://doi.org/10.5281/zenodo.21513174">Uri Precursor Window</a></p>
+        </div>
+
+        <div class="problem-block">
+          <h2>4. Lifecycle and as-built structure</h2>
+          <p class="problem-meta">Problem space: <a href="ps-lifecycle-checkpoints.html">Lifecycle checkpoints</a></p>
+          <p>New generation sits in interconnection queues for years. Transmission projects take a decade. Retirements of thermal and nuclear plants change the system’s structural properties. Repairs and upgrades may restore capacity without restoring the relational geometry that held the system together. The question at each checkpoint is the same: did we start where we think we started, and did the intervention actually restore structure?</p>
+          <p>Public queue data (LBNL) show more capacity waiting to connect than the country’s installed fleet, with most projects withdrawing. That is a structural fact about the system, not only a process delay.</p>
+        </div>
+
+        <div class="problem-block">
+          <h2>5. Structural integrity while each part passes its limit</h2>
+          <p class="problem-meta">Problem space: <a href="ps-structural-integrity-scan.html">Structural Integrity Scan</a></p>
+          <p>Conventional monitoring checks each component against its own limit and watches the output. SCFL asks whether the parts are still holding one another in place. A grid can meet reserve margins, a pipeline system can move nominated volumes, and a trading book can mark to market while the relational constraints that keep the system coherent have already changed.</p>
+          <p>This is the entry question for a bounded scan. The Grid Integrity Scan prototype is scoped exactly here: characterize relationships among selected grid variables and examine how those relationships change during stress, disturbances, and recovery.</p>
+          <p>See: <a href="scfl-maas-prototype-menu.html">MaaS Prototype Menu — Energy infrastructure / Grid Integrity Scan</a></p>
+        </div>
+
+        <div class="problem-block">
+          <h2>6. Forensic reconstruction of what was already in the record</h2>
+          <p class="problem-meta">Problem space: <a href="ps-forensic-reconstruction.html">Forensic reconstruction</a></p>
+          <p>After an event, the public record often contains the structural signals that were present earlier. Uri, Enron, and the broader EAGLE-I outage set are public reconstructions of this form. They are not predictions. They show what the geometry looked like while conventional indicators remained stationary, and from when.</p>
+          <p>See: <a href="cases.html">Cases</a> · <a href="enron.html">Enron</a> · Grid papers</p>
+        </div>
+
+        <div class="ps-cta">
+          <p class="section-kicker">Starting point</p>
+          <h2>One well-formed structural question.</h2>
+          <p>The usual entry is the One Question Challenge or a bounded Structural Integrity Scan on existing records. Scope is set by the question, the data boundary, and whether the structural signal is present. If it is not, the engagement stops.</p>
+          <a href="one-question.html" class="button primary">One Question Challenge</a>
+          <a href="scfl-maas-prototype-menu.html" class="button secondary" style="margin-left:0.75rem;">Grid Integrity Scan</a>
+          <p style="margin:0.9rem 0 0; font-size:0.92rem;">Research, domain plates, or institutional pilots: <a href="mailto:measurement@coherencemanagement.org">measurement@coherencemanagement.org</a></p>
+        </div>
+
+        <div class="sources">
+          <p>Related public work: <a href="grid-whitepaper.html">America's Grid Is Running Out of Runway</a> (October 2026) · Grid / Infrastructure papers on <a href="papers.html">Papers</a> · <a href="https://doi.org/10.5281/zenodo.20514713">Before the Alarm (EAGLE-I)</a> · <a href="https://doi.org/10.5281/zenodo.19488182">SCFL on ERCOT stress events</a> · <a href="https://doi.org/10.5281/zenodo.21513174">Uri Precursor Window</a>.</p>
+          <p>SCFL is an independent measurement program. Upstream Coherence Measurement Stratum (UCMS). Patent pending. Results have not yet been independently replicated; the research record documents open questions alongside findings.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>© <span id="year"></span> Ronald L. Brogdon. Upstream Coherence Measurement Stratum (UCMS). Patent pending.</p>
+      <a href="index.html">Home</a>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
