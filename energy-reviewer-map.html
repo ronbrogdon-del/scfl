@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Energy Reviewer Map — Where SCFL Maps & Where Grants Fit | SCFL / UCMS</title>
+  <meta name="description" content="Reviewer map of SCFL across energy segments and seams. Shows tested results, planned testbeds, open problems, and alignment with NSF CPS, DOE CESER, DOE OE, DHS S&T, DoD/ONR, and TEES.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="canonical" href="https://coherencemanagement.org/energy-reviewer-map.html">
+  <style>
+    .reviewer-intro { background: var(--accent); border-left: 4px solid var(--primary); padding: 1.25rem 1.5rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0 2rem; }
+    .legend { display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; margin: 1rem 0 1.5rem; font-size: 0.9rem; }
+    .legend-item { display: flex; align-items: center; gap: 0.4rem; }
+    .swatch { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
+    .swatch.tested { background: #1b5e20; }
+    .swatch.pre-freeze { background: #4caf50; }
+    .swatch.testbed { background: #ff9800; }
+    .swatch.forthcoming { background: #2196f3; }
+    .swatch.open { background: #f44336; }
+    .swatch.not-started { background: #e0e0e0; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
+    .filter-btn { padding: 0.4rem 0.8rem; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); cursor: pointer; font-size: 0.9rem; font-weight: 600; }
+    .filter-btn.active, .filter-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .matrix-wrap { overflow-x: auto; margin: 1.5rem 0; }
+    table.matrix { border-collapse: collapse; font-size: 0.85rem; min-width: 640px; }
+    table.matrix th, table.matrix td { border: 1px solid var(--line); padding: 0.5rem 0.4rem; text-align: center; min-width: 72px; }
+    table.matrix th { background: var(--surface-alt); font-weight: 600; }
+    table.matrix td.cell { cursor: pointer; position: relative; }
+    table.matrix td.cell:hover { outline: 2px solid var(--primary); outline-offset: -2px; }
+    table.matrix td.lead { box-shadow: inset 0 0 0 3px #c39a58; }
+    .detail-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; display: none; }
+    .detail-panel.active { display: block; }
+    .detail-panel h3 { margin-top: 0; }
+    .program-tag { display: inline-block; background: var(--accent); color: var(--primary); font-size: 0.75rem; font-weight: 700; padding: 0.15rem 0.45rem; border-radius: 4px; margin-right: 0.3rem; }
+    .path-steps { margin: 0.75rem 0; padding-left: 1.2rem; }
+    .path-steps li { margin: 0.4rem 0; }
+    .note { font-size: 0.85rem; color: var(--muted); margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">SCFL</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Overview</a>
+        <a href="energy.html">Energy</a>
+        <a href="energy-reviewer-map.html" aria-current="page">Reviewer Map</a>
+        <a href="problem-spaces.html">Problem Spaces</a>
+        <a href="papers.html">Papers</a>
+        <a href="cases.html">Cases</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <p class="section-kicker">Energy · For Reviewers</p>
+        <h1>Where SCFL maps in energy</h1>
+        <div class="reviewer-intro">
+          <p>The Standard Coherence Fidelity Layer (SCFL) is a structural-state measurement instrument. It reads the condition of the joins between systems—the seams—like an inspection rather than an alarm. This map shows where it applies across energy segments, what has been tested, what is planned, and which open problems a grant would answer.</p>
+          <p><strong>Rows and columns:</strong> Energy segments. A cell is the seam where two segments meet; the diagonal is a seam inside one segment.</p>
+          <p><strong>Colour:</strong> What exists today, labelled honestly, negative results included.</p>
+          <p><strong>Click a cell:</strong> Scope, papers and links for each result, the open question, and the programs it serves.</p>
+        </div>
+
+        <div class="filters" id="filters">
+          <button class="filter-btn active" data-program="all">All</button>
+          <button class="filter-btn" data-program="nsf">NSF CPS</button>
+          <button class="filter-btn" data-program="ceser">DOE CESER</button>
+          <button class="filter-btn" data-program="oe">DOE OE</button>
+          <button class="filter-btn" data-program="dhs">DHS S&T</button>
+          <button class="filter-btn" data-program="dod">DoD / ONR</button>
+          <button class="filter-btn" data-program="tees">TEES</button>
+        </div>
+
+        <div class="legend">
+          <div class="legend-item"><span class="swatch tested"></span> Tested, frozen engine</div>
+          <div class="legend-item"><span class="swatch pre-freeze"></span> Pre-freeze record</div>
+          <div class="legend-item"><span class="swatch testbed"></span> Testbed planned</div>
+          <div class="legend-item"><span class="swatch forthcoming"></span> Results forthcoming</div>
+          <div class="legend-item"><span class="swatch open"></span> Open problem</div>
+          <div class="legend-item"><span class="swatch not-started"></span> Not started</div>
+        </div>
+
+        <p class="note">The map is symmetric, so only the lower half is shown. Gold ring: the lead intersect.</p>
+
+        <div class="matrix-wrap">
+          <table class="matrix" id="matrix">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Gen</th>
+                <th>Trans</th>
+                <th>Dist</th>
+                <th>Markets</th>
+                <th>Gas</th>
+                <th>O&G</th>
+                <th>Storage/DER</th>
+              </tr>
+            </thead>
+            <tbody id="matrix-body">
+            </tbody>
+          </table>
+        </div>
+
+        <div id="detail" class="detail-panel"></div>
+
+        <div class="reviewer-intro" style="margin-top:2rem;">
+          <h2 style="margin-top:0;">The lead intersect: gas–electric</h2>
+          <p>Gas-fired plants supply a large share of ERCOT’s power, and Winter Storm Uri showed what happens when gas fails to reach them. Yet the seam between pipeline deliveries and gas-fired generation is largely unmeasured: historical observed deliveries to plants are not publicly available, and ERCOT has worked since 2021 to gather gas operations and delivery information.</p>
+          <p><strong>Our path:</strong></p>
+          <ol class="path-steps">
+            <li><strong>Now:</strong> instrument verification on a coupled synthetic testbed (Texas A&M combined electric–gas test case), injecting gas shortfalls of known size and timing, with a no-shortfall control band and pass criteria fixed before any run.</li>
+            <li><strong>Funded phase:</strong> a pre-registered test of the precursor window on observed gas-delivery and generation data, run on the frozen engine and published whatever the result.</li>
+          </ol>
+          <p>Instrument: SCFL engine v1.1.0, frozen 31 October 2026 (freeze record, <a href="https://doi.org/10.5281/zenodo.23839571">10.5281/zenodo.23839571</a>). Results labelled “pre-freeze” were produced before the freeze and are listed as historical record, each scoped to its own question; they are not pooled as evidence for one another.</p>
+        </div>
+
+        <p class="note">Ronald L. Brogdon · Upstream Coherence Measurement Stratum (UCMS) · ORCID <a href="https://orcid.org/0009-0009-0507-2971">0009-0009-0507-2971</a> · <a href="mailto:measurement@coherencemanagement.org">measurement@coherencemanagement.org</a></p>
+        <p style="margin-top:1.5rem;"><a href="energy.html" class="button secondary">← Back to Energy section</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>© <span id="year"></span> Ronald L. Brogdon. Upstream Coherence Measurement Stratum (UCMS). Patent pending.</p>
+      <a href="index.html">Home</a>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const segments = ['Gen','Trans','Dist','Markets','Gas','O&G','Storage/DER'];
+    const statusClass = {
+      tested: 'tested',
+      'pre-freeze': 'pre-freeze',
+      testbed: 'testbed',
+      forthcoming: 'forthcoming',
+      open: 'open',
+      'not-started': 'not-started'
+    };
+
+    const cells = {
+      '0-0': { status: 'pre-freeze', programs: ['nsf','oe'], title: 'Within-generation seams', detail: 'Resource-mix and inertia transitions. Pre-freeze ERCOT stress-event plates. Open: generalization across regions.' },
+      '1-0': { status: 'pre-freeze', programs: ['nsf','ceser','oe'], title: 'Gen–Trans seam', detail: 'Interconnection and congestion. Public queue data + ERCOT plates. Open question: structural restoration vs capacity.' },
+      '1-1': { status: 'open', programs: ['oe','tees'], title: 'Within-transmission', detail: 'Interregional and intra-ISO seams. Not yet instrumented at frozen-engine level.' },
+      '2-0': { status: 'open', programs: ['dhs','oe'], title: 'Gen–Dist', detail: 'Large-load and DER interfaces. Open problem.' },
+      '2-1': { status: 'open', programs: ['oe'], title: 'Trans–Dist', detail: 'Distribution-level seams under bulk stress. Not started.' },
+      '2-2': { status: 'not-started', programs: ['dhs'], title: 'Within-distribution', detail: 'Aging assets, localized reliability. Open.' },
+      '3-0': { status: 'pre-freeze', programs: ['nsf','dod'], title: 'Gen–Markets', detail: 'Price signals vs physical deliverability. Enron reconstruction is the public plate. Open: real-time market seams.' },
+      '3-1': { status: 'open', programs: ['oe','ceser'], title: 'Trans–Markets', detail: 'Congestion pricing and physical constraints. Open problem.' },
+      '3-2': { status: 'not-started', programs: [], title: 'Dist–Markets', detail: 'Retail and DER market interfaces. Not started.' },
+      '3-3': { status: 'pre-freeze', programs: ['dod'], title: 'Within-markets', detail: 'Enron financial-vs-physical seam. Historical record only.' },
+      '4-0': { status: 'testbed', programs: ['nsf','ceser','tees','oe'], title: 'Gas–Gen (lead intersect)', detail: 'Gas-electric seam. Texas A&M synthetic testbed planned now; funded phase is pre-registered observed-data test. Gold-ring lead cell.', lead: true },
+      '4-1': { status: 'open', programs: ['ceser'], title: 'Gas–Trans', detail: 'Pipeline-to-grid delivery seams. Open.' },
+      '4-2': { status: 'not-started', programs: [], title: 'Gas–Dist', detail: 'Not started.' },
+      '4-3': { status: 'open', programs: ['dod'], title: 'Gas–Markets', detail: 'Gas price and deliverability seams. Open.' },
+      '4-4': { status: 'open', programs: ['ceser','tees'], title: 'Within-gas', detail: 'Pipeline and storage seams. Open problem; tied to gas-electric path.' },
+      '5-0': { status: 'not-started', programs: [], title: 'O&G–Gen', detail: 'Upstream-to-generation. Not started.' },
+      '5-1': { status: 'not-started', programs: [], title: 'O&G–Trans', detail: 'Not started.' },
+      '5-4': { status: 'open', programs: ['ceser'], title: 'O&G–Gas', detail: 'Midstream seams. Open.' },
+      '5-5': { status: 'not-started', programs: [], title: 'Within O&G', detail: 'Upstream/midstream/downstream. Not started.' },
+      '6-0': { status: 'open', programs: ['nsf','oe'], title: 'Storage/DER–Gen', detail: 'Inverter-based and storage interfaces. Open problem linked to inertia and recoverability.' },
+      '6-1': { status: 'open', programs: ['oe'], title: 'Storage/DER–Trans', detail: 'Open.' },
+      '6-2': { status: 'open', programs: ['dhs'], title: 'Storage/DER–Dist', detail: 'DER integration seams. Open.' },
+      '6-6': { status: 'not-started', programs: ['nsf'], title: 'Within storage/DER', detail: 'Not started.' }
+    };
+
+    function renderMatrix(activeProgram = 'all') {
+      const tbody = document.getElementById('matrix-body');
+      tbody.innerHTML = '';
+      for (let r = 0; r < segments.length; r++) {
+        const tr = document.createElement('tr');
+        const th = document.createElement('th');
+        th.textContent = segments[r];
+        tr.appendChild(th);
+        for (let c = 0; c < segments.length; c++) {
+          const td = document.createElement('td');
+          if (c > r) {
+            td.textContent = '';
+            td.style.background = '#fafafa';
+          } else {
+            const key = r + '-' + c;
+            const cell = cells[key];
+            if (cell) {
+              const show = activeProgram === 'all' || (cell.programs && cell.programs.includes(activeProgram));
+              td.className = 'cell ' + statusClass[cell.status];
+              if (cell.lead) td.classList.add('lead');
+              td.textContent = show ? '●' : '';
+              td.dataset.key = key;
+              if (!show) td.style.opacity = '0.25';
+              td.addEventListener('click', () => showDetail(key));
+            }
+          }
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+      }
+    }
+
+    function showDetail(key) {
+      const cell = cells[key];
+      if (!cell) return;
+      const panel = document.getElementById('detail');
+      const programs = (cell.programs || []).map(p => {
+        const labels = { nsf: 'NSF CPS', ceser: 'DOE CESER', oe: 'DOE OE', dhs: 'DHS S&T', dod: 'DoD / ONR', tees: 'TEES' };
+        return `<span class="program-tag">${labels[p] || p}</span>`;
+      }).join('');
+      panel.innerHTML = `
+        <h3>${cell.title}${cell.lead ? ' <span style="color:#c39a58;">(lead intersect)</span>' : ''}</h3>
+        <p><strong>Status:</strong> ${cell.status.replace('-', ' ')}</p>
+        <p>${cell.detail}</p>
+        <p><strong>Programs this cell serves:</strong> ${programs || '—'}</p>
+      `;
+      panel.classList.add('active');
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderMatrix(btn.dataset.program);
+      });
+    });
+
+    renderMatrix();
+  </script>
+</body>
+</html>
