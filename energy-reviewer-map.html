@@ -29,6 +29,12 @@
     table.matrix th { background: var(--surface-alt); font-weight: 600; }
     table.matrix td.cell { cursor: pointer; position: relative; }
     table.matrix td.cell:hover { outline: 2px solid var(--primary); outline-offset: -2px; }
+    table.matrix td.cell.tested { background: #1b5e20; color: #fff; }
+    table.matrix td.cell.pre-freeze { background: #4caf50; color: #fff; }
+    table.matrix td.cell.testbed { background: #ff9800; color: #fff; }
+    table.matrix td.cell.forthcoming { background: #2196f3; color: #fff; }
+    table.matrix td.cell.open { background: #f44336; color: #fff; }
+    table.matrix td.cell.not-started { background: #e0e0e0; color: #555; }
     table.matrix td.lead { box-shadow: inset 0 0 0 3px #c39a58; }
     .detail-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; display: none; }
     .detail-panel.active { display: block; }
@@ -36,6 +42,8 @@
     .program-tag { display: inline-block; background: var(--accent); color: var(--primary); font-size: 0.75rem; font-weight: 700; padding: 0.15rem 0.45rem; border-radius: 4px; margin-right: 0.3rem; }
     .path-steps { margin: 0.75rem 0; padding-left: 1.2rem; }
     .path-steps li { margin: 0.4rem 0; }
+    .seam-list { margin: 0.75rem 0; padding-left: 1.4rem; }
+    .seam-list li { margin: 0.45rem 0; }
     .note { font-size: 0.85rem; color: var(--muted); margin-top: 1rem; }
   </style>
 </head>
@@ -120,6 +128,31 @@
           <p>Instrument: SCFL engine v1.1.0, frozen 31 October 2026 (freeze record, <a href="https://doi.org/10.5281/zenodo.23839571">10.5281/zenodo.23839571</a>). Results labelled “pre-freeze” were produced before the freeze and are listed as historical record, each scoped to its own question; they are not pooled as evidence for one another.</p>
         </div>
 
+        <h2 style="margin-top:2rem;">Proposed candidate seams</h2>
+        <p>Ten cross-segment seams proposed in the two-detection-tests paper, spanning utilities (U), grid (G) and oil and gas (O). <strong>All are hypotheses: none has yet passed the data gates or a pre-registered test.</strong> Compelling cases have high need and a clear independent outcome record; challenges are joins the industry has long struggled to measure. Rows 1, 3 and 10 appear buildable from public data on both sides; the others depend on owner access.</p>
+        <ol class="seam-list">
+          <li><strong>Pipeline deliveries to gas-fired plants ↔ gas-fired generation</strong> (O, U) · brittle · compelling · lead candidate</li>
+          <li><strong>Distribution power to water pumping ↔ system pressure and service</strong> (G, U) · brittle · compelling</li>
+          <li><strong>Large-load protective transfer ↔ grid voltage and frequency</strong> (G, U) · flash/brittle · compelling</li>
+          <li><strong>Power to compressor stations ↔ pipeline pressure and flow</strong> (O, G) · brittle · compelling</li>
+          <li><strong>OT commands ↔ physical process response</strong> (O, G, U) · flash/brittle · challenge</li>
+          <li><strong>Black-start fuel ↔ restoration sequence</strong> (O, G) · brittle · challenge</li>
+          <li><strong>Hospital onsite generation and fuel ↔ utility service</strong> (G, U) · brittle · challenge</li>
+          <li><strong>Contractor permit-to-work and handover ↔ process state</strong> (O, G, U) · brittle · challenge</li>
+          <li><strong>Safety-barrier bypass and backlog ↔ process envelope</strong> (O, G) · glacial · challenge</li>
+          <li><strong>Maintenance and capital spending ↔ outage indices</strong> (O, U) · glacial · challenge</li>
+        </ol>
+        <p class="note">Trajectories are provisional, pending documented event histories. Seams already covered by direct measures were excluded, for the reason the two tested grid joins failed.</p>
+
+        <h2 style="margin-top:2rem;">Funding cases</h2>
+        <p>Three open problems that a grant would answer. Each is a question, not a result.</p>
+        <ol class="seam-list">
+          <li><strong>Winter grid reliability under data-center load growth.</strong> Gas-dependent grids are adding large loads while winter gas deliveries remain the weak seam. Can the structural state of the gas–electric seam be read before a winter event, while conventional indicators remain stationary? Builds on the lead intersect above. <span class="program-tag">DOE CESER</span><span class="program-tag">DOE OE</span><span class="program-tag">NSF CPS</span><span class="program-tag">TEES</span></li>
+          <li><strong>Shipboard and islanded microgrids.</strong> Compound operational seams where generation, storage and load must hold together without a parent grid. The tested radial microgrid join set the boundary; islanded operation is the untested case. <span class="program-tag">DoD / ONR</span></li>
+          <li><strong>Civilian command and control.</strong> The seams between federal, state and utility responders during a grid emergency are a pure seams problem: no single party measures the handoffs. <span class="program-tag">DHS S&amp;T</span><span class="program-tag">CISA</span><span class="program-tag">FEMA</span></li>
+        </ol>
+        <p class="note">Program tags name agencies whose missions match each cell, not specific solicitations. Current calls and deadlines are tracked separately; ask at <a href="mailto:measurement@coherencemanagement.org">measurement@coherencemanagement.org</a>.</p>
+
         <p class="note">Ronald L. Brogdon · Upstream Coherence Measurement Stratum (UCMS) · ORCID <a href="https://orcid.org/0009-0009-0507-2971">0009-0009-0507-2971</a> · <a href="mailto:measurement@coherencemanagement.org">measurement@coherencemanagement.org</a></p>
         <p style="margin-top:1.5rem;"><a href="energy.html" class="button secondary">← Back to Energy section</a></p>
       </div>
@@ -148,15 +181,15 @@
     const cells = {
       '0-0': { status: 'pre-freeze', programs: ['nsf','oe'], title: 'Within-generation seams', detail: 'Resource-mix and inertia transitions. Pre-freeze ERCOT stress-event plates. Open: generalization across regions.' },
       '1-0': { status: 'pre-freeze', programs: ['nsf','ceser','oe'], title: 'Gen–Trans seam', detail: 'Interconnection and congestion. Public queue data + ERCOT plates. Open question: structural restoration vs capacity.' },
-      '1-1': { status: 'open', programs: ['oe','tees'], title: 'Within-transmission', detail: 'Interregional and intra-ISO seams. Not yet instrumented at frozen-engine level.' },
+      '1-1': { status: 'tested', programs: ['oe','tees'], title: 'Within-transmission', detail: 'Tested (negative): blinded ERCOT South–North area seam, pre-registered, RUPTURE operator only. SCFL hit 1 of 4 winter events at ±12 h and 0 of 4 at ±2 h with zero background episodes; the better single-sided baseline hit 4 of 4. Failed its pass bar: no detection value added where a single-sided measure already exists. Open: interregional and cross-owner seams.' },
       '2-0': { status: 'open', programs: ['dhs','oe'], title: 'Gen–Dist', detail: 'Large-load and DER interfaces. Open problem.' },
-      '2-1': { status: 'open', programs: ['oe'], title: 'Trans–Dist', detail: 'Distribution-level seams under bulk stress. Not started.' },
-      '2-2': { status: 'not-started', programs: ['dhs'], title: 'Within-distribution', detail: 'Aging assets, localized reliability. Open.' },
+      '2-1': { status: 'open', programs: ['oe'], title: 'Trans–Dist', detail: 'Distribution-level seams under bulk stress. Open problem.' },
+      '2-2': { status: 'not-started', programs: ['dhs'], title: 'Within-distribution', detail: 'Aging assets, localized reliability. Not started.' },
       '3-0': { status: 'pre-freeze', programs: ['nsf','dod'], title: 'Gen–Markets', detail: 'Price signals vs physical deliverability. Enron reconstruction is the public plate. Open: real-time market seams.' },
       '3-1': { status: 'open', programs: ['oe','ceser'], title: 'Trans–Markets', detail: 'Congestion pricing and physical constraints. Open problem.' },
       '3-2': { status: 'not-started', programs: [], title: 'Dist–Markets', detail: 'Retail and DER market interfaces. Not started.' },
       '3-3': { status: 'pre-freeze', programs: ['dod'], title: 'Within-markets', detail: 'Enron financial-vs-physical seam. Historical record only.' },
-      '4-0': { status: 'testbed', programs: ['nsf','ceser','tees','oe'], title: 'Gas–Gen (lead intersect)', detail: 'Gas-electric seam. Texas A&M synthetic testbed planned now; funded phase is pre-registered observed-data test. Gold-ring lead cell.', lead: true },
+      '4-0': { status: 'testbed', programs: ['nsf','ceser','tees','oe'], title: 'Gas–Gen (lead intersect)', detail: 'Gas-electric seam. Texas A&M synthetic testbed planned now; funded phase is pre-registered observed-data test. Row 1 of the proposed candidate seams below. Gold-ring lead cell.', lead: true },
       '4-1': { status: 'open', programs: ['ceser'], title: 'Gas–Trans', detail: 'Pipeline-to-grid delivery seams. Open.' },
       '4-2': { status: 'not-started', programs: [], title: 'Gas–Dist', detail: 'Not started.' },
       '4-3': { status: 'open', programs: ['dod'], title: 'Gas–Markets', detail: 'Gas price and deliverability seams. Open.' },
@@ -167,7 +200,7 @@
       '5-5': { status: 'not-started', programs: [], title: 'Within O&G', detail: 'Upstream/midstream/downstream. Not started.' },
       '6-0': { status: 'open', programs: ['nsf','oe'], title: 'Storage/DER–Gen', detail: 'Inverter-based and storage interfaces. Open problem linked to inertia and recoverability.' },
       '6-1': { status: 'open', programs: ['oe'], title: 'Storage/DER–Trans', detail: 'Open.' },
-      '6-2': { status: 'open', programs: ['dhs'], title: 'Storage/DER–Dist', detail: 'DER integration seams. Open.' },
+      '6-2': { status: 'tested', programs: ['dhs','dod'], title: 'Storage/DER–Dist', detail: 'Tested (negative): IEEE 123-node feeder (OpenDSS) with a microgrid behind the point of common coupling, designed stresses, pre-registered, RUPTURE operator only. A voltage-difference baseline detected the stresses more reliably than SCFL; failed its pass bar. One synthetic feeder. Open: shipboard and islanded microgrids, where the seam is a compound operational one.' },
       '6-6': { status: 'not-started', programs: ['nsf'], title: 'Within storage/DER', detail: 'Not started.' }
     };
 
